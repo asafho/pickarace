@@ -1,0 +1,31 @@
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainViewActivity"
+    android:id="@+id/mainView">
+
+
+    <ImageButton
+        android:layout_width="293dp"
+        android:layout_height="195dp"
+        android:id="@+id/runningBtn"
+        android:layout_x="30dp"
+        android:layout_y="71dp"
+        android:contentDescription="runningBtn"
+        android:onClick="runningButtonOnClick"
+        android:nestedScrollingEnabled="false"
+        android:focusableInTouchMode="true"
+        android:adjustViewBounds="true"
+        android:background="@drawable/running" />
+
+    <ImageButton
+        android:layout_width="293dp"
+        android:layout_height="195dp"
+        android:id="@+id/swimmingBtn"
+        android:layout_x="30dp"
+        android:layout_y="299dp"
+        android:background="@drawable/swim"
+        android:focusableInTouchMode="true" />
+</AbsoluteLayout>

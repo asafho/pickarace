@@ -19,6 +19,7 @@
 		B060D0571A3982D400BCF325 /* contests.json in Resources */ = {isa = PBXBuildFile; fileRef = B060D0561A3982D400BCF325 /* contests.json */; };
 		B060D0591A39A44800BCF325 /* swiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060D0581A39A44800BCF325 /* swiftyJSON.swift */; };
 		B060D05B1A3EF97F00BCF325 /* detailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060D05A1A3EF97F00BCF325 /* detailsViewController.swift */; };
+		B07A0A311A51A9CA009BC14F /* webViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A0A301A51A9CA009BC14F /* webViewController.swift */; };
 		B0B48D601A38779B0001057F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B48D5F1A38779B0001057F /* AppDelegate.swift */; };
 		B0B48D651A38779B0001057F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B48D631A38779B0001057F /* Main.storyboard */; };
 		B0B48D671A38779B0001057F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0B48D661A38779B0001057F /* Images.xcassets */; };
@@ -67,6 +68,7 @@
 		B060D0561A3982D400BCF325 /* contests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = contests.json; sourceTree = "<group>"; };
 		B060D0581A39A44800BCF325 /* swiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = swiftyJSON.swift; sourceTree = "<group>"; };
 		B060D05A1A3EF97F00BCF325 /* detailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailsViewController.swift; sourceTree = "<group>"; };
+		B07A0A301A51A9CA009BC14F /* webViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = webViewController.swift; sourceTree = "<group>"; };
 		B0B48D5A1A38779B0001057F /* app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B48D5E1A38779B0001057F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0B48D5F1A38779B0001057F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				B0B48D891A3889ED0001057F /* mainViewController.swift */,
 				B0B48D8B1A3891890001057F /* listViewController.swift */,
 				B060D05A1A3EF97F00BCF325 /* detailsViewController.swift */,
+				B07A0A301A51A9CA009BC14F /* webViewController.swift */,
 				B0B48D831A38784D0001057F /* running.png */,
 				B0B48D841A38784D0001057F /* swim.png */,
 				B0B48D5F1A38779B0001057F /* AppDelegate.swift */,
@@ -306,6 +309,7 @@
 				B0B48D8C1A3891890001057F /* listViewController.swift in Sources */,
 				43CAF9D71A489D5D00F53FF4 /* SIMProductViewController.m in Sources */,
 				B02B4AED1A43007F0058386D /* adMob.swift in Sources */,
+				B07A0A311A51A9CA009BC14F /* webViewController.swift in Sources */,
 				B060D0551A397BE100BCF325 /* general.swift in Sources */,
 				B060D0591A39A44800BCF325 /* swiftyJSON.swift in Sources */,
 				43CAF9DE1A48AEB600F53FF4 /* PaymentViewControl.swift in Sources */,

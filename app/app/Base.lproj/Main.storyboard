@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Edh-Hc-UsL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Edh-Hc-UsL">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -166,8 +166,17 @@
                                 <state key="normal" title="Register">
                                     <color key="titleShadowColor" red="0.12733232159999999" green="0.029154419899999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VMu-KN-kpD">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="21" y="373" width="46" height="30"/>
+                                </variation>
                                 <connections>
-                                    <segue destination="SDw-um-S8S" kind="showDetail" id="K3b-Cr-cw3"/>
+                                    <segue destination="vVu-bi-6LF" kind="show" id="ddz-pM-via"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="op0-O0-ITe">
@@ -180,7 +189,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="VMu-KN-kpD"/>
                                 <exclude reference="op0-O0-ITe"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="VMu-KN-kpD"/>
                             </mask>
                         </variation>
                     </view>
@@ -194,25 +209,49 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RTX-XH-9cU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1355.5" y="102.5"/>
+            <point key="canvasLocation" x="1433.5" y="108.375"/>
         </scene>
-        <!--Payment View Control-->
-        <scene sceneID="6fk-a5-Npo">
+        <!--Web View Controller-->
+        <scene sceneID="X5d-wf-dGY">
             <objects>
-                <viewController id="SDw-um-S8S" customClass="PaymentViewControl" customModule="app" sceneMemberID="viewController">
+                <viewController id="vVu-bi-6LF" customClass="webViewController" customModule="app" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="D4j-gG-mbb"/>
-                        <viewControllerLayoutGuide type="bottom" id="Zhz-Fw-OOn"/>
+                        <viewControllerLayoutGuide type="top" id="tIy-77-3hU"/>
+                        <viewControllerLayoutGuide type="bottom" id="fBq-4N-q3x"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="EHB-Zg-9gx">
+                    <view key="view" contentMode="scaleToFill" id="CXt-YC-dED">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fdg-9W-QsJ">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="56" width="375" height="611"/>
+                                </variation>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Fdg-9W-QsJ"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="Fdg-9W-QsJ"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="webView" destination="Fdg-9W-QsJ" id="e7C-9X-FyK"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DoU-bz-hPa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wtg-Z6-Bob" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1986.5" y="53.5"/>
+            <point key="canvasLocation" x="2041.5" y="108.375"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GYt-RG-O7r">
@@ -232,7 +271,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GN9-wM-QpO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="19.5" y="173"/>
+            <point key="canvasLocation" x="-60.5" y="102.375"/>
         </scene>
     </scenes>
     <resources>

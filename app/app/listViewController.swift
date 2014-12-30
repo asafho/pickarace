@@ -31,7 +31,7 @@ class listViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let urlPath = "https://s3-us-west-2.amazonaws.com/com.cuefit.data/contests.json"
         let url = NSURL(string: urlPath)
         let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
+        let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
         println("Task completed")
         if(error != nil) {
             // If there is an error in the web request, print it to the console

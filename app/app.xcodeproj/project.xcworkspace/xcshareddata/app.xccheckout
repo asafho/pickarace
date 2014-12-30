@@ -10,14 +10,14 @@
 	<string>app</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>94EDE490B878CBAF1C6BCB56B24F14A1396144FA</key>
+		<key>9D73B5472D8C28099C20055DB122B8D254C0EE8C</key>
 		<string>https://github.com/adiglasman/standart.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>app/app.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>94EDE490B878CBAF1C6BCB56B24F14A1396144FA</key>
+		<key>9D73B5472D8C28099C20055DB122B8D254C0EE8C</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>94EDE490B878CBAF1C6BCB56B24F14A1396144FA</string>
+	<string>9D73B5472D8C28099C20055DB122B8D254C0EE8C</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>94EDE490B878CBAF1C6BCB56B24F14A1396144FA</string>
+			<string>9D73B5472D8C28099C20055DB122B8D254C0EE8C</string>
 			<key>IDESourceControlWCCName</key>
 			<string>standart</string>
 		</dict>

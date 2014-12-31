@@ -4,8 +4,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 
 public class ListActivity extends ActionBarActivity {
@@ -13,6 +11,8 @@ public class ListActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        network.getContests();
+        setTableContent();
         setContentView(R.layout.activity_list);
     }
 
@@ -39,32 +39,9 @@ public class ListActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void setTableContent(){
 
-        public static void getContests() {
-
-
-            try{
-                URL url = new URL("https://s3-us-west-2.amazonaws.com/com.cuefit.data/contests.json");
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("GET");
-                if (conn.getResponseCode() != 200) {
-                    System.out.println("Failed : HTTP error code : "+ conn.getResponseCode());
-                    return;
-                }
-
-                BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-
-                String output= br.readLine();
-                JSONObject contests = new JSONObject(output);
-                conn.disconnect();
-
-            }catch(IOException e)
-            {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        }
 
     }
+
+   }

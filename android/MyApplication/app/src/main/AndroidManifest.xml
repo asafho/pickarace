@@ -49,6 +49,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.asafh.myapplication.MainViewActivity" />
         </activity>
+            android:name=".webViewActivity">
+    </activity>
+
     </application>
 
 </manifest>

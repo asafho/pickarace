@@ -7,4 +7,12 @@
     tools:context="com.example.asafh.myapplication.ListActivity"
     android:background="#ffa8bbff"
     android:id="@+id/mainView">
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView"
+        android:layout_x="21dp"
+        android:layout_y="10dp"
+        android:clickable="true" />
 </AbsoluteLayout>

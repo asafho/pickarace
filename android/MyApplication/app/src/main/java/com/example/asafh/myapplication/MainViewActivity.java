@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
+import android.webkit.WebView;
 
 public class MainViewActivity extends ActionBarActivity {
 
@@ -40,13 +40,19 @@ public class MainViewActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void runningButtonOnClick(View view)
-    {
-        Log.v("action","running button clicked");
+    public void runningButtonOnClick(View view) {
+        Log.v("action", "running button clicked");
         Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
+        Log.v("internet test: ", String.valueOf(general.isConnected(this.getApplicationContext())));
         startActivity(openStep);
-
-        Log.v("internet test: ",String.valueOf(general.isConnected(this.getApplicationContext())));
     }
+
+    public void openWebView(View view)
+    {
+        Intent intent = new Intent(this.getApplicationContext(), webViewActivity.class);
+        startActivity(intent);
+
+    }
+
 
    }

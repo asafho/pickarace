@@ -28,4 +28,13 @@
         android:layout_y="299dp"
         android:background="@drawable/swim"
         android:focusableInTouchMode="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="webView"
+        android:id="@+id/openWeb"
+        android:layout_x="25dp"
+        android:layout_y="17dp"
+        android:onClick="openWebView" />
 </AbsoluteLayout>

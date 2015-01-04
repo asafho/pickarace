@@ -27,7 +27,7 @@ public class network extends AsyncTask<URL, Integer, Long>{
     }
 
 
-    public static JSONObject getContests() {
+    public static void setContests() {
 
 
         new Thread(new Runnable() {
@@ -61,8 +61,11 @@ public class network extends AsyncTask<URL, Integer, Long>{
                 }
             }
         }).start();
+    }
 
+
+    public static JSONObject getContestsObj()
+    {
         return contestsObj;
-
     }
 }

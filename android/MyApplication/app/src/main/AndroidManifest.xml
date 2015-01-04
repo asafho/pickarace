@@ -2,11 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.asafh.myapplication" >
 
-    <!-- Internet Permissions -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- Network State Permissions -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -26,32 +21,13 @@
             android:label="@string/title_activity_list" >
         </activity>
         <activity
-            android:name=".ItemListActivity"
-            android:label="@string/title_item_list"
-            android:parentActivityName=".MainViewActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.asafh.myapplication.MainViewActivity" />
-        </activity>
-        <activity
-            android:name=".ItemDetailActivity"
-            android:label="@string/title_item_detail"
-            android:parentActivityName=".ItemListActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.asafh.myapplication.ItemListActivity" />
-        </activity>
-        <activity
-            android:name=".DisplayActivity"
-            android:label="@string/title_activity_display"
-            android:parentActivityName=".MainViewActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.asafh.myapplication.MainViewActivity" />
-        </activity>
             android:name=".webViewActivity">
-    </activity>
+        </activity>
 
     </application>
 
+    <!-- Internet Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Network State Permissions -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 </manifest>

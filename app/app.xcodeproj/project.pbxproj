@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		43CAF9D31A489AF000F53FF4 /* Simplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CAF9D11A489AF000F53FF4 /* Simplify.framework */; };
-		43CAF9D41A489AF000F53FF4 /* Simplify.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 43CAF9D21A489AF000F53FF4 /* Simplify.bundle */; };
-		43CAF9D71A489D5D00F53FF4 /* SIMProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CAF9D61A489D5D00F53FF4 /* SIMProductViewController.m */; };
-		43CAF9DE1A48AEB600F53FF4 /* PaymentViewControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CAF9DD1A48AEB600F53FF4 /* PaymentViewControl.swift */; };
 		B02B4AE51A42F81C0058386D /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B4AE31A42F81C0058386D /* libGoogleAdMobAds.a */; };
 		B02B4AE61A42F81C0058386D /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = B02B4AE41A42F81C0058386D /* README.txt */; };
 		B02B4AE91A42F9170058386D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B4AE81A42F9170058386D /* AdSupport.framework */; };
 		B02B4AED1A43007F0058386D /* adMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02B4AEC1A43007F0058386D /* adMob.swift */; };
+		B0529F741A5A8EC4004051EA /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F6C1A5A8EC4004051EA /* bg.png */; };
+		B0529F751A5A8EC4004051EA /* bike.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F6D1A5A8EC4004051EA /* bike.png */; };
+		B0529F761A5A8EC4004051EA /* navigation 2 ref.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B0529F6E1A5A8EC4004051EA /* navigation 2 ref.jpg */; };
+		B0529F771A5A8EC4004051EA /* run.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F6F1A5A8EC4004051EA /* run.png */; };
+		B0529F781A5A8EC4004051EA /* shape.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F701A5A8EC4004051EA /* shape.png */; };
+		B0529F791A5A8EC4004051EA /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F711A5A8EC4004051EA /* splash.png */; };
+		B0529F7A1A5A8EC4004051EA /* swim.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F721A5A8EC4004051EA /* swim.png */; };
+		B0529F7B1A5A8EC4004051EA /* triathlon.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F731A5A8EC4004051EA /* triathlon.png */; };
 		B060D0551A397BE100BCF325 /* general.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060D0541A397BE100BCF325 /* general.swift */; };
 		B060D0571A3982D400BCF325 /* contests.json in Resources */ = {isa = PBXBuildFile; fileRef = B060D0561A3982D400BCF325 /* contests.json */; };
 		B060D0591A39A44800BCF325 /* swiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060D0581A39A44800BCF325 /* swiftyJSON.swift */; };
@@ -23,10 +27,7 @@
 		B0B48D601A38779B0001057F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B48D5F1A38779B0001057F /* AppDelegate.swift */; };
 		B0B48D651A38779B0001057F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B48D631A38779B0001057F /* Main.storyboard */; };
 		B0B48D671A38779B0001057F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0B48D661A38779B0001057F /* Images.xcassets */; };
-		B0B48D6A1A38779B0001057F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0B48D681A38779B0001057F /* LaunchScreen.xib */; };
 		B0B48D761A38779B0001057F /* appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B48D751A38779B0001057F /* appTests.swift */; };
-		B0B48D851A38784D0001057F /* running.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B48D831A38784D0001057F /* running.png */; };
-		B0B48D861A38784D0001057F /* swim.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B48D841A38784D0001057F /* swim.png */; };
 		B0B48D8A1A3889ED0001057F /* mainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B48D891A3889ED0001057F /* mainViewController.swift */; };
 		B0B48D8C1A3891890001057F /* listViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B48D8B1A3891890001057F /* listViewController.swift */; };
 /* End PBXBuildFile section */
@@ -42,12 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		43CAF9D11A489AF000F53FF4 /* Simplify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Simplify.framework; sourceTree = "<group>"; };
-		43CAF9D21A489AF000F53FF4 /* Simplify.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Simplify.bundle; sourceTree = "<group>"; };
-		43CAF9D51A489D5D00F53FF4 /* SIMProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMProductViewController.h; sourceTree = "<group>"; };
-		43CAF9D61A489D5D00F53FF4 /* SIMProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMProductViewController.m; sourceTree = "<group>"; };
 		43CAF9D81A489D9A00F53FF4 /* app-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "app-Bridging-Header.h"; sourceTree = "<group>"; };
-		43CAF9DD1A48AEB600F53FF4 /* PaymentViewControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewControl.swift; sourceTree = "<group>"; };
 		B02B4AD71A42F81C0058386D /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
 		B02B4AD81A42F81C0058386D /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
 		B02B4AD91A42F81C0058386D /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
@@ -64,6 +60,14 @@
 		B02B4AE41A42F81C0058386D /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		B02B4AE81A42F9170058386D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		B02B4AEC1A43007F0058386D /* adMob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = adMob.swift; sourceTree = "<group>"; };
+		B0529F6C1A5A8EC4004051EA /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		B0529F6D1A5A8EC4004051EA /* bike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bike.png; sourceTree = "<group>"; };
+		B0529F6E1A5A8EC4004051EA /* navigation 2 ref.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "navigation 2 ref.jpg"; sourceTree = "<group>"; };
+		B0529F6F1A5A8EC4004051EA /* run.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = run.png; sourceTree = "<group>"; };
+		B0529F701A5A8EC4004051EA /* shape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shape.png; sourceTree = "<group>"; };
+		B0529F711A5A8EC4004051EA /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
+		B0529F721A5A8EC4004051EA /* swim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swim.png; sourceTree = "<group>"; };
+		B0529F731A5A8EC4004051EA /* triathlon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triathlon.png; sourceTree = "<group>"; };
 		B060D0541A397BE100BCF325 /* general.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = general.swift; sourceTree = "<group>"; };
 		B060D0561A3982D400BCF325 /* contests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = contests.json; sourceTree = "<group>"; };
 		B060D0581A39A44800BCF325 /* swiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = swiftyJSON.swift; sourceTree = "<group>"; };
@@ -74,12 +78,9 @@
 		B0B48D5F1A38779B0001057F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0B48D641A38779B0001057F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B0B48D661A38779B0001057F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		B0B48D691A38779B0001057F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B0B48D6F1A38779B0001057F /* appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = appTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B48D741A38779B0001057F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0B48D751A38779B0001057F /* appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appTests.swift; sourceTree = "<group>"; };
-		B0B48D831A38784D0001057F /* running.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = running.png; sourceTree = "<group>"; };
-		B0B48D841A38784D0001057F /* swim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swim.png; sourceTree = "<group>"; };
 		B0B48D891A3889ED0001057F /* mainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mainViewController.swift; sourceTree = "<group>"; };
 		B0B48D8B1A3891890001057F /* listViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = listViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,7 +90,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43CAF9D31A489AF000F53FF4 /* Simplify.framework in Frameworks */,
 				B02B4AE91A42F9170058386D /* AdSupport.framework in Frameworks */,
 				B02B4AE51A42F81C0058386D /* libGoogleAdMobAds.a in Frameworks */,
 			);
@@ -126,11 +126,24 @@
 			path = GoogleAdMobSdk;
 			sourceTree = "<group>";
 		};
+		B0529F6B1A5A8EC4004051EA /* images */ = {
+			isa = PBXGroup;
+			children = (
+				B0529F6C1A5A8EC4004051EA /* bg.png */,
+				B0529F6D1A5A8EC4004051EA /* bike.png */,
+				B0529F6E1A5A8EC4004051EA /* navigation 2 ref.jpg */,
+				B0529F6F1A5A8EC4004051EA /* run.png */,
+				B0529F701A5A8EC4004051EA /* shape.png */,
+				B0529F711A5A8EC4004051EA /* splash.png */,
+				B0529F721A5A8EC4004051EA /* swim.png */,
+				B0529F731A5A8EC4004051EA /* triathlon.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		B0B48D511A38779B0001057F = {
 			isa = PBXGroup;
 			children = (
-				43CAF9D11A489AF000F53FF4 /* Simplify.framework */,
-				43CAF9D21A489AF000F53FF4 /* Simplify.bundle */,
 				B02B4AE81A42F9170058386D /* AdSupport.framework */,
 				B0B48D5C1A38779B0001057F /* app */,
 				B0B48D721A38779B0001057F /* appTests */,
@@ -151,22 +164,17 @@
 			isa = PBXGroup;
 			children = (
 				43CAF9D81A489D9A00F53FF4 /* app-Bridging-Header.h */,
-				43CAF9D51A489D5D00F53FF4 /* SIMProductViewController.h */,
-				43CAF9D61A489D5D00F53FF4 /* SIMProductViewController.m */,
 				B02B4AD61A42F81C0058386D /* GoogleAdMobSdk */,
 				B060D0561A3982D400BCF325 /* contests.json */,
 				B0B48D891A3889ED0001057F /* mainViewController.swift */,
 				B0B48D8B1A3891890001057F /* listViewController.swift */,
 				B060D05A1A3EF97F00BCF325 /* detailsViewController.swift */,
 				B07A0A301A51A9CA009BC14F /* webViewController.swift */,
-				B0B48D831A38784D0001057F /* running.png */,
-				B0B48D841A38784D0001057F /* swim.png */,
+				B0529F6B1A5A8EC4004051EA /* images */,
 				B0B48D5F1A38779B0001057F /* AppDelegate.swift */,
 				B060D0541A397BE100BCF325 /* general.swift */,
 				B0B48D631A38779B0001057F /* Main.storyboard */,
-				43CAF9DD1A48AEB600F53FF4 /* PaymentViewControl.swift */,
 				B0B48D661A38779B0001057F /* Images.xcassets */,
-				B0B48D681A38779B0001057F /* LaunchScreen.xib */,
 				B0B48D5D1A38779B0001057F /* Supporting Files */,
 				B060D0581A39A44800BCF325 /* swiftyJSON.swift */,
 				B02B4AEC1A43007F0058386D /* adMob.swift */,
@@ -280,13 +288,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0B48D651A38779B0001057F /* Main.storyboard in Resources */,
-				B0B48D861A38784D0001057F /* swim.png in Resources */,
-				B0B48D6A1A38779B0001057F /* LaunchScreen.xib in Resources */,
+				B0529F771A5A8EC4004051EA /* run.png in Resources */,
 				B0B48D671A38779B0001057F /* Images.xcassets in Resources */,
-				43CAF9D41A489AF000F53FF4 /* Simplify.bundle in Resources */,
+				B0529F791A5A8EC4004051EA /* splash.png in Resources */,
+				B0529F781A5A8EC4004051EA /* shape.png in Resources */,
+				B0529F761A5A8EC4004051EA /* navigation 2 ref.jpg in Resources */,
+				B0529F741A5A8EC4004051EA /* bg.png in Resources */,
+				B0529F7B1A5A8EC4004051EA /* triathlon.png in Resources */,
 				B060D0571A3982D400BCF325 /* contests.json in Resources */,
+				B0529F751A5A8EC4004051EA /* bike.png in Resources */,
 				B02B4AE61A42F81C0058386D /* README.txt in Resources */,
-				B0B48D851A38784D0001057F /* running.png in Resources */,
+				B0529F7A1A5A8EC4004051EA /* swim.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,12 +319,10 @@
 				B0B48D601A38779B0001057F /* AppDelegate.swift in Sources */,
 				B060D05B1A3EF97F00BCF325 /* detailsViewController.swift in Sources */,
 				B0B48D8C1A3891890001057F /* listViewController.swift in Sources */,
-				43CAF9D71A489D5D00F53FF4 /* SIMProductViewController.m in Sources */,
 				B02B4AED1A43007F0058386D /* adMob.swift in Sources */,
 				B07A0A311A51A9CA009BC14F /* webViewController.swift in Sources */,
 				B060D0551A397BE100BCF325 /* general.swift in Sources */,
 				B060D0591A39A44800BCF325 /* swiftyJSON.swift in Sources */,
-				43CAF9DE1A48AEB600F53FF4 /* PaymentViewControl.swift in Sources */,
 				B0B48D8A1A3889ED0001057F /* mainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,14 +352,6 @@
 				B0B48D641A38779B0001057F /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		B0B48D681A38779B0001057F /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B0B48D691A38779B0001057F /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

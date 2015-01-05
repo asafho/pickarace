@@ -13,6 +13,7 @@ class webViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var webView: UIWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        //let url = NSURL(string: general.MyVariables.contestData["link"] as String)
         let url = NSURL(string: "http://www.eingedi-run.co.il/he/#2")
         let request = NSURLRequest(URL: url!)
         webView.scalesPageToFit = true

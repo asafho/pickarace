@@ -1,5 +1,6 @@
 package com.example.asafh.myapplication;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -16,46 +18,62 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ListActivity extends ActionBarActivity {
 
     ArrayList<String> contestList = new ArrayList<String>();
+    List<Map<String, String>> eventData = new ArrayList<Map<String, String>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         network.setContests();
         JSONObject  appData = network.getContestsObj();
         setContentView(R.layout.activity_list);
+
+        //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, contestList);
+        ListView animalList=(ListView)findViewById(R.id.listView);
 
         try {
             JSONArray events = appData.getJSONArray("events");
             for(int i=0;i<events.length();i++)
             {
                 JSONObject event = events.getJSONObject(i);
-                Log.v("json",event.getString("name"));
+                Map<String, String> datum = new HashMap<String, String>(2);
+                datum.put("name", event.getString("name"));
+                datum.put("location", event.getString("location"));
+                eventData.add(datum);
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        ListView animalList=(ListView)findViewById(R.id.listView);
-
-
-        // Create The Adapter with passing ArrayList as 3rd parameter
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, contestList);
         // Set The Adapter
-        animalList.setAdapter(arrayAdapter);
+
+        SimpleAdapter adapter = new SimpleAdapter(this, eventData,
+                android.R.layout.simple_list_item_2,
+                new String[] {"name", "location"},
+                new int[] {android.R.id.text1,
+                        android.R.id.text2});
+
+        animalList.setAdapter(adapter);
+        //animalList.setAdapter(arrayAdapter);
         // register onClickListener to handle click events on each item
         animalList.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             // argument position gives the index of item which is clicked
             public void onItemClick(AdapterView<?> arg0, View v,int position, long arg3)
             {
+                Map s =  eventData.get(position);
+                Toast.makeText(getApplicationContext(), "User Selected : "+ s.toString(),   Toast.LENGTH_LONG).show();
+                Intent displayActivityView = new Intent(ListActivity.this, DisplayActivity.class);
+                startActivity(displayActivityView);
 
-                String selectedAnimal=contestList.get(position);
-                Toast.makeText(getApplicationContext(), "User Selected : "+selectedAnimal,   Toast.LENGTH_LONG).show();
             }
         });
 
@@ -83,12 +101,4 @@ public class ListActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    void getAnimalNames()
-    {
-        contestList.add("מירוץ ראשון לציון");
-        contestList.add("מירוץ רחובות");
-        contestList.add("כלשהו שקר כלזהו");
-    }
-
    }

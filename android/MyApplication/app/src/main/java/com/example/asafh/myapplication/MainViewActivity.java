@@ -7,13 +7,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import com.google.android.gms.ads.*;
 
 public class MainViewActivity extends ActionBarActivity {
+    private InterstitialAd interstitial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_view);
+
     }
 
     @Override
@@ -50,6 +53,12 @@ public class MainViewActivity extends ActionBarActivity {
         Intent intent = new Intent(this.getApplicationContext(), webViewActivity.class);
         startActivity(intent);
 
+    }
+
+    public void displayInterstitial() {
+        if (interstitial.isLoaded()) {
+            interstitial.show();
+        }
     }
 
 

@@ -28,7 +28,6 @@ class mainViewController: UIViewController, GADBannerViewDelegate, ADBannerViewD
 
     @IBAction func runningBtn(sender: AnyObject) {
         println("Running button clicked")
-        adMob.displayInterstitial(self)
         general.MyVariables.contest="running"
         changeView()
         
@@ -40,7 +39,20 @@ class mainViewController: UIViewController, GADBannerViewDelegate, ADBannerViewD
         changeView()
     }
 
+    @IBAction func triathlonBtn(sender: AnyObject) {
+        println("triathlon button clicked")
+        general.MyVariables.contest="triathlon"
+        changeView()
+    }
+    
+    @IBAction func bikingBtn(sender: AnyObject) {
+        println("Biking button clicked")
+        general.MyVariables.contest="biking"
+        changeView()
+    }
+    
     func changeView(){
+        adMob.displayInterstitial(self)
         let view = self.storyboard?.instantiateViewControllerWithIdentifier("listView") as listViewController
         self.navigationController?.pushViewController(view, animated: true)
     }

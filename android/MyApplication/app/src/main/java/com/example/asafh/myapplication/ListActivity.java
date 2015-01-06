@@ -29,7 +29,7 @@ public class ListActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        network.setContests();
+
         JSONObject  appData = network.getContestsObj();
         setContentView(R.layout.activity_list);
 

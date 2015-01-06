@@ -10,4 +10,5 @@
     <string name="title_activity_display">DisplayActivity</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="ad_unit_id">ca-app-pub-6938332798224330/6206234808</string>
+    <string name="banner_ad_unit_id">ca-app-pub-6938332798224330/6206234808</string>
 </resources>

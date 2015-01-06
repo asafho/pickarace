@@ -9,7 +9,6 @@
     android:background="@drawable/bg"
     android:longClickable="true"
     android:measureWithLargestChild="true"
-    android:nestedScrollingEnabled="true"
     android:gravity="center">
 
 <TableRow

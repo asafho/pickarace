@@ -1,20 +1,35 @@
 package com.example.asafh.myapplication;
 
+import android.app.Fragment;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
+import android.view.ViewGroup;
+
+import com.google.android.gms.ads.*;
 
 public class MainViewActivity extends ActionBarActivity {
+    private InterstitialAd interstitial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_view);
+
+        // Create the interstitial.
+        interstitial = new InterstitialAd(this);
+        interstitial.setAdUnitId(getString(R.string.ad_unit_id));
+
+        // Create ad request.
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        // Begin loading your interstitial.
+        interstitial.loadAd(adRequest);
     }
 
 
@@ -40,11 +55,13 @@ public class MainViewActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     public void runningButtonOnClick(View view) {
         Log.v("action", "running button clicked");
         Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
         Log.v("internet test: ", String.valueOf(general.isConnected(this.getApplicationContext())));
         startActivity(openStep);
+        displayInterstitial();
     }
 
     public void openWebView(View view)
@@ -54,5 +71,26 @@ public class MainViewActivity extends ActionBarActivity {
 
     }
 
+    public void displayInterstitial() {
+        if (interstitial.isLoaded()) {
+            interstitial.show();
+        }
+    }
 
-   }
+    public static class AdFragment extends Fragment {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            return inflater.inflate(R.layout.fragment_ad, container, false);
+        }
+
+        @Override
+        public void onActivityCreated(Bundle bundle) {
+            super.onActivityCreated(bundle);
+            AdView mAdView = (AdView) getView().findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        }
+    }
+
+}

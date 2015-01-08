@@ -1,43 +1,86 @@
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainViewActivity"
-    android:id="@+id/mainView">
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
 
+    tools:context=".MainViewActivity"
+    android:id="@+id/mainView"
+    android:background="@drawable/bg"
+    android:longClickable="true"
+    android:measureWithLargestChild="true"
+    android:gravity="center">
 
-    <ImageButton
-        android:layout_width="285dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/runningBtn"
-        android:layout_x="14dp"
-        android:layout_y="58dp"
-        android:contentDescription="runningBtn"
-        android:onClick="runningButtonOnClick"
-        android:nestedScrollingEnabled="false"
-        android:focusableInTouchMode="true"
-        android:adjustViewBounds="false"
-        android:background="@drawable/run"
-        android:src="@drawable/run"
-        android:clickable="true"
-        android:accessibilityLiveRegion="polite" />
+<TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/abc_text_size_display_3_material"
+            android:id="@+id/runningBtn"
+            android:background="@drawable/run"
+            android:focusableInTouchMode="true"
+            android:onClick="runningButtonOnClick"
+            android:scaleType="center" />
+</TableRow>
+
+    <TableRow>
+        <TextView />
+    </TableRow>
+
+<TableRow
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
 
     <ImageButton
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/abc_text_size_display_3_material"
+        android:id="@+id/imageButton"
+        android:background="@drawable/bike" />
+</TableRow>
+    <TableRow>
+        <TextView />
+    </TableRow>
+
+<TableRow
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/abc_text_size_display_3_material"
         android:id="@+id/swimmingBtn"
-        android:layout_x="0dp"
-        android:layout_y="193dp"
         android:background="@drawable/swim"
         android:focusableInTouchMode="true" />
+</TableRow>
+
+    <TableRow>
+        <TextView />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/abc_text_size_display_3_material"
+            android:id="@+id/imageButton2"
+            android:background="@drawable/triathlon" />
+    </TableRow>
+    <TableRow>
+        <TextView />
+    </TableRow>
+<TableRow
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="webView"
         android:id="@+id/openWeb"
-        android:layout_x="56dp"
-        android:layout_y="453dp"
         android:onClick="openWebView" />
-</AbsoluteLayout>
+</TableRow>
+
+</TableLayout>

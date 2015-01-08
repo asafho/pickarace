@@ -9,13 +9,10 @@
 import UIKit
 import iAd
 
-class mainViewController: UIViewController, GADBannerViewDelegate, ADBannerViewDelegate {
-    
-    
+class mainViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDelegate, ADBannerViewDelegate {
+
     override func viewDidLoad() {
-        if(general.isConnectedToNetwork()){
-            adMob.ads.interstitial = adMob.createAndLoadInterstitial()
-        }
+        adMob.loadBanners(self)
         super.viewDidLoad()
       
     }
@@ -55,6 +52,13 @@ class mainViewController: UIViewController, GADBannerViewDelegate, ADBannerViewD
         adMob.displayInterstitial(self)
         let view = self.storyboard?.instantiateViewControllerWithIdentifier("listView") as listViewController
         self.navigationController?.pushViewController(view, animated: true)
+        loadAd()
+    }
+    
+    func loadAd(){
+        if(general.isConnectedToNetwork()){
+            adMob.ads.interstitial = adMob.createAndLoadInterstitial()
+        }
     }
 
 

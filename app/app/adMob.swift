@@ -20,9 +20,9 @@ class adMob: UIViewController, GADBannerViewDelegate, ADBannerViewDelegate {
     }
     //Interstitial func
     class func createAndLoadInterstitial()->GADInterstitial {
-        println("trying loading interstitial ad")
+        println("trying to load interstitial ad")
         var interstitial = GADInterstitial()
-        interstitial.adUnitID = "ca-app-pub-6938332798224330/6206234808"
+        interstitial.adUnitID = "ca-app-pub-6535762882222672/7951508541"
         interstitial.loadRequest(GADRequest())
         return interstitial
     }
@@ -50,5 +50,24 @@ class adMob: UIViewController, GADBannerViewDelegate, ADBannerViewDelegate {
         return false
     }
     
-    
+    class func loadBanners(viewcontroller : UIViewController){
+        var bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView?.adUnitID = "ca-app-pub-6535762882222672/6474775341"
+        bannerView?.rootViewController = viewcontroller
+        var bannerFrame = bannerView!.frame
+        
+        
+        let screenRect = UIScreen.mainScreen().bounds
+        let screenHeight = screenRect.size.height
+        bannerFrame.origin.y = screenHeight - bannerFrame.size.height
+        bannerFrame.origin.x = 25
+        bannerView!.frame = bannerFrame
+        
+        viewcontroller.view.addSubview(bannerView!)
+        var request:GADRequest = GADRequest()
+        bannerView?.loadRequest(request)
+  /*      var timer:NSTimer?
+        timer?.invalidate()
+        timer = NSTimer.scheduledTimerWithTimeInterval(20, target: viewcontroller, selector: "GoogleAdRequestTimer", userInfo: nil, repeats: true)
+    */}
 }

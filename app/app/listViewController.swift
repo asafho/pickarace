@@ -18,6 +18,7 @@ class listViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     override func viewDidLoad() {
+        adMob.loadBanners(self)
         super.viewDidLoad()
         getContests()
     }
@@ -28,11 +29,10 @@ class listViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func getContests() {
-        let urlPath = "https://s3-us-west-2.amazonaws.com/com.cuefit.data/contests.json"
+        let urlPath = "http://s3-us-west-2.amazonaws.com/com.cuefit.data/contests.json"
         let url = NSURL(string: urlPath)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
-        println("Task completed")
         if(error != nil) {
             // If there is an error in the web request, print it to the console
             println(error.localizedDescription)
@@ -43,13 +43,12 @@ class listViewController: UIViewController, UITableViewDataSource, UITableViewDe
             // If there is an error parsing JSON, print it to the console
             println("JSON Error \(err!.localizedDescription)")
         }
-        let results: NSArray = jsonResult["events"] as NSArray
+        var results: NSArray = jsonResult["events"] as NSArray
         for contest in results{
-            let contestValue: String = contest["type"] as String
-            if(contestValue != general.MyVariables.contest){
-            //  println(contest["name"])
-              println(results.indexOfObject(contest))
-              (results as NSMutableArray).removeObject(contest)
+            let contesttype: String = contest["type"] as String
+            if((contest["status"] as String != "active") || (contesttype != general.MyVariables.contest)){
+                println(contesttype)
+                (results as NSMutableArray).removeObject(contest);
             }
         }
          
@@ -76,11 +75,13 @@ class listViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if(eventType==general.MyVariables.contest){
             cell.textLabel?.text = rowData["name"] as? String
             let id: String = rowData["id"] as String
-            let vendor: String = rowData["vendor"] as String
             let date: String = rowData["date"] as String
-            var desc = "Date:"+date+" ,Vendor: "+vendor
+            let locationObj: NSDictionary = rowData["location"] as NSDictionary
+            let city: String = locationObj["city"] as String
+            var desc = date+"\n"+city
             cell.detailTextLabel?.text = desc
-        
+            cell.detailTextLabel?.textAlignment=NSTextAlignment.Right;
+            cell.textLabel?.textAlignment=NSTextAlignment.Right;
    /*   
             let imgURL: NSURL? = NSURL(string: urlString)
             // Download an NSData representation of the image at the URL

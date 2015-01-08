@@ -13,7 +13,6 @@
 		B02B4AED1A43007F0058386D /* adMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02B4AEC1A43007F0058386D /* adMob.swift */; };
 		B0529F741A5A8EC4004051EA /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F6C1A5A8EC4004051EA /* bg.png */; };
 		B0529F751A5A8EC4004051EA /* bike.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F6D1A5A8EC4004051EA /* bike.png */; };
-		B0529F761A5A8EC4004051EA /* navigation 2 ref.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B0529F6E1A5A8EC4004051EA /* navigation 2 ref.jpg */; };
 		B0529F771A5A8EC4004051EA /* run.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F6F1A5A8EC4004051EA /* run.png */; };
 		B0529F781A5A8EC4004051EA /* shape.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F701A5A8EC4004051EA /* shape.png */; };
 		B0529F791A5A8EC4004051EA /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F711A5A8EC4004051EA /* splash.png */; };
@@ -24,6 +23,8 @@
 		B060D0591A39A44800BCF325 /* swiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060D0581A39A44800BCF325 /* swiftyJSON.swift */; };
 		B060D05B1A3EF97F00BCF325 /* detailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060D05A1A3EF97F00BCF325 /* detailsViewController.swift */; };
 		B07A0A311A51A9CA009BC14F /* webViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A0A301A51A9CA009BC14F /* webViewController.swift */; };
+		B0B170291A5B06D200BA0A3B /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0B170281A5B06D200BA0A3B /* Launch Screen.xib */; };
+		B0B2E6411A5C731F00B10E88 /* registration.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B2E6401A5C731F00B10E88 /* registration.png */; };
 		B0B48D601A38779B0001057F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B48D5F1A38779B0001057F /* AppDelegate.swift */; };
 		B0B48D651A38779B0001057F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B48D631A38779B0001057F /* Main.storyboard */; };
 		B0B48D671A38779B0001057F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0B48D661A38779B0001057F /* Images.xcassets */; };
@@ -62,7 +63,6 @@
 		B02B4AEC1A43007F0058386D /* adMob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = adMob.swift; sourceTree = "<group>"; };
 		B0529F6C1A5A8EC4004051EA /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		B0529F6D1A5A8EC4004051EA /* bike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bike.png; sourceTree = "<group>"; };
-		B0529F6E1A5A8EC4004051EA /* navigation 2 ref.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "navigation 2 ref.jpg"; sourceTree = "<group>"; };
 		B0529F6F1A5A8EC4004051EA /* run.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = run.png; sourceTree = "<group>"; };
 		B0529F701A5A8EC4004051EA /* shape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shape.png; sourceTree = "<group>"; };
 		B0529F711A5A8EC4004051EA /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
@@ -73,6 +73,8 @@
 		B060D0581A39A44800BCF325 /* swiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = swiftyJSON.swift; sourceTree = "<group>"; };
 		B060D05A1A3EF97F00BCF325 /* detailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailsViewController.swift; sourceTree = "<group>"; };
 		B07A0A301A51A9CA009BC14F /* webViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = webViewController.swift; sourceTree = "<group>"; };
+		B0B170281A5B06D200BA0A3B /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
+		B0B2E6401A5C731F00B10E88 /* registration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registration.png; sourceTree = "<group>"; };
 		B0B48D5A1A38779B0001057F /* app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B48D5E1A38779B0001057F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0B48D5F1A38779B0001057F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -129,9 +131,9 @@
 		B0529F6B1A5A8EC4004051EA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				B0B2E6401A5C731F00B10E88 /* registration.png */,
 				B0529F6C1A5A8EC4004051EA /* bg.png */,
 				B0529F6D1A5A8EC4004051EA /* bike.png */,
-				B0529F6E1A5A8EC4004051EA /* navigation 2 ref.jpg */,
 				B0529F6F1A5A8EC4004051EA /* run.png */,
 				B0529F701A5A8EC4004051EA /* shape.png */,
 				B0529F711A5A8EC4004051EA /* splash.png */,
@@ -178,6 +180,7 @@
 				B0B48D5D1A38779B0001057F /* Supporting Files */,
 				B060D0581A39A44800BCF325 /* swiftyJSON.swift */,
 				B02B4AEC1A43007F0058386D /* adMob.swift */,
+				B0B170281A5B06D200BA0A3B /* Launch Screen.xib */,
 			);
 			path = app;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				TargetAttributes = {
 					B0B48D591A38779B0001057F = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = WJ9V9R8MQT;
 					};
 					B0B48D6E1A38779B0001057F = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -292,13 +296,14 @@
 				B0B48D671A38779B0001057F /* Images.xcassets in Resources */,
 				B0529F791A5A8EC4004051EA /* splash.png in Resources */,
 				B0529F781A5A8EC4004051EA /* shape.png in Resources */,
-				B0529F761A5A8EC4004051EA /* navigation 2 ref.jpg in Resources */,
 				B0529F741A5A8EC4004051EA /* bg.png in Resources */,
 				B0529F7B1A5A8EC4004051EA /* triathlon.png in Resources */,
 				B060D0571A3982D400BCF325 /* contests.json in Resources */,
+				B0B170291A5B06D200BA0A3B /* Launch Screen.xib in Resources */,
 				B0529F751A5A8EC4004051EA /* bike.png in Resources */,
 				B02B4AE61A42F81C0058386D /* README.txt in Resources */,
 				B0529F7A1A5A8EC4004051EA /* swim.png in Resources */,
+				B0B2E6411A5C731F00B10E88 /* registration.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +445,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/app",
@@ -460,6 +468,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/app-Bridging-Header.h";
 			};
 			name = Debug;
@@ -468,6 +477,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/app",
@@ -488,6 +500,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/app-Bridging-Header.h";
 			};
 			name = Release;

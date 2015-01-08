@@ -18,6 +18,11 @@ class general{
         static var contestData : NSDictionary!
     }
     
+    struct contest{
+        static var subtypesArray : NSArray!
+        static var link = ""
+    }
+    
     class func fileExists(filePath: String) -> Bool{
         let manager = NSFileManager.defaultManager()
         if (manager.fileExistsAtPath(filePath)) {

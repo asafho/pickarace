@@ -77,6 +77,24 @@ public class MainViewActivity extends ActionBarActivity {
         }
     }
 
+    /**
+     * A placeholder fragment containing a simple view. This fragment
+     * would include your content.
+     */
+    public static class PlaceholderFragment extends Fragment {
+
+        public PlaceholderFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_ad, container, false);
+            return rootView;
+        }
+    }
+
+
     public static class AdFragment extends Fragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,

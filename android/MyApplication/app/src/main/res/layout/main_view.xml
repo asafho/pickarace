@@ -1,19 +1,24 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".MainViewActivity"
+    tools:ignore="MergeRootFrame" >
+
+<TableLayout
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
     android:id="@+id/mainView"
     android:background="@drawable/bg"
     android:longClickable="true"
-    android:measureWithLargestChild="true"
     android:gravity="center">
 
 <TableRow
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+    android:orientation="vertical">
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -22,7 +27,14 @@
             android:background="@drawable/run"
             android:focusableInTouchMode="true"
             android:onClick="runningButtonOnClick"
-            android:scaleType="center" />
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="0dp"
+            android:adjustViewBounds="true"
+            android:layout_weight="1"
+            android:padding="20dp"
+            android:scaleType="fitCenter" />
 </TableRow>
 
     <TableRow>
@@ -38,7 +50,17 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/abc_text_size_display_3_material"
         android:id="@+id/imageButton"
-        android:background="@drawable/bike" />
+        android:background="@drawable/bike"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="0dp"
+        android:adjustViewBounds="true"
+        android:layout_weight="1"
+        android:padding="20dp"
+        android:scaleType="fitCenter"
+
+        />
 </TableRow>
     <TableRow>
         <TextView />
@@ -52,7 +74,15 @@
         android:layout_height="@dimen/abc_text_size_display_3_material"
         android:id="@+id/swimmingBtn"
         android:background="@drawable/swim"
-        android:focusableInTouchMode="true" />
+        android:focusableInTouchMode="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="0dp"
+        android:adjustViewBounds="true"
+        android:layout_weight="1"
+        android:padding="20dp"
+        android:scaleType="fitCenter"/>
 </TableRow>
 
     <TableRow>
@@ -66,21 +96,33 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/abc_text_size_display_3_material"
             android:id="@+id/imageButton2"
-            android:background="@drawable/triathlon" />
+            android:background="@drawable/triathlon"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="0dp"
+            android:adjustViewBounds="true"
+            android:layout_weight="1"
+            android:padding="20dp"
+            android:scaleType="fitCenter"/>
     </TableRow>
     <TableRow>
         <TextView />
     </TableRow>
-<TableRow
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="webView"
-        android:id="@+id/openWeb"
-        android:onClick="openWebView" />
-</TableRow>
 
 </TableLayout>
+
+
+    <fragment android:name="com.example.asafh.myapplication.MainViewActivity$PlaceholderFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/adFragment" />
+
+    <fragment
+        android:id="@+id/adFragment"
+        android:name="com.example.asafh.myapplication.MainViewActivity$AdFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

@@ -13,8 +13,8 @@ class detailsViewController: UIViewController, UITableViewDelegate,UIPickerViewD
     
 
     
+    @IBOutlet weak var detailsLabel: UITextView!
     @IBOutlet weak var subTypeLabel: UILabel!
-    @IBOutlet weak var detailsLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subTypePicker: UIPickerView!
     
@@ -73,6 +73,7 @@ class detailsViewController: UIViewController, UITableViewDelegate,UIPickerViewD
     
     func setTitle(title : String){
         titleLabel.text = title
+        titleLabel.lineBreakMode = .ByWordWrapping
         titleLabel.textAlignment = NSTextAlignment.Center;
     }
     

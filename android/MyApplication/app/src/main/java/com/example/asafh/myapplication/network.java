@@ -33,7 +33,7 @@ public class network extends AsyncTask<URL, Integer, Long>{
         new Thread(new Runnable() {
             public void run(){
                 try {
-                    URL url = new URL("https://s3-us-west-2.amazonaws.com/com.cuefit.data/contests.json");
+                    URL url = new URL("https://s3-us-west-2.amazonaws.com/pickarace/contests.json");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
                     if (conn.getResponseCode() != 200) {

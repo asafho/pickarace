@@ -57,7 +57,39 @@ public class MainViewActivity extends ActionBarActivity {
 
 
     public void runningButtonOnClick(View view) {
+        final general globalVariable = (general) getApplicationContext();
+        globalVariable.setTopic("running");
         Log.v("action", "running button clicked");
+        Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
+        Log.v("internet test: ", String.valueOf(general.isConnected(this.getApplicationContext())));
+        startActivity(openStep);
+        displayInterstitial();
+    }
+
+    public void swimmingButtonOnClick(View view) {
+        final general globalVariable = (general) getApplicationContext();
+        globalVariable.setTopic("swimming");
+        Log.v("action", "swimming button clicked");
+        Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
+        Log.v("internet test: ", String.valueOf(general.isConnected(this.getApplicationContext())));
+        startActivity(openStep);
+        displayInterstitial();
+    }
+
+    public void bikingButtonOnClick(View view) {
+        final general globalVariable = (general) getApplicationContext();
+        globalVariable.setTopic("biking");
+        Log.v("action", "biking button clicked");
+        Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
+        Log.v("internet test: ", String.valueOf(general.isConnected(this.getApplicationContext())));
+        startActivity(openStep);
+        displayInterstitial();
+    }
+
+    public void thriathlonButtonOnClick(View view) {
+        final general globalVariable = (general) getApplicationContext();
+        globalVariable.setTopic("thriathlon");
+        Log.v("action", "thriathlon button clicked");
         Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
         Log.v("internet test: ", String.valueOf(general.isConnected(this.getApplicationContext())));
         startActivity(openStep);

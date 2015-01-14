@@ -3,11 +3,25 @@ package com.example.asafh.myapplication;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.app.Application;
 
 /**
  * Created by asafh on 12/22/14.
  */
-public class general {
+public class general extends Application{
+
+    private String topic;
+
+    public String getTopic() {
+
+        return topic;
+    }
+
+    public void setTopic(String aTopic) {
+
+        topic = aTopic;
+
+    }
 
     public static boolean isConnected(Context context)
     {

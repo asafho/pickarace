@@ -49,7 +49,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="@dimen/abc_text_size_display_3_material"
-        android:id="@+id/imageButton"
+        android:id="@+id/bikingBtn"
         android:background="@drawable/bike"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="20dp"
@@ -60,7 +60,8 @@
         android:padding="20dp"
         android:scaleType="fitCenter"
 
-        />
+        android:nestedScrollingEnabled="false"
+        android:onClick="bikingButtonOnClick" />
 </TableRow>
     <TableRow>
         <TextView />
@@ -82,7 +83,8 @@
         android:adjustViewBounds="true"
         android:layout_weight="1"
         android:padding="20dp"
-        android:scaleType="fitCenter"/>
+        android:scaleType="fitCenter"
+        android:onClick="swimmingButtonOnClick" />
 </TableRow>
 
     <TableRow>
@@ -95,7 +97,6 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="@dimen/abc_text_size_display_3_material"
-            android:id="@+id/imageButton2"
             android:background="@drawable/triathlon"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
@@ -104,7 +105,9 @@
             android:adjustViewBounds="true"
             android:layout_weight="1"
             android:padding="20dp"
-            android:scaleType="fitCenter"/>
+            android:scaleType="fitCenter"
+            android:id="@+id/thriathlonBtn"
+            android:onClick="thriathlonButtonOnClick" />
     </TableRow>
     <TableRow>
         <TextView />

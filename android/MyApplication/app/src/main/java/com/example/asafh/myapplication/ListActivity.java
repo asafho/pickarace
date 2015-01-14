@@ -29,6 +29,7 @@ public class ListActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        final general globalVariable = (general) getApplicationContext();
 
         JSONObject  appData = network.getContestsObj();
         setContentView(R.layout.activity_list);
@@ -41,10 +42,14 @@ public class ListActivity extends ActionBarActivity {
             for(int i=0;i<events.length();i++)
             {
                 JSONObject event = events.getJSONObject(i);
-                Map<String, String> datum = new HashMap<String, String>(2);
-                datum.put("name", event.getString("name"));
-                datum.put("location", event.getString("location"));
-                eventData.add(datum);
+                if( globalVariable.getTopic().equals(event.getString("type")))
+                {
+                    Map<String, String> datum = new HashMap<String, String>(2);
+                    datum.put("name", event.getString("name"));
+                    datum.put("location", event.getString("location"));
+                    eventData.add(datum);
+                }
+
             }
 
         } catch (JSONException e) {

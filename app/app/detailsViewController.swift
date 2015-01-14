@@ -73,7 +73,6 @@ class detailsViewController: UIViewController, UITableViewDelegate,UIPickerViewD
     
     func setTitle(title : String){
         titleLabel.text = title
-        titleLabel.lineBreakMode = .ByWordWrapping
         titleLabel.textAlignment = NSTextAlignment.Center;
     }
     
@@ -92,9 +91,10 @@ class detailsViewController: UIViewController, UITableViewDelegate,UIPickerViewD
         detailsStr+=desc3
         detailsStr+="\n"
         detailsStr+=desc4
-        println(detailsStr)
         detailsLabel.text = detailsStr
         detailsLabel.textAlignment = NSTextAlignment.Right;
+        detailsLabel.scrollRangeToVisible(NSMakeRange(0, 1))
+        detailsLabel.flashScrollIndicators()
     }
     
 }

@@ -29,7 +29,7 @@ class listViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func getContests() {
-        let urlPath = "http://s3-us-west-2.amazonaws.com/com.cuefit.data/contests.json"
+        let urlPath = "http://pickarace.s3.amazonaws.com/contests.json"
         let url = NSURL(string: urlPath)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
@@ -47,7 +47,6 @@ class listViewController: UIViewController, UITableViewDataSource, UITableViewDe
         for contest in results{
             let contesttype: String = contest["type"] as String
             if((contest["status"] as String != "active") || (contesttype != general.MyVariables.contest)){
-                println(contesttype)
                 (results as NSMutableArray).removeObject(contest);
             }
         }

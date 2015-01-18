@@ -9,10 +9,7 @@
 import UIKit
 
 class detailsViewController: UIViewController, UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate {
- 
-    
-
-    
+     
     @IBOutlet weak var detailsLabel: UITextView!
     @IBOutlet weak var subTypeLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!

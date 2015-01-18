@@ -59,15 +59,12 @@ class adMob: UIViewController, GADBannerViewDelegate, ADBannerViewDelegate {
         
         let screenRect = UIScreen.mainScreen().bounds
         let screenHeight = screenRect.size.height
+        let screenwidth = screenRect.size.width
         bannerFrame.origin.y = screenHeight - bannerFrame.size.height
-        bannerFrame.origin.x = 25
+        bannerFrame.origin.x = (screenwidth - bannerFrame.size.width) / 2
         bannerView!.frame = bannerFrame
         
         viewcontroller.view.addSubview(bannerView!)
         var request:GADRequest = GADRequest()
-        bannerView?.loadRequest(request)
-  /*      var timer:NSTimer?
-        timer?.invalidate()
-        timer = NSTimer.scheduledTimerWithTimeInterval(20, target: viewcontroller, selector: "GoogleAdRequestTimer", userInfo: nil, repeats: true)
-    */}
+        bannerView?.loadRequest(request)}
 }

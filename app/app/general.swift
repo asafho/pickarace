@@ -12,30 +12,16 @@ import SystemConfiguration
 
 
 class general{
-
+    
     struct MyVariables {
         static var contest = ""
         static var contestData : NSDictionary!
+        static var jsonURLResult : NSDictionary!
     }
     
     struct contest{
         static var subtypesArray : NSArray!
         static var link = ""
-    }
-    
-    class func fileExists(filePath: String) -> Bool{
-        let manager = NSFileManager.defaultManager()
-        if (manager.fileExistsAtPath(filePath)) {
-            println("FILE AVAILABLE: "+filePath);
-            return true
-        }
-        else
-        {
-            println("FILE NOT AVAILABLE: "+filePath);
-            return false
-
-        }
-
     }
     
     class func isConnectedToNetwork() -> Bool {
@@ -88,5 +74,25 @@ class general{
         })
         
         loadDataTask.resume()
+    }
+    
+    class func setContestsFromURL() {
+        println("fetching contests from URL")
+        let urlPath = "https://s3-us-west-2.amazonaws.com/pickarace/contests.json"
+        let url = NSURL(string: urlPath)
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
+            if(error != nil) {
+                // If there is an error in the web request, print it to the console
+                println(error.localizedDescription)
+            }
+            var err: NSError?
+            general.MyVariables.jsonURLResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as NSDictionary
+            if(err != nil) {
+                // If there is an error parsing JSON, print it to the console
+                println("JSON Error \(err!.localizedDescription)")
+            }
+        })
+        task.resume()
     }
 }

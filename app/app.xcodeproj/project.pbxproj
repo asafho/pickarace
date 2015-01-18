@@ -259,6 +259,7 @@
 				TargetAttributes = {
 					B0B48D591A38779B0001057F = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = VMZX2HKJVL;
 					};
 					B0B48D6E1A38779B0001057F = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -446,7 +447,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: asaf Horovitz (KK3YJ6JW9G)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -468,7 +469,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3e8def78-a40b-4627-9c90-b2b4c586be66";
+				PROVISIONING_PROFILE = "f3cb5f4f-3191-40bf-940c-f3911befdbb8";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/app-Bridging-Header.h";
 			};
 			name = Debug;
@@ -478,7 +479,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: asaf Horovitz (KK3YJ6JW9G)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -500,7 +501,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3e8def78-a40b-4627-9c90-b2b4c586be66";
+				PROVISIONING_PROFILE = "f3cb5f4f-3191-40bf-940c-f3911befdbb8";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/app-Bridging-Header.h";
 			};
 			name = Release;

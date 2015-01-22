@@ -46,7 +46,7 @@ public class ListActivity extends ActionBarActivity {
                 {
                     Map<String, String> datum = new HashMap<String, String>(2);
                     datum.put("name", event.getString("name"));
-                    datum.put("location", event.getString("location"));
+                    datum.put("date", event.getString("date"));
                     eventData.add(datum);
                 }
 
@@ -59,8 +59,8 @@ public class ListActivity extends ActionBarActivity {
         // Set The Adapter
 
         SimpleAdapter adapter = new SimpleAdapter(this, eventData,
-                android.R.layout.simple_list_item_2,
-                new String[] {"name", "location"},
+                android.R.layout.two_line_list_item,
+                new String[] {"name", "date"},
                 new int[] {android.R.id.text1,
                         android.R.id.text2});
 

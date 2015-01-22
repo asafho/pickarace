@@ -19,8 +19,8 @@ class listViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         adMob.loadBanners(self)
+        filterContests()
         super.viewDidLoad()
-        getContests()
     }
     
     override func didReceiveMemoryWarning() {
@@ -28,39 +28,26 @@ class listViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     
-    func getContests() {
-        let urlPath = "http://pickarace.s3.amazonaws.com/contests.json"
-        let url = NSURL(string: urlPath)
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
-        if(error != nil) {
-            // If there is an error in the web request, print it to the console
-            println(error.localizedDescription)
-        }
-        var err: NSError?
-        var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as NSDictionary
-        if(err != nil) {
-            // If there is an error parsing JSON, print it to the console
-            println("JSON Error \(err!.localizedDescription)")
-        }
-        var results: NSArray = jsonResult["events"] as NSArray
-        for contest in results{
+      
+    func filterContests(){
+        println("filter contests by parameter type: "+general.MyVariables.contest)
+      //  var results: NSArray = general.name.jsonURLResult["events"] as NSArray
+        var results : NSMutableArray = []
+        for contest in general.MyVariables.jsonURLResult["events"] as NSArray{
             let contesttype: String = contest["type"] as String
-            if((contest["status"] as String != "active") || (contesttype != general.MyVariables.contest)){
-                (results as NSMutableArray).removeObject(contest);
+            if((contest["status"] as String == "active") && (contesttype == general.MyVariables.contest)){
+                results.addObject(contest)
+              //  (results as NSMutableArray).removeObject(contest);
             }
         }
-         
-           
+        
+        
         dispatch_async(dispatch_get_main_queue(), {
             self.tableData = results
             self.contestsTableView!.reloadData()
-            })
         })
-        task.resume()
     }
-      
-
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableData.count

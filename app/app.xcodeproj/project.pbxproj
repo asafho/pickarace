@@ -15,7 +15,6 @@
 		B0529F751A5A8EC4004051EA /* bike.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F6D1A5A8EC4004051EA /* bike.png */; };
 		B0529F771A5A8EC4004051EA /* run.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F6F1A5A8EC4004051EA /* run.png */; };
 		B0529F781A5A8EC4004051EA /* shape.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F701A5A8EC4004051EA /* shape.png */; };
-		B0529F791A5A8EC4004051EA /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F711A5A8EC4004051EA /* splash.png */; };
 		B0529F7A1A5A8EC4004051EA /* swim.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F721A5A8EC4004051EA /* swim.png */; };
 		B0529F7B1A5A8EC4004051EA /* triathlon.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F731A5A8EC4004051EA /* triathlon.png */; };
 		B060D0551A397BE100BCF325 /* general.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060D0541A397BE100BCF325 /* general.swift */; };
@@ -65,7 +64,6 @@
 		B0529F6D1A5A8EC4004051EA /* bike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bike.png; sourceTree = "<group>"; };
 		B0529F6F1A5A8EC4004051EA /* run.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = run.png; sourceTree = "<group>"; };
 		B0529F701A5A8EC4004051EA /* shape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shape.png; sourceTree = "<group>"; };
-		B0529F711A5A8EC4004051EA /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		B0529F721A5A8EC4004051EA /* swim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swim.png; sourceTree = "<group>"; };
 		B0529F731A5A8EC4004051EA /* triathlon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triathlon.png; sourceTree = "<group>"; };
 		B060D0541A397BE100BCF325 /* general.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = general.swift; sourceTree = "<group>"; };
@@ -136,7 +134,6 @@
 				B0529F6D1A5A8EC4004051EA /* bike.png */,
 				B0529F6F1A5A8EC4004051EA /* run.png */,
 				B0529F701A5A8EC4004051EA /* shape.png */,
-				B0529F711A5A8EC4004051EA /* splash.png */,
 				B0529F721A5A8EC4004051EA /* swim.png */,
 				B0529F731A5A8EC4004051EA /* triathlon.png */,
 			);
@@ -259,6 +256,7 @@
 				TargetAttributes = {
 					B0B48D591A38779B0001057F = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = VMZX2HKJVL;
 					};
 					B0B48D6E1A38779B0001057F = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -294,7 +292,6 @@
 				B0B48D651A38779B0001057F /* Main.storyboard in Resources */,
 				B0529F771A5A8EC4004051EA /* run.png in Resources */,
 				B0B48D671A38779B0001057F /* Images.xcassets in Resources */,
-				B0529F791A5A8EC4004051EA /* splash.png in Resources */,
 				B0529F781A5A8EC4004051EA /* shape.png in Resources */,
 				B0529F741A5A8EC4004051EA /* bg.png in Resources */,
 				B0529F7B1A5A8EC4004051EA /* triathlon.png in Resources */,

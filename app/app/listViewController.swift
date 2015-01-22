@@ -9,7 +9,7 @@
 
 import UIKit
 
-class listViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class listViewController: UIViewController, UITableViewDelegate {
     
     let cellIdentifier: String = "contestsCell"
 
@@ -31,7 +31,6 @@ class listViewController: UIViewController, UITableViewDataSource, UITableViewDe
       
     func filterContests(){
         println("filter contests by parameter type: "+general.MyVariables.contest)
-      //  var results: NSArray = general.name.jsonURLResult["events"] as NSArray
         var results : NSMutableArray = []
         for contest in general.MyVariables.jsonURLResult["events"] as NSArray{
             let contesttype: String = contest["type"] as String
@@ -53,29 +52,31 @@ class listViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return tableData.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as UITableViewCell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> TableViewCell {
+        let cell: TableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as TableViewCell
         let rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
         
         let eventType: String = rowData["type"] as String
         if(eventType==general.MyVariables.contest){
-            cell.textLabel?.text = rowData["name"] as? String
+            cell.title?.text = rowData["name"] as? String
             let id: String = rowData["id"] as String
             let date: String = rowData["date"] as String
             let locationObj: NSDictionary = rowData["location"] as NSDictionary
             let city: String = locationObj["city"] as String
             var desc = date+"\n"+city
-            cell.detailTextLabel?.text = desc
-            cell.detailTextLabel?.textAlignment=NSTextAlignment.Right;
-            cell.textLabel?.textAlignment=NSTextAlignment.Right;
-   /*   
-            let imgURL: NSURL? = NSURL(string: urlString)
+            cell.subTitle?.text = desc
+            cell.subTitle?.textAlignment=NSTextAlignment.Right;
+            cell.title?.textAlignment=NSTextAlignment.Right;
+            
+            
+            
+            let vendor = rowData["vendor"] as NSDictionary
+            var vendorName = vendor["name"] as String
+            let imgURL: NSURL? = NSURL(string: "https://s3-us-west-2.amazonaws.com/pickarace/"+vendorName+".png")
             // Download an NSData representation of the image at the URL
-        let imgData = NSData(contentsOfURL: imgURL!)
-        cell.imageView.image = UIImage(data: imgData!)
-     */
-        // Get the formatted price string for display in the subtitle
-       
+            let imgData = NSData(contentsOfURL: imgURL!)
+            cell.vendorImage.image = UIImage(data: imgData!)
+  
         }
         else{
             
@@ -91,14 +92,5 @@ class listViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationController?.pushViewController(view, animated: true)
         general.MyVariables.contestData = self.tableData[indexPath.row] as NSDictionary
         
-        /*    var name: String = rowData["name"] as String
-        var date: String = rowData["date"] as String
-        var details: NSDictionary = rowData["details"] as NSDictionary
-        var alert: UIAlertView = UIAlertView()
-        alert.title = name
-        alert.message = date
-        alert.addButtonWithTitle("Ok")
-        alert.show()
-*/
     }
 }

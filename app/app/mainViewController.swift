@@ -50,10 +50,20 @@ class mainViewController: UIViewController, GADBannerViewDelegate, GADInterstiti
     }
     
     func changeView(){
-        adMob.displayInterstitial(self)
-        let view = self.storyboard?.instantiateViewControllerWithIdentifier("listView") as listViewController
-        self.navigationController?.pushViewController(view, animated: true)
-        loadAd()
+        
+        if(general.isConnectedToNetwork()){
+            adMob.displayInterstitial(self)
+            let view = self.storyboard?.instantiateViewControllerWithIdentifier("listView") as listViewController
+            self.navigationController?.pushViewController(view, animated: true)
+            loadAd()
+        }
+        else{
+            var alert: UIAlertView = UIAlertView()
+            alert.title = "שגיאת רשת"
+            alert.message = "בדוק חיבור אינטרנט"
+            alert.addButtonWithTitle("Ok")
+            alert.show()
+        }
     }
     
     func loadAd(){

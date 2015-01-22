@@ -17,6 +17,7 @@ class general{
         static var contest = ""
         static var contestData : NSDictionary!
         static var jsonURLResult : NSDictionary!
+        static var imageCache = NSMutableDictionary()
     }
     
     struct contest{
@@ -72,7 +73,6 @@ class general{
                 }
             }
         })
-        
         loadDataTask.resume()
     }
     
@@ -94,5 +94,50 @@ class general{
             }
         })
         task.resume()
+    }
+    
+    
+    class func loadImagesfromURL() -> Void {
+        for event in MyVariables.jsonURLResult["events"] as NSArray{
+            let vendor: NSDictionary = event["vendor"] as NSDictionary
+            let vendorName: String = vendor["name"] as String
+            let urlString = "https://s3-us-west-2.amazonaws.com/pickarace/"+vendorName+".png"
+            println("downloading file: "+urlString)
+          
+            
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                // Jump in to a background thread to get the image for this item
+                
+                 var image: UIImage? = MyVariables.imageCache.valueForKey(urlString) as? UIImage
+                // Check our image cache for the existing key. This is just a dictionary of UIImages
+                
+                
+                if(image == nil) {
+                    // If the image does not exist, we need to download it
+                    var imgURL: NSURL = NSURL(string: urlString)!
+                    
+                   
+                    var request: NSURLRequest = NSURLRequest(URL: imgURL)
+                    var urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                        if (error == nil) {
+                            image = UIImage(data: data)
+                            
+                            // Store the image in to our cache
+                            MyVariables.imageCache.setValue(image, forKey: urlString)
+                        }
+                        else {
+                             println("Error: \(error.localizedDescription)")
+                        }
+                    })
+                    
+                }
+                else {
+                    println("image already exists")
+                }
+                
+                
+            })
+        }
     }
 }

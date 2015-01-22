@@ -14,7 +14,8 @@ class mainViewController: UIViewController, GADBannerViewDelegate, GADInterstiti
     override func viewDidLoad() {
         adMob.loadBanners(self)
         general.setContestsFromURL()
-        sleep(2)
+        sleep(1)
+        general.loadImagesfromURL()
         super.viewDidLoad()
     }
     

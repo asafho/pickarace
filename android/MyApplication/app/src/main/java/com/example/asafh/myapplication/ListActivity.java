@@ -77,7 +77,7 @@ public class ListActivity extends ActionBarActivity {
                     Events event = new Events();
                     event.setEventName(jsonEvent.getString("name"));
                     event.setThumbnailUrl(urlpath + jsonEvent.getJSONObject("vendor").getString("name") + ".png");
-                    event.setEventLocation(jsonEvent.getString("city"));
+                    event.setEventLocation(jsonEvent.getJSONObject("location").getString("city"));
                     try{
                         event.setEventDate((Date)df.parse(jsonEvent.getString("date")));
                     }catch(ParseException e){

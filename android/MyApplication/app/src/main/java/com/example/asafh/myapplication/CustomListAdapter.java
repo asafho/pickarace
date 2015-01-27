@@ -19,7 +19,7 @@ public class CustomListAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
     private List<Events> eventItems;
-    ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+    //ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
     public CustomListAdapter(Activity activity, List<Events> eventItems) {
         this.activity = activity;
@@ -50,8 +50,8 @@ public class CustomListAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.list_row, null);
 
-        if (imageLoader == null)
-            imageLoader = AppController.getInstance().getImageLoader();
+       // if (imageLoader == null)
+       //     imageLoader = AppController.getInstance().getImageLoader();
         NetworkImageView thumbNail = (NetworkImageView) convertView
                 .findViewById(R.id.thumbnail);
         TextView title = (TextView) convertView.findViewById(R.id.title);
@@ -61,7 +61,7 @@ public class CustomListAdapter extends BaseAdapter {
 
         Events event = eventItems.get(position);
 
-        thumbNail.setImageUrl(event.getThumbnailUrl(), imageLoader);
+        //thumbNail.setImageUrl(event.getThumbnailUrl(), imageLoader);
 
         title.setText(event.getEventName());
         rating.setText(String.valueOf(event.getEventLocation()));

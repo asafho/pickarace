@@ -60,7 +60,8 @@ public class MainViewActivity extends ActionBarActivity {
         final general globalVariable = (general) getApplicationContext();
         globalVariable.setTopic("running");
         Log.v("action", "running button clicked");
-        Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
+        //Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
+        Intent openStep = new Intent(MainViewActivity.this, testList.class);
         Log.v("internet test: ", String.valueOf(general.isConnected(this.getApplicationContext())));
         startActivity(openStep);
         displayInterstitial();

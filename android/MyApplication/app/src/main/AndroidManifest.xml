@@ -23,6 +23,10 @@
             android:name=".ListActivity"
             android:label="@string/title_activity_list" >
         </activity>
+        <activity
+            android:name=".testList"
+            android:label="@string/test_activity_list" >
+        </activity>
         <activity android:name=".webViewActivity" >
         </activity>
         <activity

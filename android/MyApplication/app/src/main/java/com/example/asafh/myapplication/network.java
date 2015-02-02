@@ -18,7 +18,6 @@ import java.util.List;
 
 public class network extends AsyncTask<URL, Integer, Long>{
     public static JSONObject contestsObj=new JSONObject();
-    private static final String TAG = network.class.getSimpleName();
     public List<Events> eventList = new ArrayList<Events>();
 
 

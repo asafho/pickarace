@@ -1,15 +1,11 @@
 package com.example.asafh.myapplication;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,11 +13,68 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class ListActivity extends ActionBarActivity {
 
+    static final String URL = "http://api.androidhive.info/music/music.xml";
+    // XML node keys
+    static final String KEY_SONG = "song"; // parent node
+    static final String KEY_ID = "id";
+    static final String KEY_TITLE = "title";
+    static final String KEY_ARTIST = "artist";
+    static final String KEY_DURATION = "duration";
+    static final String KEY_THUMB_URL = "thumb_url";
+    final general globalVariable = (general) getApplicationContext();
+    ArrayList<HashMap<String, String>> eventData = new ArrayList<HashMap<String, String>>();
+
+    ListView list;
+    LazyAdapter adapter;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+
+        JSONObject appData = network.getContestsObj();
+
+        try {
+            JSONArray events = appData.getJSONArray("events");
+            for(int i=0;i<events.length();i++)
+            {
+                JSONObject event = events.getJSONObject(i);
+                if( globalVariable.getTopic().equals(event.getString("type")))
+                {
+                    HashMap<String, String> datum = new HashMap<String, String>();
+                    datum.put("name", event.getString("name"));
+                    datum.put("date", event.getString("date"));
+                    eventData.add(datum);
+                }
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        list=(ListView)findViewById(R.id.list);
+
+        // Getting adapter by passing xml data ArrayList
+        adapter=new LazyAdapter(this, eventData);
+        list.setAdapter(adapter);
+
+        // Click event for single list row
+        list.setOnItemClickListener(new OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+            }
+        });
+    }
+
+
+
+    /*
     ArrayList<String> contestList = new ArrayList<String>();
     List<Map<String, String>> eventData = new ArrayList<Map<String, String>>();
 
@@ -104,4 +157,7 @@ public class ListActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    */
 }

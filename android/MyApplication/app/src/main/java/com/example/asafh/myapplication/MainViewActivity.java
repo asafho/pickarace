@@ -61,10 +61,10 @@ public class MainViewActivity extends ActionBarActivity {
         globalVariable.setTopic("running");
         Log.v("action", "running button clicked");
         //Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
-        Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
+        Intent openStep = new Intent(MainViewActivity.this,  ListActivity.class);
         Log.v("internet test: ", String.valueOf(general.isConnected(this.getApplicationContext())));
         startActivity(openStep);
-        displayInterstitial();
+        //displayInterstitial();
     }
 
     public void swimmingButtonOnClick(View view) {

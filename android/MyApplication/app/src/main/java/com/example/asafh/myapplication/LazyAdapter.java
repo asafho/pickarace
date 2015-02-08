@@ -1,5 +1,4 @@
 package com.example.asafh.myapplication;
-
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -23,7 +22,7 @@ public class LazyAdapter extends BaseAdapter {
         activity = a;
         data=d;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        //imageLoader=new ImageLoader(activity.getApplicationContext());
+        imageLoader=new ImageLoader(activity.getApplicationContext());
     }
 
     public int getCount() {
@@ -52,10 +51,10 @@ public class LazyAdapter extends BaseAdapter {
         song = data.get(position);
 
         // Setting all values in listview
-        title.setText(song.get(ListActivity.KEY_TITLE));
-        artist.setText(song.get(ListActivity.KEY_ARTIST));
-        duration.setText(song.get(ListActivity.KEY_DURATION));
-        imageLoader.DisplayImage(song.get(ListActivity.KEY_THUMB_URL), thumb_image);
+        title.setText(song.get("Asdf"));
+        artist.setText(song.get("ASdfddd"));
+        duration.setText(song.get("Asdfasdf"));
+        imageLoader.DisplayImage(song.get("Asdfasdfasdfasdfsad"), thumb_image);
         return vi;
     }
 }

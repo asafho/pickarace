@@ -2,18 +2,17 @@ package com.example.asafh.myapplication;
 
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Events {
 
     private String eventName, thumbnailUrl,eventLocation;
-    private Date eventDate;
+    private String eventDate;
     private ArrayList<String> genre;
 
     public Events() {
     }
 
-    public Events(String name, String thumbnailUrl, Date eventDate, String location) {
+    public Events(String name, String thumbnailUrl, String eventDate, String location) {
         this.eventName = name;
         this.thumbnailUrl = thumbnailUrl;
         this.eventDate = eventDate;
@@ -36,11 +35,11 @@ public class Events {
         this.thumbnailUrl = thumbnailUrl;
     }
 
-    public Date getEventDate() {
+    public String getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(Date eventDate) {
+    public void setEventDate(String eventDate) {
         this.eventDate = eventDate;
     }
 

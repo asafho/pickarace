@@ -2,71 +2,56 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/list_selector"
-                android:orientation="horizontal"
-                android:padding="5dip" >
+                android:background="@drawable/list_row_selector"
+                android:padding="8dp" >
 
-    <!--  ListRow Left sied Thumbnail image -->
-    <LinearLayout android:id="@+id/thumbnail"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:padding="3dip"
-                  android:layout_alignParentLeft="true"
-                  android:background="@drawable/image_bg"
-                  android:layout_marginRight="5dip">
+    <!-- Thumbnail Image -->
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="8dp" />
 
-        <ImageView
-            android:id="@+id/list_image"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:src="@drawable/rihanna"/>
-
-    </LinearLayout>
-
-    <!-- Title Of Song-->
+    <!-- Movie Title -->
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/event_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/thumbnail"
         android:layout_toRightOf="@+id/thumbnail"
-        android:text="Rihanna Love the way lie"
-        android:textColor="#040404"
-        android:typeface="sans"
-        android:textSize="15dip"
-        android:textStyle="bold"/>
+        android:textSize="@dimen/title"
+        android:textStyle="bold" />
 
-    <!-- Artist Name -->
+    <!-- Rating -->
     <TextView
-        android:id="@+id/artist"
+        android:id="@+id/event_name1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:textColor="#343434"
-        android:textSize="10dip"
+        android:layout_below="@id/event_name"
         android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/thumbnail"
-        android:text="Just gona stand there and ..." />
+        android:textSize="@dimen/rating" />
 
-    <!-- Rightend Duration -->
+    <!-- Genre -->
     <TextView
-        android:id="@+id/duration"
+        android:id="@+id/event_name2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/event_name1"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:textColor="@color/genre"
+        android:textSize="@dimen/genre" />
+
+    <!-- Release Year -->
+    <TextView
+        android:id="@+id/event_name3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@id/title"
-        android:gravity="right"
-        android:text="5:45"
-        android:layout_marginRight="5dip"
-        android:textSize="10dip"
-        android:textColor="#10bcc9"
-        android:textStyle="bold"/>
-
-    <!-- Rightend Arrow -->
-    <ImageView android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:src="@drawable/arrow"
-               android:layout_alignParentRight="true"
-               android:layout_centerVertical="true"/>
+        android:textColor="@color/year"
+        android:textSize="@dimen/year" />
 
 </RelativeLayout>

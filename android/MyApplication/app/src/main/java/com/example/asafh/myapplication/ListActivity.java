@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -16,14 +15,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ListActivity extends ActionBarActivity {
 
-    ArrayList<String> contestList = new ArrayList<String>();
-    List<Map<String, String>> eventData = new ArrayList<Map<String, String>>();
+    private static final String url = "https://s3-us-west-2.amazonaws.com/pickarace/contests.json";
+    private List<Events> contestList = new ArrayList<Events>();
+    private ListView listView;
+    private CustomListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,22 +30,45 @@ public class ListActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         final general globalVariable = (general) getApplicationContext();
 
-        JSONObject  appData = network.getContestsObj();
-        setContentView(R.layout.activity_list);
 
-        ListView animalList=(ListView)findViewById(R.id.listView);
+        JSONObject  appData = network.getContestsObj();
+        setContentView(R.layout.activity_main);
+
+        listView = (ListView) findViewById(R.id.list);
+        adapter = new CustomListAdapter(this, contestList);
+        listView.setAdapter(adapter);
+
+        /*
+try {
+    JsonArrayRequest movieReq = new JsonArrayRequest(url,
+            new Response.Listener<JSONArray>() {
+                @Override
+                public void onResponse(JSONArray response) {
+
+
+                }
+            }, new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+        }
+    });
+
+}catch(JSONException d){
+
+}
+*/
 
         try {
             JSONArray events = appData.getJSONArray("events");
             for(int i=0;i<events.length();i++)
             {
-                JSONObject event = events.getJSONObject(i);
-                if( globalVariable.getTopic().equals(event.getString("type")))
+                JSONObject jsonEvent = events.getJSONObject(i);
+                if( globalVariable.getTopic().equals(jsonEvent.getString("type")))
                 {
-                    HashMap<String, String> datum = new HashMap<String, String>(2);
-                    datum.put("name", event.getString("name"));
-                    datum.put("date", event.getString("date"));
-                    eventData.add(datum);
+                    Events event = new Events();
+                    event.setEventName("asdfasdf");
+                    event.setEventDate("asdf");
+                    contestList.add(event);
                 }
 
             }
@@ -55,26 +77,14 @@ public class ListActivity extends ActionBarActivity {
             e.printStackTrace();
         }
 
-        // Set The Adapter
-
-        LazyAdapter adapter;
-        adapter=new LazyAdapter(this, eventData);
-        /*
-        SimpleAdapter adapter = new SimpleAdapter(this, eventData,
-                android.R.layout.two_line_list_item,
-                new String[] {"name", "date"},
-                new int[] {android.R.id.text1,
-                        android.R.id.text2});
-        */
-        animalList.setAdapter(adapter);
         //animalList.setAdapter(arrayAdapter);
         // register onClickListener to handle click events on each item
-        animalList.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             // argument position gives the index of item which is clicked
             public void onItemClick(AdapterView<?> arg0, View v,int position, long arg3)
             {
-                Map s =  eventData.get(position);
+                Events s =  contestList.get(position);
                 Toast.makeText(getApplicationContext(), "User Selected : " + s.toString(), Toast.LENGTH_LONG).show();
                 Intent displayActivityView = new Intent(ListActivity.this, DisplayActivity.class);
                 startActivity(displayActivityView);

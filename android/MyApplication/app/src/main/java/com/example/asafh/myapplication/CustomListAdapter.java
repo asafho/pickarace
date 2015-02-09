@@ -61,11 +61,10 @@ public class CustomListAdapter extends BaseAdapter {
         // thumbnail image
         thumbNail.setImageUrl(m.getThumbnailUrl(), imageLoader);
 
-        // title
         title.setText(m.getEventName());
 
-        rating.setText("Rating: " + String.valueOf(m.getEventName()));
-
+        //rating.setText("Rating: " + String.valueOf(m.getEventName()));
+        rating.setText(m.getEventLocation());
 
         // release year
         year.setText(String.valueOf(m.getEventDate()));

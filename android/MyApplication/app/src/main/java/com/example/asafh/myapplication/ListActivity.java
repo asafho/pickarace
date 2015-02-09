@@ -1,5 +1,6 @@
 package com.example.asafh.myapplication;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -19,44 +20,27 @@ import java.util.List;
 
 public class ListActivity extends ActionBarActivity {
 
-    private static final String url = "https://s3-us-west-2.amazonaws.com/pickarace/contests.json";
+   // private static final String url = "https://s3-us-west-2.amazonaws.com/pickarace/contests_test.json";
     private List<Events> contestList = new ArrayList<Events>();
     private ListView listView;
     private CustomListAdapter adapter;
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        final general globalVariable = (general) getApplicationContext();
+        final AppController globalVariable = (AppController) getApplicationContext();
 
-
-        JSONObject  appData = network.getContestsObj();
+        pDialog = new ProgressDialog(this);
+        // Showing progress dialog before making http request
+        pDialog.setMessage("Loading...");
+        pDialog.show();
+        final JSONObject  appData = network.getContestsObj();
         setContentView(R.layout.activity_main);
 
         listView = (ListView) findViewById(R.id.list);
-        adapter = new CustomListAdapter(this, contestList);
-        listView.setAdapter(adapter);
 
-        /*
-try {
-    JsonArrayRequest movieReq = new JsonArrayRequest(url,
-            new Response.Listener<JSONArray>() {
-                @Override
-                public void onResponse(JSONArray response) {
-
-
-                }
-            }, new Response.ErrorListener() {
-        @Override
-        public void onErrorResponse(VolleyError error) {
-        }
-    });
-
-}catch(JSONException d){
-
-}
-*/
 
         try {
             JSONArray events = appData.getJSONArray("events");
@@ -64,10 +48,13 @@ try {
             {
                 JSONObject jsonEvent = events.getJSONObject(i);
                 if( globalVariable.getTopic().equals(jsonEvent.getString("type")))
-                {
+               {
                     Events event = new Events();
-                    event.setEventName("asdfasdf");
-                    event.setEventDate("asdf");
+                    event.setEventName(jsonEvent.getString("name"));
+                    event.setEventLocation(jsonEvent.getJSONObject("location").getString("city"));
+                    event.setEventDate(jsonEvent.getString("date"));
+                    event.setThumbnailUrl(globalVariable.getS3RootURL() + jsonEvent.getJSONObject("vendor").getString("name") + ".png");
+                    System.out.println("DEBUG: name:" + jsonEvent.getString("name") + " location: " + jsonEvent.getJSONObject("location").getString("city"));
                     contestList.add(event);
                 }
 
@@ -76,9 +63,62 @@ try {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        hidePDialog();
+        adapter = new CustomListAdapter(this, contestList);
+        listView.setAdapter(adapter);
 
-        //animalList.setAdapter(arrayAdapter);
-        // register onClickListener to handle click events on each item
+
+
+        /*
+
+        pDialog = new ProgressDialog(this);
+        // Showing progress dialog before making http request
+        pDialog.setMessage("Loading...");
+        pDialog.show();
+
+
+
+        JsonArrayRequest eventsReq = new JsonArrayRequest(url,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        hidePDialog();
+
+                        // Parsing json
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+
+                                JSONObject obj = response.getJSONObject(i);
+                                Events event = new Events();
+                                try {
+                                    event.setEventName(new String(obj.getString("name").getBytes(), "UTF-8"));
+                                }
+                                catch (UnsupportedEncodingException e){}
+                                event.setEventDate(obj.getString("date"));
+                                event.setThumbnailUrl("https://s3-us-west-2.amazonaws.com/pickarace/shvoong.png");
+                                contestList.add(event);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                        // notifying list adapter about data changes
+                        // so that it renders the list view with updated data
+                        adapter.notifyDataSetChanged();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                hidePDialog();
+
+            }
+        });
+        hidePDialog();
+        AppController.getInstance().addToRequestQueue(eventsReq);
+        */
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             // argument position gives the index of item which is clicked
@@ -94,7 +134,18 @@ try {
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        hidePDialog();
+    }
 
+    private void hidePDialog() {
+        if (pDialog != null) {
+            pDialog.dismiss();
+            pDialog = null;
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

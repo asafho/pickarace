@@ -18,9 +18,9 @@ public class CustomListAdapter extends BaseAdapter {
     private List<Events> eventItems;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
-    public CustomListAdapter(Activity activity, List<Events> movieItems) {
+    public CustomListAdapter(Activity activity, List<Events> eventsItems) {
         this.activity = activity;
-        this.eventItems = movieItems;
+        this.eventItems = eventsItems;
     }
 
     @Override

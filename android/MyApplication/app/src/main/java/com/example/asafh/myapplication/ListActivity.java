@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -125,8 +124,9 @@ public class ListActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> arg0, View v,int position, long arg3)
             {
                 Events s =  contestList.get(position);
-                Toast.makeText(getApplicationContext(), "User Selected : " + s.toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "User Selected : " + s.toString(), Toast.LENGTH_LONG).show();
                 Intent displayActivityView = new Intent(ListActivity.this, DisplayActivity.class);
+                displayActivityView.putExtra("eventName",s.toString());
                 startActivity(displayActivityView);
 
             }

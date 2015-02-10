@@ -1,19 +1,26 @@
 package com.example.asafh.myapplication;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class DisplayActivity extends ActionBarActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
-    }
+        TextView textView = (TextView) findViewById(R.id.EventName);
 
+        String data= getIntent().getStringExtra("eventName");
+        textView.setText(data);
+
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

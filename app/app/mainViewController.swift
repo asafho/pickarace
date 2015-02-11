@@ -12,9 +12,10 @@ import iAd
 class mainViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDelegate, ADBannerViewDelegate {
 
     override func viewDidLoad() {
+        general.sendFlurryEvent("start App")
         adMob.loadBanners(self)
         general.setContestsFromURL()
-        sleep(1)
+        sleep(2)
         general.loadImagesfromURL()
         super.viewDidLoad()
     }
@@ -52,11 +53,11 @@ class mainViewController: UIViewController, GADBannerViewDelegate, GADInterstiti
     
     func changeView(){
         
+        general.sendFlurryEvent("Button clicked: "+general.MyVariables.contest)
         if(general.isConnectedToNetwork()){
             adMob.displayInterstitial(self)
             let view = self.storyboard?.instantiateViewControllerWithIdentifier("listView") as listViewController
             self.navigationController?.pushViewController(view, animated: true)
-            loadAd()
         }
         else{
             var alert: UIAlertView = UIAlertView()
@@ -64,6 +65,7 @@ class mainViewController: UIViewController, GADBannerViewDelegate, GADInterstiti
             alert.message = "בדוק חיבור אינטרנט"
             alert.addButtonWithTitle("Ok")
             alert.show()
+            general.sendFlurryEvent("Network issue")
         }
     }
     

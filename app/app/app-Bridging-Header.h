@@ -9,6 +9,6 @@
 #import "GADBannerView.h"
 #import "GADInterstitialDelegate.h"
 #import "GADInterstitial.h"
-
+#import "Flurry.h"
 
 #endif

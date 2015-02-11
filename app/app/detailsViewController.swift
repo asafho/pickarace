@@ -9,18 +9,22 @@
 import UIKit
 
 class detailsViewController: UIViewController, UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate {
-     
+    
+    
+    @IBOutlet weak var scroller: UIScrollView!
     @IBOutlet weak var detailsLabel: UITextView!
     @IBOutlet weak var subTypeLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subTypePicker: UIPickerView!
-    
+ 
     var pickerDataArray: [String] = []
     override func viewDidLoad() {
-        super.viewDidLoad()
+
+        scroller.scrollEnabled = true
+        scroller.contentSize = CGSize(width:0
+, height:850)
         subTypeLabel.text=""
-        subTypeLabel.textAlignment = NSTextAlignment.Right;
-        adMob.loadBanners(self)
+      //  adMob.loadBanners(self)
         var data : NSDictionary = general.MyVariables.contestData["details"] as NSDictionary
         print(general.MyVariables.contestData["name"] as String)
         setTitle(general.MyVariables.contestData["name"] as String)
@@ -35,7 +39,7 @@ class detailsViewController: UIViewController, UITableViewDelegate,UIPickerViewD
         subTypePicker.delegate = self
         
     }
-    
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -54,7 +58,6 @@ class detailsViewController: UIViewController, UITableViewDelegate,UIPickerViewD
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         subTypeLabel.textAlignment = NSTextAlignment.Right;
-        
         let distance = (general.contest.subtypesArray[row]["distance"] as String)
         let price = (general.contest.subtypesArray[row]["price_normal"] as String)
         let late_price = (general.contest.subtypesArray[row]["price_late"] as String)
@@ -93,5 +96,15 @@ class detailsViewController: UIViewController, UITableViewDelegate,UIPickerViewD
         detailsLabel.scrollRangeToVisible(NSMakeRange(0, 1))
         detailsLabel.flashScrollIndicators()
     }
+    @IBAction func regButtonClick(sender: AnyObject) {
+        println("asdsa")
+        changeView()
+    }
     
+    func changeView(){
+      //  adMob.displayInterstitial(self)
+        let view = self.storyboard?.instantiateViewControllerWithIdentifier("webView") as webViewController
+            self.navigationController?.pushViewController(view, animated: true)
+    }
+ 
 }

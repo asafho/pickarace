@@ -12,6 +12,7 @@ class webViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var webView: UIWebView!
     override func viewDidLoad() {
+        loadAd()
         super.viewDidLoad()
         adMob.loadBanners(self)
         println("open link"+general.contest.link)
@@ -38,4 +39,9 @@ class webViewController: UIViewController, UITableViewDelegate {
         webView.goForward()
     }
 
+    func loadAd(){
+        if(general.isConnectedToNetwork()){
+            adMob.ads.interstitial = adMob.createAndLoadInterstitial()
+        }
+    }
 }

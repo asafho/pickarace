@@ -38,13 +38,14 @@
             android:spinnerMode="dialog"/>
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
+            android:layout_height="54dp"
             android:text="הרשמה"
             android:id="@+id/button"
             android:layout_gravity="center_horizontal"
             android:onClick="openWebView"
-            android:nestedScrollingEnabled="false"/>
+            android:nestedScrollingEnabled="false"
+            android:background="@drawable/registration"/>
     </LinearLayout>
 
 </RelativeLayout>

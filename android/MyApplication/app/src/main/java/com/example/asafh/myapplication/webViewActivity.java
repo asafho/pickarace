@@ -1,10 +1,10 @@
 package com.example.asafh.myapplication;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.google.android.gms.internal.os.Bundle;
 
 /**
  * Created by asafh on 1/4/15.

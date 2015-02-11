@@ -92,39 +92,47 @@ class general{
                 // If there is an error parsing JSON, print it to the console
                 println("JSON Error \(err!.localizedDescription)")
             }
+            else{
+                //self.loadImagesfromURL()
+            }
         })
         task.resume()
     }
     
     
     class func loadImagesfromURL() -> Void {
+        
+        if(MyVariables.jsonURLResult == nil)
+        {
+            println("json resault return is nil")
+            return
+        }
+        
         for event in MyVariables.jsonURLResult["events"] as NSArray{
             let vendor: NSDictionary = event["vendor"] as NSDictionary
             let vendorName: String = vendor["name"] as String
             let urlString = "https://s3-us-west-2.amazonaws.com/pickarace/"+vendorName+".png"
-            println("downloading file: "+urlString)
-          
-            
-            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+
+ //           dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                 // Jump in to a background thread to get the image for this item
-                
-                 var image: UIImage? = MyVariables.imageCache.valueForKey(urlString) as? UIImage
+                 var image: UIImage? = MyVariables.imageCache.valueForKey(vendorName) as? UIImage
                 // Check our image cache for the existing key. This is just a dictionary of UIImages
                 
-                
+                println(MyVariables.imageCache.description)
+         
                 if(image == nil) {
                     // If the image does not exist, we need to download it
                     var imgURL: NSURL = NSURL(string: urlString)!
                     
-                   
+                    println("downloading file: "+urlString)
                     var request: NSURLRequest = NSURLRequest(URL: imgURL)
                     var urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
                     NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
                         if (error == nil) {
                             image = UIImage(data: data)
-                            
                             // Store the image in to our cache
-                            MyVariables.imageCache.setValue(image, forKey: urlString)
+                            MyVariables.imageCache.setValue(image, forKey: vendorName)
+                            println(MyVariables.imageCache.description)
                         }
                         else {
                              println("Error: \(error.localizedDescription)")
@@ -137,7 +145,13 @@ class general{
                 }
                 
                 
-            })
+   //         })
         }
+    }
+    class func sendFlurryEvent(event: String){
+        Flurry.startSession("YXDTZS7PX5S3B3ZW5X98")       
+        Flurry.setCrashReportingEnabled(true)               // records app crashing in Flurry
+        Flurry.logEvent(event)                              // Example of even logging
+        println("send flurry event: "+event)
     }
 }

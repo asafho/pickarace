@@ -11,6 +11,7 @@
 		B02B4AE61A42F81C0058386D /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = B02B4AE41A42F81C0058386D /* README.txt */; };
 		B02B4AE91A42F9170058386D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B4AE81A42F9170058386D /* AdSupport.framework */; };
 		B02B4AED1A43007F0058386D /* adMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02B4AEC1A43007F0058386D /* adMob.swift */; };
+		B04FF1F31A7241DD00B92D77 /* libFlurry_6.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B04FF1F11A7240A000B92D77 /* libFlurry_6.0.0.a */; };
 		B0529F741A5A8EC4004051EA /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F6C1A5A8EC4004051EA /* bg.png */; };
 		B0529F751A5A8EC4004051EA /* bike.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F6D1A5A8EC4004051EA /* bike.png */; };
 		B0529F771A5A8EC4004051EA /* run.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F6F1A5A8EC4004051EA /* run.png */; };
@@ -61,6 +62,8 @@
 		B02B4AE41A42F81C0058386D /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		B02B4AE81A42F9170058386D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		B02B4AEC1A43007F0058386D /* adMob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = adMob.swift; sourceTree = "<group>"; };
+		B04FF1F01A72407200B92D77 /* Flurry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		B04FF1F11A7240A000B92D77 /* libFlurry_6.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_6.0.0.a; path = app/libFlurry_6.0.0.a; sourceTree = "<group>"; };
 		B0529F6C1A5A8EC4004051EA /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		B0529F6D1A5A8EC4004051EA /* bike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bike.png; sourceTree = "<group>"; };
 		B0529F6F1A5A8EC4004051EA /* run.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = run.png; sourceTree = "<group>"; };
@@ -92,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B04FF1F31A7241DD00B92D77 /* libFlurry_6.0.0.a in Frameworks */,
 				B02B4AE91A42F9170058386D /* AdSupport.framework in Frameworks */,
 				B02B4AE51A42F81C0058386D /* libGoogleAdMobAds.a in Frameworks */,
 			);
@@ -145,6 +149,7 @@
 		B0B48D511A38779B0001057F = {
 			isa = PBXGroup;
 			children = (
+				B04FF1F11A7240A000B92D77 /* libFlurry_6.0.0.a */,
 				B02B4AE81A42F9170058386D /* AdSupport.framework */,
 				B0B48D5C1A38779B0001057F /* app */,
 				B0B48D721A38779B0001057F /* appTests */,
@@ -167,6 +172,7 @@
 				43CAF9D81A489D9A00F53FF4 /* app-Bridging-Header.h */,
 				B02B4AD61A42F81C0058386D /* GoogleAdMobSdk */,
 				B060D0561A3982D400BCF325 /* contests.json */,
+				B04FF1F01A72407200B92D77 /* Flurry.h */,
 				B0B48D891A3889ED0001057F /* mainViewController.swift */,
 				B0B48D8B1A3891890001057F /* listViewController.swift */,
 				B060D05A1A3EF97F00BCF325 /* detailsViewController.swift */,
@@ -465,6 +471,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/app/GoogleAdMobSdk",
+					"$(PROJECT_DIR)/app",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "";
@@ -497,6 +504,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/app/GoogleAdMobSdk",
+					"$(PROJECT_DIR)/app",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "";

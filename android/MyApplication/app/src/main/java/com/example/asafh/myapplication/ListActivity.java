@@ -1,5 +1,6 @@
 package com.example.asafh.myapplication;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -8,46 +9,52 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ListActivity extends ActionBarActivity {
 
-    ArrayList<String> contestList = new ArrayList<String>();
-    List<Map<String, String>> eventData = new ArrayList<Map<String, String>>();
+   // private static final String url = "https://s3-us-west-2.amazonaws.com/pickarace/contests_test.json";
+    private List<Events> contestList = new ArrayList<Events>();
+    private ListView listView;
+    private CustomListAdapter adapter;
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        final general globalVariable = (general) getApplicationContext();
+        final AppController globalVariable = (AppController) getApplicationContext();
 
-        JSONObject  appData = network.getContestsObj();
-        setContentView(R.layout.activity_list);
+        pDialog = new ProgressDialog(this);
+        // Showing progress dialog before making http request
+        pDialog.setMessage("Loading...");
+        pDialog.show();
+        final JSONObject  appData = network.getContestsObj();
+        setContentView(R.layout.activity_main);
 
-        //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, contestList);
-        ListView animalList=(ListView)findViewById(R.id.listView);
+        listView = (ListView) findViewById(R.id.list);
+
 
         try {
             JSONArray events = appData.getJSONArray("events");
             for(int i=0;i<events.length();i++)
             {
-                JSONObject event = events.getJSONObject(i);
-                if( globalVariable.getTopic().equals(event.getString("type")))
-                {
-                    Map<String, String> datum = new HashMap<String, String>(2);
-                    datum.put("name", event.getString("name"));
-                    datum.put("date", event.getString("date"));
-                    eventData.add(datum);
+                JSONObject jsonEvent = events.getJSONObject(i);
+                if( globalVariable.getTopic().equals(jsonEvent.getString("type")))
+               {
+                    Events event = new Events();
+                    event.setEventName(jsonEvent.getString("name"));
+                    event.setEventLocation(jsonEvent.getJSONObject("location").getString("city"));
+                    event.setEventDate(jsonEvent.getString("date"));
+                    event.setThumbnailUrl(globalVariable.getS3RootURL() + jsonEvent.getJSONObject("vendor").getString("name") + ".png");
+                    System.out.println("DEBUG: name:" + jsonEvent.getString("name") + " location: " + jsonEvent.getJSONObject("location").getString("city"));
+                    contestList.add(event);
                 }
 
             }
@@ -55,26 +62,71 @@ public class ListActivity extends ActionBarActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        hidePDialog();
+        adapter = new CustomListAdapter(this, contestList);
+        listView.setAdapter(adapter);
 
-        // Set The Adapter
 
-        SimpleAdapter adapter = new SimpleAdapter(this, eventData,
-                android.R.layout.two_line_list_item,
-                new String[] {"name", "date"},
-                new int[] {android.R.id.text1,
-                        android.R.id.text2});
 
-        animalList.setAdapter(adapter);
-        //animalList.setAdapter(arrayAdapter);
-        // register onClickListener to handle click events on each item
-        animalList.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        /*
+
+        pDialog = new ProgressDialog(this);
+        // Showing progress dialog before making http request
+        pDialog.setMessage("Loading...");
+        pDialog.show();
+
+
+
+        JsonArrayRequest eventsReq = new JsonArrayRequest(url,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        hidePDialog();
+
+                        // Parsing json
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+
+                                JSONObject obj = response.getJSONObject(i);
+                                Events event = new Events();
+                                try {
+                                    event.setEventName(new String(obj.getString("name").getBytes(), "UTF-8"));
+                                }
+                                catch (UnsupportedEncodingException e){}
+                                event.setEventDate(obj.getString("date"));
+                                event.setThumbnailUrl("https://s3-us-west-2.amazonaws.com/pickarace/shvoong.png");
+                                contestList.add(event);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                        // notifying list adapter about data changes
+                        // so that it renders the list view with updated data
+                        adapter.notifyDataSetChanged();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                hidePDialog();
+
+            }
+        });
+        hidePDialog();
+        AppController.getInstance().addToRequestQueue(eventsReq);
+        */
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             // argument position gives the index of item which is clicked
             public void onItemClick(AdapterView<?> arg0, View v,int position, long arg3)
             {
-                Map s =  eventData.get(position);
-                Toast.makeText(getApplicationContext(), "User Selected : "+ s.toString(),   Toast.LENGTH_LONG).show();
+                Events s =  contestList.get(position);
+                //Toast.makeText(getApplicationContext(), "User Selected : " + s.toString(), Toast.LENGTH_LONG).show();
                 Intent displayActivityView = new Intent(ListActivity.this, DisplayActivity.class);
+                displayActivityView.putExtra("eventName",s.toString());
                 startActivity(displayActivityView);
 
             }
@@ -82,7 +134,18 @@ public class ListActivity extends ActionBarActivity {
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        hidePDialog();
+    }
 
+    private void hidePDialog() {
+        if (pDialog != null) {
+            pDialog.dismiss();
+            pDialog = null;
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -104,4 +167,7 @@ public class ListActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-   }
+
+
+
+}

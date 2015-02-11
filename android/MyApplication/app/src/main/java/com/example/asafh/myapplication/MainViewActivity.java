@@ -19,7 +19,7 @@ public class MainViewActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_view);
+        setContentView(R.layout.main_screen);
 
         // Create the interstitial.
         interstitial = new InterstitialAd(this);
@@ -57,41 +57,42 @@ public class MainViewActivity extends ActionBarActivity {
 
 
     public void runningButtonOnClick(View view) {
-        final general globalVariable = (general) getApplicationContext();
+        final AppController globalVariable = (AppController) getApplicationContext();
         globalVariable.setTopic("running");
         Log.v("action", "running button clicked");
-        Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
-        Log.v("internet test: ", String.valueOf(general.isConnected(this.getApplicationContext())));
+        //Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
+        Intent openStep = new Intent(MainViewActivity.this,  ListActivity.class);
+        Log.v("internet test: ", String.valueOf(AppController.isConnected(this.getApplicationContext())));
         startActivity(openStep);
-        displayInterstitial();
+        //displayInterstitial();
     }
 
     public void swimmingButtonOnClick(View view) {
-        final general globalVariable = (general) getApplicationContext();
+        final AppController globalVariable = (AppController) getApplicationContext();
         globalVariable.setTopic("swimming");
         Log.v("action", "swimming button clicked");
         Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
-        Log.v("internet test: ", String.valueOf(general.isConnected(this.getApplicationContext())));
+        Log.v("internet test: ", String.valueOf(AppController.isConnected(this.getApplicationContext())));
         startActivity(openStep);
         displayInterstitial();
     }
 
     public void bikingButtonOnClick(View view) {
-        final general globalVariable = (general) getApplicationContext();
+        final AppController globalVariable = (AppController) getApplicationContext();
         globalVariable.setTopic("biking");
         Log.v("action", "biking button clicked");
         Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
-        Log.v("internet test: ", String.valueOf(general.isConnected(this.getApplicationContext())));
+        Log.v("internet test: ", String.valueOf(AppController.isConnected(this.getApplicationContext())));
         startActivity(openStep);
         displayInterstitial();
     }
 
     public void thriathlonButtonOnClick(View view) {
-        final general globalVariable = (general) getApplicationContext();
+        final AppController globalVariable = (AppController) getApplicationContext();
         globalVariable.setTopic("thriathlon");
         Log.v("action", "thriathlon button clicked");
         Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
-        Log.v("internet test: ", String.valueOf(general.isConnected(this.getApplicationContext())));
+        Log.v("internet test: ", String.valueOf(AppController.isConnected(this.getApplicationContext())));
         startActivity(openStep);
         displayInterstitial();
     }

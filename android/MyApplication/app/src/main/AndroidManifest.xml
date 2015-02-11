@@ -2,16 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.asafh.myapplication" >
 
-    <!-- Internet Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- Network State Permissions -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.example.asafh.myapplication.general"
+        android:name=".AppController"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Pick A RACE"
+        android:icon="@drawable/cover"
         android:theme="@style/AppTheme" >
         <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -22,17 +21,16 @@
         </activity>
         <activity
             android:name=".ListActivity"
-            android:label="@string/title_activity_list" >
+            >
         </activity>
         <activity android:name=".webViewActivity" >
         </activity>
         <activity
             android:name=".DisplayActivity"
-            android:label="@string/title_activity_display" >
+            >
         </activity>
         <activity
-            android:name=".SplashScreen"
-            android:label="@string/title_activity_splash_screen" >
+            android:name=".SplashScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

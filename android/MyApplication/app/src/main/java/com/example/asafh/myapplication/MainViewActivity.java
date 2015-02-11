@@ -97,12 +97,7 @@ public class MainViewActivity extends ActionBarActivity {
         displayInterstitial();
     }
 
-    public void openWebView(View view)
-    {
-        Intent intent = new Intent(this.getApplicationContext(), webViewActivity.class);
-        startActivity(intent);
 
-    }
 
     public void displayInterstitial() {
         if (interstitial.isLoaded()) {

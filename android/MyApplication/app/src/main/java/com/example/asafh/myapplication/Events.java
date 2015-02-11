@@ -5,18 +5,35 @@ import java.util.ArrayList;
 
 public class Events {
 
-    private String eventName, thumbnailUrl,eventLocation;
-    private String eventDate;
-    private ArrayList<String> genre;
+    private String eventName, thumbnailUrl,eventLocation,eventDetails,eventDate;
+    private ArrayList<String> racesTypeArray;
 
     public Events() {
     }
 
-    public Events(String name, String thumbnailUrl, String eventDate, String location) {
+    public Events(String name, String thumbnailUrl, String eventDate, String location, String details, ArrayList<String> racesType ) {
         this.eventName = name;
         this.thumbnailUrl = thumbnailUrl;
         this.eventDate = eventDate;
         this.eventLocation = location;
+        this.eventDetails = details;
+        this.racesTypeArray = racesType;
+    }
+
+    public ArrayList<String> getRacesType() {
+        return racesTypeArray;
+    }
+
+    public void setRacesType(ArrayList<String> racesType) {
+        this.racesTypeArray = racesType;
+    }
+
+    public String getEventDetails(){
+        return eventDetails;
+    }
+
+    public void setEventDetails(String details){
+        this.eventDetails = details;
     }
 
     public String getEventName() {

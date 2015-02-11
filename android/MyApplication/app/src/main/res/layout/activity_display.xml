@@ -4,13 +4,47 @@
     android:layout_height="match_parent"
     tools:context="com.example.asafh.myapplication.DisplayActivity">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/EventName"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="79dp"
-        android:layout_marginStart="79dp"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_width="234dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/EventName"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="79dp"
+            android:layout_marginStart="79dp"/>
+
+        <EditText
+            android:layout_width="234dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/EventDetails"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="79dp"
+            android:layout_marginStart="79dp"
+            android:layout_weight="0.63"/>
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/RacesSpinner"
+            android:spinnerMode="dialog"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="הרשמה"
+            android:id="@+id/button"
+            android:layout_gravity="center_horizontal"
+            android:onClick="openWebView"
+            android:nestedScrollingEnabled="false"/>
+    </LinearLayout>
+
 </RelativeLayout>

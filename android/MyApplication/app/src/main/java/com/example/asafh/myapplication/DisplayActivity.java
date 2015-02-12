@@ -11,15 +11,16 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
 public class DisplayActivity extends ActionBarActivity {
 
     private List<String> spinnerArray =  new ArrayList<String>();
+    private String selectedRaceDistance,selectedRaceLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +30,14 @@ public class DisplayActivity extends ActionBarActivity {
         TextView EventDetails = (TextView) findViewById(R.id.EventDetails);
         //TextView EventRacesSpinner = (TextView) findViewById(R.id.RacesSpinner);
 
-        String dataEventName= getIntent().getStringExtra("eventName");
-        String dataEventDetails= getIntent().getStringExtra("eventDetails");
+        String dataEventName             = getIntent().getStringExtra("eventName");
+        String dataEventDetails          = getIntent().getStringExtra("eventDetails");
         ArrayList<String> racesTypeArray = getIntent().getStringArrayListExtra("eventRaceSpinner");
+
 
         EventName.setText(dataEventName);
         EventDetails.setText(dataEventDetails);
+
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_item, racesTypeArray);
@@ -76,7 +79,10 @@ public class DisplayActivity extends ActionBarActivity {
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
         {
-            Toast.makeText(parent.getContext(),"asdfasdf" +  parent.getItemAtPosition(pos).toString(), Toast.LENGTH_LONG).show();
+            selectedRaceDistance = parent.getItemAtPosition(pos).toString();
+            HashMap<String, String> hashMap = (HashMap<String, String>)getIntent().getSerializableExtra("eventRaceDistanceLink");
+            selectedRaceLink = hashMap.get(selectedRaceDistance).toString();
+           // Toast.makeText(parent.getContext(), "distance: " + selectedRaceDistance + " link: " + hashMap.get(selectedRaceDistance).toString(), Toast.LENGTH_LONG).show();
         }
         public void onNothingSelected(AdapterView parent){
 
@@ -86,6 +92,7 @@ public class DisplayActivity extends ActionBarActivity {
     public void openWebView(View view)
     {
         Intent intent = new Intent(this.getApplicationContext(), webViewActivity.class);
+        intent.putExtra("eventLink",selectedRaceLink);
         startActivity(intent);
 
     }

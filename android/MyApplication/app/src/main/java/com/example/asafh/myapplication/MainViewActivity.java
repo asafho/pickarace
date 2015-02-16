@@ -23,7 +23,8 @@ public class MainViewActivity extends ActionBarActivity {
 
         // Create the interstitial.
         interstitial = new InterstitialAd(this);
-        interstitial.setAdUnitId(getString(R.string.ad_unit_id));
+        String adUnitID = getResources().getString(R.string.ad_unit_id);
+        interstitial.setAdUnitId(adUnitID);
 
         // Create ad request.
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -64,7 +65,7 @@ public class MainViewActivity extends ActionBarActivity {
         Intent openStep = new Intent(MainViewActivity.this,  ListActivity.class);
         Log.v("internet test: ", String.valueOf(AppController.isConnected(this.getApplicationContext())));
         startActivity(openStep);
-        //displayInterstitial();
+        displayInterstitial();
     }
 
     public void swimmingButtonOnClick(View view) {

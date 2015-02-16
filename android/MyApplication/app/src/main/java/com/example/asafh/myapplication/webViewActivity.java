@@ -19,7 +19,7 @@ public class webViewActivity  extends Activity {
 
         web_view = (WebView) findViewById(R.id.webview);
         web_view.getSettings().setJavaScriptEnabled(true);
-        web_view.loadUrl("http://www.google.com");
+        web_view.loadUrl(getIntent().getStringExtra("eventLink"));
 
 
         web_view.setWebViewClient(new WebViewClient() {

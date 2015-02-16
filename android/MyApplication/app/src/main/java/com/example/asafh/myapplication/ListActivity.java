@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ListActivity extends ActionBarActivity {
@@ -24,6 +25,7 @@ public class ListActivity extends ActionBarActivity {
     private ListView listView;
     private CustomListAdapter adapter;
     private ProgressDialog pDialog;
+    ArrayList<String> racesSpinnerArray =  new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +54,23 @@ public class ListActivity extends ActionBarActivity {
                     event.setEventName(jsonEvent.getString("name"));
                     event.setEventLocation(jsonEvent.getJSONObject("location").getString("city"));
                     event.setEventDate(jsonEvent.getString("date"));
+                    event.setEventDetails(jsonEvent.getJSONObject("details").getString("row1") + jsonEvent.getJSONObject("details").getString("row2") + jsonEvent.getJSONObject("details").getString("row3") + jsonEvent.getJSONObject("details").getString("row4"));
+
                     event.setThumbnailUrl(globalVariable.getS3RootURL() + jsonEvent.getJSONObject("vendor").getString("name") + ".png");
-                    System.out.println("DEBUG: name:" + jsonEvent.getString("name") + " location: " + jsonEvent.getJSONObject("location").getString("city"));
+
+                   JSONArray racesArry = jsonEvent.getJSONArray("subtype");
+                   ArrayList<String> raceType = new ArrayList<String>();
+                   HashMap<String, String> raceDistanceLink = new HashMap();
+
+                   for (int j = 0; j < racesArry.length(); j++) {
+                       raceType.add((String) racesArry.getJSONObject(j).getString("distance"));
+                       raceDistanceLink.put(racesArry.getJSONObject(j).getString("distance"),racesArry.getJSONObject(j).getString("link"));
+                   }
+
+
+                   event.setRacesType(raceType);
+                   event.setRaceDistanceLink(raceDistanceLink);
+
                     contestList.add(event);
                 }
 
@@ -123,10 +140,13 @@ public class ListActivity extends ActionBarActivity {
             // argument position gives the index of item which is clicked
             public void onItemClick(AdapterView<?> arg0, View v,int position, long arg3)
             {
-                Events s =  contestList.get(position);
+                Events event =  contestList.get(position);
                 //Toast.makeText(getApplicationContext(), "User Selected : " + s.toString(), Toast.LENGTH_LONG).show();
                 Intent displayActivityView = new Intent(ListActivity.this, DisplayActivity.class);
-                displayActivityView.putExtra("eventName",s.toString());
+                displayActivityView.putExtra("eventName",event.getEventName());
+                displayActivityView.putExtra("eventDetails",event.getEventDetails());
+                displayActivityView.putExtra("eventRaceSpinner",event.getRacesType());
+                displayActivityView.putExtra("eventRaceDistanceLink",event.getRaceDistanceLink());
                 startActivity(displayActivityView);
 
             }

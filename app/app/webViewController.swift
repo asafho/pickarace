@@ -17,7 +17,7 @@ class webViewController: UIViewController, UITableViewDelegate {
         adMob.loadBanners(self)
         println("open link"+general.contest.link)
         let url = NSURL(string: general.contest.link as String)
-        let request = NSURLRequest(URL: url!)
+        let request = NSURLRequest(URL: url)
         webView.scalesPageToFit = true
         webView.loadRequest(request)
     }

@@ -2,10 +2,10 @@ package com.example.asafh.myapplication;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
+
+
 /**
  * Created by asafh on 1/4/15.
  */
@@ -19,7 +19,16 @@ public class webViewActivity  extends Activity {
 
         web_view = (WebView) findViewById(R.id.webview);
         web_view.getSettings().setJavaScriptEnabled(true);
-        web_view.loadUrl("http://www.google.com");
+        web_view.loadUrl(getIntent().getStringExtra("eventLink"));
+
+
+        web_view.setWebViewClient(new WebViewClient() {
+            public boolean shouldOverrideUrlLoading(WebView viewx, String urlx) {
+                viewx.loadUrl(urlx);
+                return false;
+            }
+        });
+        /*
         web_view.requestFocus(View.FOCUS_DOWN);
         web_view.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -35,6 +44,7 @@ public class webViewActivity  extends Activity {
                 return false;
             }
         });
+        */
 
     }
 

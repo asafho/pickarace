@@ -52,9 +52,9 @@ class adMob: UIViewController, GADBannerViewDelegate, ADBannerViewDelegate {
     
     class func loadBanners(viewcontroller : UIViewController){
         var bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        bannerView?.adUnitID = "ca-app-pub-6535762882222672/6474775341"
-        bannerView?.rootViewController = viewcontroller
-        var bannerFrame = bannerView!.frame
+        bannerView.adUnitID = "ca-app-pub-6535762882222672/6474775341"
+        bannerView.rootViewController = viewcontroller
+        var bannerFrame = bannerView.frame
         
         
         let screenRect = UIScreen.mainScreen().bounds
@@ -62,9 +62,9 @@ class adMob: UIViewController, GADBannerViewDelegate, ADBannerViewDelegate {
         let screenwidth = screenRect.size.width
         bannerFrame.origin.y = screenHeight - bannerFrame.size.height
         bannerFrame.origin.x = (screenwidth - bannerFrame.size.width) / 2
-        bannerView!.frame = bannerFrame
+        bannerView.frame = bannerFrame
         
-        viewcontroller.view.addSubview(bannerView!)
+        viewcontroller.view.addSubview(bannerView)
         var request:GADRequest = GADRequest()
-        bannerView?.loadRequest(request)}
+        bannerView.loadRequest(request)}
 }

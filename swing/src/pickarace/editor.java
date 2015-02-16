@@ -82,7 +82,7 @@ public class editor {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				aws.readContestsFile();
+		//		aws.readContestsFile();
 				resetFrame();
 			}
 		});
@@ -441,8 +441,14 @@ public class editor {
 		label_6.setBounds(575, 245, 61, 16);
 		frame.getContentPane().add(label_6);
 		
-		btnUpload = new JButton("upload");
-		btnUpload.setBounds(6, 649, 117, 29);
+		btnUpload = new JButton("upload new File");
+		btnUpload.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				
+				aws.uploadNewFile();
+			}
+		});
+		btnUpload.setBounds(6, 649, 163, 29);
 		frame.getContentPane().add(btnUpload);
 	}
 

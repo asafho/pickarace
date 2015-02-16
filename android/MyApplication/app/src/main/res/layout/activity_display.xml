@@ -20,22 +20,20 @@
             android:layout_marginLeft="79dp"
             android:layout_marginStart="79dp"/>
 
-        <EditText
+        <TextView
             android:layout_width="234dp"
             android:layout_height="wrap_content"
             android:id="@+id/EventDetails"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_marginLeft="79dp"
-            android:layout_marginStart="79dp"
             android:layout_weight="0.63"/>
 
         <Spinner
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:id="@+id/RacesSpinner"
-            android:spinnerMode="dialog"/>
+            android:spinnerMode="dialog"
+            style="@android:style/Widget.Material.Spinner"
+            />
 
         <Button
             android:layout_width="250dp"

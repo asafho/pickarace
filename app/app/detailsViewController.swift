@@ -65,8 +65,8 @@ class detailsViewController: UIViewController, UITableViewDelegate,UIPickerViewD
         let distance = (general.contest.subtypesArray[row]["distance"] as String)
         let price = (general.contest.subtypesArray[row]["price_normal"] as String)
         let late_price = (general.contest.subtypesArray[row]["price_late"] as String)
-        let type = (general.contest.subtypesArray[row]["type"] as String)
-        let level = (general.contest.subtypesArray[row]["dificulty_level"] as String)
+    //    let type = (general.contest.subtypesArray[row]["type"] as String)
+    //    let level = (general.contest.subtypesArray[row]["dificulty_level"] as String)
         
         var subTypeText =  "מחיר הרשמה: " + price + " ש׳׳ח "
         subTypeText+="\n"

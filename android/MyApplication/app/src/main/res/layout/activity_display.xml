@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.asafh.pickarace.DisplayActivity">
+    tools:context="com.pickarace.app.DisplayActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -31,12 +31,11 @@
 
 
         <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="33dp"
             android:id="@+id/RacesSpinner"
-            android:spinnerMode="dialog"
-            style="@android:style/Widget.Material.Spinner"
-            />
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:scrollbars="none" />
 
         <Button
             android:layout_width="250dp"

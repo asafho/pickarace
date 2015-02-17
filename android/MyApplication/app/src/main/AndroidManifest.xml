@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.asafh.pickarace" >
+    package="com.pickarace.app.pickarace" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.example.asafh.pickarace.AppController"
+        android:name="com.pickarace.app.AppController"
         android:allowBackup="true"
         android:label="Pick A RACE"
         android:icon="@drawable/cover"
@@ -16,21 +16,21 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.example.asafh.pickarace.MainViewActivity"
+            android:name="com.pickarace.app.MainViewActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.asafh.pickarace.ListActivity"
+            android:name="com.pickarace.app.ListActivity"
             >
         </activity>
-        <activity android:name="com.example.asafh.pickarace.webViewActivity" >
+        <activity android:name="com.pickarace.app.webViewActivity" >
         </activity>
         <activity
-            android:name="com.example.asafh.pickarace.DisplayActivity"
+            android:name="com.pickarace.app.DisplayActivity"
             >
         </activity>
         <activity
-            android:name="com.example.asafh.pickarace.SplashScreen" >
+            android:name="com.pickarace.app.SplashScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

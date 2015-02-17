@@ -82,7 +82,7 @@ public class editor {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-		//		aws.readContestsFile();
+				aws.readContestsFile();
 				resetFrame();
 			}
 		});

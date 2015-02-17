@@ -82,7 +82,7 @@ public class editor {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-		//		aws.readContestsFile();
+				aws.readContestsFile();
 				resetFrame();
 			}
 		});
@@ -129,7 +129,8 @@ public class editor {
 		frame.getContentPane().add(label_1);
 		
 		country = new JTextField();
-		country.setText("מדינה");
+		country.setText("ישראל");
+		country.setToolTipText("מדינה");
 		country.setBounds(402, 95, 134, 28);
 		frame.getContentPane().add(country);
 		country.setColumns(10);
@@ -139,13 +140,14 @@ public class editor {
 		frame.getContentPane().add(label_2);
 		
 		countryCode = new JTextField();
-		countryCode.setText("קוד מדינה");
+		countryCode.setText("IL");
+		countryCode.setToolTipText("קוד מדינה");
 		countryCode.setBounds(273, 95, 105, 28);
 		frame.getContentPane().add(countryCode);
 		countryCode.setColumns(10);
 		
 		city = new JTextField();
-		city.setText("עיר");
+		city.setToolTipText("עיר");
 		city.setBounds(116, 94, 134, 28);
 		frame.getContentPane().add(city);
 		city.setColumns(10);
@@ -164,13 +166,13 @@ public class editor {
 		frame.getContentPane().add(label_4);
 		
 		regDate = new JTextField();
-		regDate.setText("רישום מוקדם");
+		regDate.setToolTipText("רישום מוקדם");
 		regDate.setBounds(402, 173, 134, 28);
 		frame.getContentPane().add(regDate);
 		regDate.setColumns(10);
 		
 		regDateLate = new JTextField();
-		regDateLate.setText("רישום מאוחר");
+		regDateLate.setToolTipText("רישום מאוחר");
 		regDateLate.setBounds(244, 172, 134, 28);
 		frame.getContentPane().add(regDateLate);
 		regDateLate.setColumns(10);
@@ -182,6 +184,8 @@ public class editor {
 				JSONObject newEvent = createNewObject();
 				if(newEvent!=null){
 					aws.contestsJsonArray.put(newEvent);
+					frame.dispose();
+					resetFrame();
 				}
 				
 			}
@@ -492,7 +496,7 @@ public class editor {
 			}
 			if(subtype5.isSelected()){
 				subtypes.put(getsubTypeObject(subtype5,distance5,link5,price_reg5,price_late5));
-			
+			}
 			if(subtype6.isSelected()){
 				subtypes.put(getsubTypeObject(subtype6,distance6,link6,price_reg6,price_late6));
 			}
@@ -503,8 +507,7 @@ public class editor {
 				subtypes.put(getsubTypeObject(subtype8,distance8,link8,price_reg8,price_late8));
 			}
 			enwEventObject.put("subtype", subtypes);
-			}
-			
+		
 			
 		} catch (JSONException e) {
 			e.printStackTrace();

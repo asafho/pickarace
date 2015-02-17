@@ -1,4 +1,4 @@
-package com.example.asafh.myapplication;
+package com.example.asafh.pickarace;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -82,58 +82,6 @@ public class ListActivity extends ActionBarActivity {
         hidePDialog();
         adapter = new CustomListAdapter(this, contestList);
         listView.setAdapter(adapter);
-
-
-
-        /*
-
-        pDialog = new ProgressDialog(this);
-        // Showing progress dialog before making http request
-        pDialog.setMessage("Loading...");
-        pDialog.show();
-
-
-
-        JsonArrayRequest eventsReq = new JsonArrayRequest(url,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        hidePDialog();
-
-                        // Parsing json
-                        for (int i = 0; i < response.length(); i++) {
-                            try {
-
-                                JSONObject obj = response.getJSONObject(i);
-                                Events event = new Events();
-                                try {
-                                    event.setEventName(new String(obj.getString("name").getBytes(), "UTF-8"));
-                                }
-                                catch (UnsupportedEncodingException e){}
-                                event.setEventDate(obj.getString("date"));
-                                event.setThumbnailUrl("https://s3-us-west-2.amazonaws.com/pickarace/shvoong.png");
-                                contestList.add(event);
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-
-                        // notifying list adapter about data changes
-                        // so that it renders the list view with updated data
-                        adapter.notifyDataSetChanged();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                hidePDialog();
-
-            }
-        });
-        hidePDialog();
-        AppController.getInstance().addToRequestQueue(eventsReq);
-        */
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {

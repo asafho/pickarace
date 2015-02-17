@@ -116,14 +116,14 @@
     </TableLayout>
 
 
-    <fragment android:name="com.example.asafh.myapplication.MainViewActivity$PlaceholderFragment"
+    <fragment android:name="com.example.asafh.pickarace.MainViewActivity$PlaceholderFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/adFragment" />
 
     <fragment
         android:id="@+id/adFragment"
-        android:name="com.example.asafh.myapplication.MainViewActivity$AdFragment"
+        android:name="com.example.asafh.pickarace.MainViewActivity$AdFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />

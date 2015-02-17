@@ -15,20 +15,25 @@
             android:layout_width="234dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
             android:id="@+id/EventName"
             android:layout_marginLeft="79dp" />
 
-        <TextView
-            android:layout_width="234dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/EventDetails"
-            android:layout_marginLeft="79dp"
-            android:layout_marginStart="79dp"
-            android:layout_weight="0.63"
-            android:editable="false"
-            android:textIsSelectable="true" />
 
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView" >
+
+            <TextView
+                android:layout_width="234dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/EventDetails"
+                android:layout_marginLeft="79dp"
+                android:layout_marginStart="79dp"
+                android:layout_weight="0.63"
+                android:editable="false"
+                android:textIsSelectable="true" />
+        </ScrollView>
 
         <Spinner
             android:layout_width="match_parent"
@@ -47,6 +52,7 @@
             android:onClick="openWebView"
             android:nestedScrollingEnabled="false"
             android:background="@drawable/registration"/>
+
     </LinearLayout>
 
 </RelativeLayout>

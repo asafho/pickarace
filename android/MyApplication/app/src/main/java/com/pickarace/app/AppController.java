@@ -20,7 +20,7 @@ public class AppController extends Application {
     private ImageLoader mImageLoader;
     private static AppController mInstance;
     private String topic;
-    private String s3RootURL="https://s3-us-west-2.amazonaws.com/pickarace/";
+    private String s3RootURL="https://s3-eu-west-1.amazonaws.com/com.pickarace.app/";
 
     public String getTopic() {
 

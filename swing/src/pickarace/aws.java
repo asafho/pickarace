@@ -86,8 +86,13 @@ public class aws {
 			JSONObject newFile=new JSONObject();
 			newFile.put("events", contestsJsonArray);
 			String fileContent = newFile.toString(1).replaceAll("\": \"", "\":\"");
-			FileUtils.writeStringToFile(new File("/Users/asafh/Desktop/contests.json"), fileContent);
-			System.out.println("file saved to disk: "+"/Users/asafh/Desktop/contests.json");
+			
+			File homedirPath = new File ("/Users/tabtale");
+			
+			
+			
+			FileUtils.writeStringToFile(new File("/Users/tabtale/Desktop/contests.json"), fileContent);
+			System.out.println("file saved to disk: "+"/Users/tabtale/Desktop/contests.json");
 			
 	/*		S3Object stringObject = new S3Object("contests_backup.json", fileContent);
 			stringObject.setAcl(AccessControlList.REST_CANNED_PUBLIC_READ);

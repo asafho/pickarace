@@ -81,7 +81,7 @@ class general{
         let urlPath = "https://s3-us-west-2.amazonaws.com/pickarace/contests.json"
         let url = NSURL(string: urlPath)
         let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
+        let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
             if(error != nil) {
                 // If there is an error in the web request, print it to the console
                 println(error.localizedDescription)
@@ -122,11 +122,11 @@ class general{
          
                 if(image == nil) {
                     // If the image does not exist, we need to download it
-                    var imgURL: NSURL = NSURL(string: urlString)
+                    var imgURL: NSURL = NSURL(string: urlString)!
                     
                     println("downloading file: "+urlString)
                     var request: NSURLRequest = NSURLRequest(URL: imgURL)
-                    var urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)
+                    var urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
                     NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
                         if (error == nil) {
                             image = UIImage(data: data)

@@ -22,7 +22,7 @@ class detailsViewController: UIViewController, UITableViewDelegate,UIPickerViewD
 
         scroller.scrollEnabled = true
         scroller.contentSize = CGSize(width:0
-, height:850)
+, height:900)
         subTypeLabel.text=""
       //  adMob.loadBanners(self)
         var data : NSDictionary = general.MyVariables.contestData["details"] as NSDictionary

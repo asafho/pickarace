@@ -78,7 +78,7 @@ class general{
     
     class func setContestsFromURL() {
         println("fetching contests from URL")
-        let urlPath = "https://s3-us-west-2.amazonaws.com/pickarace/contests.json"
+        let urlPath = "https://s3-eu-west-1.amazonaws.com/com.pickarace.app/contests.json"
         let url = NSURL(string: urlPath)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
@@ -111,7 +111,7 @@ class general{
         for event in MyVariables.jsonURLResult["events"] as NSArray{
             let vendor: NSDictionary = event["vendor"] as NSDictionary
             let vendorName: String = vendor["name"] as String
-            let urlString = "https://s3-us-west-2.amazonaws.com/pickarace/"+vendorName+".png"
+            let urlString = "https://s3-eu-west-1.amazonaws.com/com.pickarace.app/"+vendorName+".png"
 
  //           dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                 // Jump in to a background thread to get the image for this item

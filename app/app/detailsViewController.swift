@@ -38,8 +38,12 @@ class detailsViewController: UIViewController, UITableViewDelegate,UIPickerViewD
         subTypePicker.dataSource = self
         subTypePicker.delegate = self
         
+        //subTypePicker.selectRow(0, inComponent: 0, animated: true)
+        pickerView(subTypePicker, didSelectRow: 0, inComponent: 0)
+            
+        
     }
-   
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -79,32 +83,20 @@ class detailsViewController: UIViewController, UITableViewDelegate,UIPickerViewD
     func setDetails(details : NSDictionary){
         
         let desc1:String = details["row1"] as String
-        let desc2:String = details["row2"] as String
-        let desc3:String = details["row3"] as String
-        let desc4:String = details["row4"] as String
-  
+    
         let date:String=general.MyVariables.contestData["date"] as String
         var detailsStr:String = desc1
         detailsStr+="\n"
-        detailsStr+=desc2
-        detailsStr+="\n"
-        detailsStr+=desc3
-        detailsStr+="\n"
-        detailsStr+=desc4
         detailsLabel.text = detailsStr
         detailsLabel.textAlignment = NSTextAlignment.Right;
         detailsLabel.scrollRangeToVisible(NSMakeRange(0, 1))
         detailsLabel.flashScrollIndicators()
     }
     @IBAction func regButtonClick(sender: AnyObject) {
-        println("asdsa")
-        changeView()
+        if(general.isConnectedToNetwork()){
+            adMob.createAndLoadInterstitial()
+            adMob.displayInterstitial(self)
+        }
+
     }
-    
-    func changeView(){
-      //  adMob.displayInterstitial(self)
-        let view = self.storyboard?.instantiateViewControllerWithIdentifier("webView") as webViewController
-            self.navigationController?.pushViewController(view, animated: true)
-    }
- 
 }

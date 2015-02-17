@@ -55,7 +55,7 @@ class mainViewController: UIViewController, GADBannerViewDelegate, GADInterstiti
         
         general.sendFlurryEvent("Button clicked: "+general.MyVariables.contest)
         if(general.isConnectedToNetwork()){
-            adMob.displayInterstitial(self)
+          //  adMob.displayInterstitial(self)
             let view = self.storyboard?.instantiateViewControllerWithIdentifier("listView") as listViewController
             self.navigationController?.pushViewController(view, animated: true)
         }

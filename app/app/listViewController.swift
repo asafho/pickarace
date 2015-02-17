@@ -71,7 +71,7 @@ class listViewController: UIViewController, UITableViewDelegate {
             
             let vendor = rowData["vendor"] as NSDictionary
             var vendorName = vendor["name"] as String
-            let urlString = "https://s3-us-west-2.amazonaws.com/pickarace/"+vendorName+".png"
+            let urlString = "https://com.pickarace.app.s3.amazonaws.com/"+vendorName+".png"
             println(urlString)
             var image: UIImage? = general.MyVariables.imageCache.valueForKey(vendorName) as? UIImage
             println("image: "+vendorName)

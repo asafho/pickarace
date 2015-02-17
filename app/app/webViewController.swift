@@ -9,13 +9,11 @@
 import UIKit
 class webViewController: UIViewController, UITableViewDelegate {
     
-
     @IBOutlet weak var webView: UIWebView!
     override func viewDidLoad() {
-        loadAd()
         super.viewDidLoad()
         adMob.loadBanners(self)
-        println("open link"+general.contest.link)
+        println("open link: "+general.contest.link)
         let url = NSURL(string: general.contest.link as String)
         let request = NSURLRequest(URL: url!)
         webView.scalesPageToFit = true
@@ -41,7 +39,7 @@ class webViewController: UIViewController, UITableViewDelegate {
 
     func loadAd(){
         if(general.isConnectedToNetwork()){
-            adMob.ads.interstitial = adMob.createAndLoadInterstitial()
+            adMob.displayInterstitial(self)
         }
     }
 }

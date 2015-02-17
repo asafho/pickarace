@@ -1,0 +1,11 @@
+<resources>
+
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+
+        <!-- API 14 theme customizations can go here. -->
+        <item name="android:spinnerStyle">@style/SpinnerAppTheme</item>
+        <item name="android:dropDownListViewStyle">@style/ListViewAppTheme</item>
+        <item name="android:listViewStyle">@style/ListViewAppTheme</item>
+    </style>
+
+</resources>

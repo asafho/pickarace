@@ -459,7 +459,7 @@ public class editor {
 	protected JSONObject createNewObject() {
 		JSONObject enwEventObject=new JSONObject();
 		try {
-			enwEventObject.put("id",""\"+System.currentTimeMillis()+"\"");
+			enwEventObject.put("id","\""+System.currentTimeMillis()+"\"");
 			enwEventObject.put("name",eventName.getText());
 			enwEventObject.put("status","active");
 			enwEventObject.put("type",type.getSelectedItem().toString().toLowerCase());

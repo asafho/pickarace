@@ -24,7 +24,7 @@ class detailsViewController: UIViewController, UITableViewDelegate,UIPickerViewD
         scroller.contentSize = CGSize(width:0
 , height:900)
         subTypeLabel.text=""
-      //  adMob.loadBanners(self)
+        adMob.loadBanners(self)
         var data : NSDictionary = general.MyVariables.contestData["details"] as NSDictionary
         print(general.MyVariables.contestData["name"] as String)
         setTitle(general.MyVariables.contestData["name"] as String)
@@ -68,7 +68,9 @@ class detailsViewController: UIViewController, UITableViewDelegate,UIPickerViewD
     //    let type = (general.contest.subtypesArray[row]["type"] as String)
     //    let level = (general.contest.subtypesArray[row]["dificulty_level"] as String)
         
-        var subTypeText =  "מחיר הרשמה: " + price + " ש׳׳ח "
+        var subTypeText =  distance + "aaaaa"
+        subTypeText+="\n"
+        subTypeText =  "מחיר הרשמה: " + price + " ש׳׳ח "
         subTypeText+="\n"
         subTypeText+="מחיר הרשמה מאוחרת: " + late_price + " ש׳׳ח "
         subTypeLabel.text = subTypeText

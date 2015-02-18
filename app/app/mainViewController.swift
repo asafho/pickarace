@@ -15,8 +15,9 @@ class mainViewController: UIViewController, GADBannerViewDelegate, GADInterstiti
         general.sendFlurryEvent("start App")
         adMob.loadBanners(self)
         general.setContestsFromURL()
-        sleep(2)
+        sleep(1)
         general.loadImagesfromURL()
+        sleep(2)
         super.viewDidLoad()
     }
     

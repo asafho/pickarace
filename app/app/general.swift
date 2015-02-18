@@ -148,9 +148,14 @@ class general{
    //         })
         }
     }
+    
+    class func initFlurry(){
+        Flurry.startSession("YXDTZS7PX5S3B3ZW5X98")                          // Example of even logging
+        Flurry.setCrashReportingEnabled(true)
+        println("init flurry key: YXDTZS7PX5S3B3ZW5X98")
+    }
+    
     class func sendFlurryEvent(event: String){
-        Flurry.startSession("YXDTZS7PX5S3B3ZW5X98")       
-        Flurry.setCrashReportingEnabled(true)               // records app crashing in Flurry
         Flurry.logEvent(event)                              // Example of even logging
         println("send flurry event: "+event)
     }

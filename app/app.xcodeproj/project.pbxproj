@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B02B4AE51A42F81C0058386D /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B4AE31A42F81C0058386D /* libGoogleAdMobAds.a */; };
 		B02B4AE61A42F81C0058386D /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = B02B4AE41A42F81C0058386D /* README.txt */; };
 		B02B4AE91A42F9170058386D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B4AE81A42F9170058386D /* AdSupport.framework */; };
 		B02B4AED1A43007F0058386D /* adMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02B4AEC1A43007F0058386D /* adMob.swift */; };
@@ -32,6 +31,7 @@
 		B0B48D761A38779B0001057F /* appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B48D751A38779B0001057F /* appTests.swift */; };
 		B0B48D8A1A3889ED0001057F /* mainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B48D891A3889ED0001057F /* mainViewController.swift */; };
 		B0B48D8C1A3891890001057F /* listViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B48D8B1A3891890001057F /* listViewController.swift */; };
+		B0D27F2E1A94D7F100BB657C /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0D27F2D1A94D7F100BB657C /* GoogleMobileAds.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +88,7 @@
 		B0B48D751A38779B0001057F /* appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appTests.swift; sourceTree = "<group>"; };
 		B0B48D891A3889ED0001057F /* mainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mainViewController.swift; sourceTree = "<group>"; };
 		B0B48D8B1A3891890001057F /* listViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = listViewController.swift; sourceTree = "<group>"; };
+		B0D27F2D1A94D7F100BB657C /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = app/GoogleAdMobSdk/GoogleMobileAds.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,9 +96,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0D27F2E1A94D7F100BB657C /* GoogleMobileAds.framework in Frameworks */,
 				B04FF1F31A7241DD00B92D77 /* libFlurry_6.0.0.a in Frameworks */,
 				B02B4AE91A42F9170058386D /* AdSupport.framework in Frameworks */,
-				B02B4AE51A42F81C0058386D /* libGoogleAdMobAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +150,7 @@
 		B0B48D511A38779B0001057F = {
 			isa = PBXGroup;
 			children = (
+				B0D27F2D1A94D7F100BB657C /* GoogleMobileAds.framework */,
 				B04FF1F11A7240A000B92D77 /* libFlurry_6.0.0.a */,
 				B02B4AE81A42F9170058386D /* AdSupport.framework */,
 				B0B48D5C1A38779B0001057F /* app */,
@@ -459,6 +461,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/app",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/app/GoogleAdMobSdk",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -492,6 +495,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/app",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/app/GoogleAdMobSdk",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

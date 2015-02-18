@@ -12,7 +12,7 @@ import iAd
 class mainViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDelegate, ADBannerViewDelegate {
 
     override func viewDidLoad() {
-        general.sendFlurryEvent("start App")
+        general.initFlurry()
         adMob.loadBanners(self)
         general.setContestsFromURL()
         sleep(1)

@@ -81,8 +81,8 @@ public class DisplayActivity extends Activity {
             selectedRaceLink = hashMap.get(selectedRaceDistance).toString();
            // Toast.makeText(parent.getContext(), "distance: " + selectedRaceDistance + " link: " + hashMap.get(selectedRaceDistance).toString(), Toast.LENGTH_LONG).show();
         }
-        public void onNothingSelected(AdapterView parent){
 
+        public void onNothingSelected(AdapterView parent){
         }
     }
 
@@ -91,7 +91,6 @@ public class DisplayActivity extends Activity {
         Intent intent = new Intent(this.getApplicationContext(), webViewActivity.class);
         intent.putExtra("eventLink",selectedRaceLink);
         startActivity(intent);
-
     }
 
 

@@ -19,7 +19,6 @@
 		B0529F7B1A5A8EC4004051EA /* triathlon.png in Resources */ = {isa = PBXBuildFile; fileRef = B0529F731A5A8EC4004051EA /* triathlon.png */; };
 		B05451CF1A70253B00B4EC12 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05451CE1A70253B00B4EC12 /* TableViewCell.swift */; };
 		B060D0551A397BE100BCF325 /* general.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060D0541A397BE100BCF325 /* general.swift */; };
-		B060D0571A3982D400BCF325 /* contests.json in Resources */ = {isa = PBXBuildFile; fileRef = B060D0561A3982D400BCF325 /* contests.json */; };
 		B060D0591A39A44800BCF325 /* swiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060D0581A39A44800BCF325 /* swiftyJSON.swift */; };
 		B060D05B1A3EF97F00BCF325 /* detailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060D05A1A3EF97F00BCF325 /* detailsViewController.swift */; };
 		B07A0A311A51A9CA009BC14F /* webViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A0A301A51A9CA009BC14F /* webViewController.swift */; };
@@ -32,6 +31,7 @@
 		B0B48D8A1A3889ED0001057F /* mainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B48D891A3889ED0001057F /* mainViewController.swift */; };
 		B0B48D8C1A3891890001057F /* listViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B48D8B1A3891890001057F /* listViewController.swift */; };
 		B0D27F2E1A94D7F100BB657C /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0D27F2D1A94D7F100BB657C /* GoogleMobileAds.framework */; };
+		B0F9EC5D1A9725D600196B1A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F9EC5C1A9725D600196B1A /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +72,6 @@
 		B0529F731A5A8EC4004051EA /* triathlon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triathlon.png; sourceTree = "<group>"; };
 		B05451CE1A70253B00B4EC12 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		B060D0541A397BE100BCF325 /* general.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = general.swift; sourceTree = "<group>"; };
-		B060D0561A3982D400BCF325 /* contests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = contests.json; sourceTree = "<group>"; };
 		B060D0581A39A44800BCF325 /* swiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = swiftyJSON.swift; sourceTree = "<group>"; };
 		B060D05A1A3EF97F00BCF325 /* detailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailsViewController.swift; sourceTree = "<group>"; };
 		B07A0A301A51A9CA009BC14F /* webViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = webViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +88,7 @@
 		B0B48D891A3889ED0001057F /* mainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mainViewController.swift; sourceTree = "<group>"; };
 		B0B48D8B1A3891890001057F /* listViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = listViewController.swift; sourceTree = "<group>"; };
 		B0D27F2D1A94D7F100BB657C /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = app/GoogleAdMobSdk/GoogleMobileAds.framework; sourceTree = "<group>"; };
+		B0F9EC5C1A9725D600196B1A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0F9EC5D1A9725D600196B1A /* SystemConfiguration.framework in Frameworks */,
 				B0D27F2E1A94D7F100BB657C /* GoogleMobileAds.framework in Frameworks */,
 				B04FF1F31A7241DD00B92D77 /* libFlurry_6.0.0.a in Frameworks */,
 				B02B4AE91A42F9170058386D /* AdSupport.framework in Frameworks */,
@@ -150,6 +151,7 @@
 		B0B48D511A38779B0001057F = {
 			isa = PBXGroup;
 			children = (
+				B0F9EC5C1A9725D600196B1A /* SystemConfiguration.framework */,
 				B0D27F2D1A94D7F100BB657C /* GoogleMobileAds.framework */,
 				B04FF1F11A7240A000B92D77 /* libFlurry_6.0.0.a */,
 				B02B4AE81A42F9170058386D /* AdSupport.framework */,
@@ -173,7 +175,6 @@
 			children = (
 				43CAF9D81A489D9A00F53FF4 /* app-Bridging-Header.h */,
 				B02B4AD61A42F81C0058386D /* GoogleAdMobSdk */,
-				B060D0561A3982D400BCF325 /* contests.json */,
 				B04FF1F01A72407200B92D77 /* Flurry.h */,
 				B0B48D891A3889ED0001057F /* mainViewController.swift */,
 				B0B48D8B1A3891890001057F /* listViewController.swift */,
@@ -306,7 +307,6 @@
 				B0529F781A5A8EC4004051EA /* shape.png in Resources */,
 				B0529F741A5A8EC4004051EA /* bg.png in Resources */,
 				B0529F7B1A5A8EC4004051EA /* triathlon.png in Resources */,
-				B060D0571A3982D400BCF325 /* contests.json in Resources */,
 				B0B170291A5B06D200BA0A3B /* Launch Screen.xib in Resources */,
 				B0529F751A5A8EC4004051EA /* bike.png in Resources */,
 				B02B4AE61A42F81C0058386D /* README.txt in Resources */,
@@ -457,6 +457,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: asaf Horovitz (KK3YJ6JW9G)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: asaf Horovitz (KK3YJ6JW9G)";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/app",
@@ -491,6 +492,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: asaf Horovitz (KK3YJ6JW9G)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/app",

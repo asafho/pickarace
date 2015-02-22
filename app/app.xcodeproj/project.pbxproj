@@ -26,12 +26,13 @@
 		B0B2E6411A5C731F00B10E88 /* registration.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B2E6401A5C731F00B10E88 /* registration.png */; };
 		B0B48D601A38779B0001057F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B48D5F1A38779B0001057F /* AppDelegate.swift */; };
 		B0B48D651A38779B0001057F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B48D631A38779B0001057F /* Main.storyboard */; };
-		B0B48D671A38779B0001057F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0B48D661A38779B0001057F /* Images.xcassets */; };
 		B0B48D761A38779B0001057F /* appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B48D751A38779B0001057F /* appTests.swift */; };
 		B0B48D8A1A3889ED0001057F /* mainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B48D891A3889ED0001057F /* mainViewController.swift */; };
 		B0B48D8C1A3891890001057F /* listViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B48D8B1A3891890001057F /* listViewController.swift */; };
 		B0D27F2E1A94D7F100BB657C /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0D27F2D1A94D7F100BB657C /* GoogleMobileAds.framework */; };
 		B0F9EC5D1A9725D600196B1A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F9EC5C1A9725D600196B1A /* SystemConfiguration.framework */; };
+		B0F9EC5F1A9A516900196B1A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F9EC5E1A9A516900196B1A /* Default.png */; };
+		B0F9EC631A9A525D00196B1A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0F9EC621A9A525D00196B1A /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +82,6 @@
 		B0B48D5E1A38779B0001057F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0B48D5F1A38779B0001057F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0B48D641A38779B0001057F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B0B48D661A38779B0001057F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B0B48D6F1A38779B0001057F /* appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = appTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B48D741A38779B0001057F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0B48D751A38779B0001057F /* appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appTests.swift; sourceTree = "<group>"; };
@@ -89,6 +89,8 @@
 		B0B48D8B1A3891890001057F /* listViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = listViewController.swift; sourceTree = "<group>"; };
 		B0D27F2D1A94D7F100BB657C /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = app/GoogleAdMobSdk/GoogleMobileAds.framework; sourceTree = "<group>"; };
 		B0F9EC5C1A9725D600196B1A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B0F9EC5E1A9A516900196B1A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		B0F9EC621A9A525D00196B1A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 				B0529F6F1A5A8EC4004051EA /* run.png */,
 				B0529F701A5A8EC4004051EA /* shape.png */,
 				B0529F721A5A8EC4004051EA /* swim.png */,
+				B0F9EC5E1A9A516900196B1A /* Default.png */,
 				B0529F731A5A8EC4004051EA /* triathlon.png */,
 			);
 			path = images;
@@ -184,11 +187,11 @@
 				B0B48D5F1A38779B0001057F /* AppDelegate.swift */,
 				B060D0541A397BE100BCF325 /* general.swift */,
 				B0B48D631A38779B0001057F /* Main.storyboard */,
-				B0B48D661A38779B0001057F /* Images.xcassets */,
 				B0B48D5D1A38779B0001057F /* Supporting Files */,
 				B060D0581A39A44800BCF325 /* swiftyJSON.swift */,
 				B02B4AEC1A43007F0058386D /* adMob.swift */,
 				B0B170281A5B06D200BA0A3B /* Launch Screen.xib */,
+				B0F9EC621A9A525D00196B1A /* Images.xcassets */,
 				B05451CE1A70253B00B4EC12 /* TableViewCell.swift */,
 			);
 			path = app;
@@ -303,11 +306,12 @@
 			files = (
 				B0B48D651A38779B0001057F /* Main.storyboard in Resources */,
 				B0529F771A5A8EC4004051EA /* run.png in Resources */,
-				B0B48D671A38779B0001057F /* Images.xcassets in Resources */,
 				B0529F781A5A8EC4004051EA /* shape.png in Resources */,
+				B0F9EC631A9A525D00196B1A /* Images.xcassets in Resources */,
 				B0529F741A5A8EC4004051EA /* bg.png in Resources */,
 				B0529F7B1A5A8EC4004051EA /* triathlon.png in Resources */,
 				B0B170291A5B06D200BA0A3B /* Launch Screen.xib in Resources */,
+				B0F9EC5F1A9A516900196B1A /* Default.png in Resources */,
 				B0529F751A5A8EC4004051EA /* bike.png in Resources */,
 				B02B4AE61A42F81C0058386D /* README.txt in Resources */,
 				B0529F7A1A5A8EC4004051EA /* swim.png in Resources */,

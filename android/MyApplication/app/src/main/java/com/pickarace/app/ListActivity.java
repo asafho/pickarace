@@ -56,7 +56,7 @@ public class ListActivity extends Activity {
                     event.setEventName(jsonEvent.getString("name"));
                     event.setEventLocation(jsonEvent.getJSONObject("location").getString("city"));
                     event.setEventDate(jsonEvent.getString("date"));
-                    event.setEventDetails(jsonEvent.getJSONObject("details").getString("row1") + jsonEvent.getJSONObject("details").getString("row2") + jsonEvent.getJSONObject("details").getString("row3") + jsonEvent.getJSONObject("details").getString("row4"));
+                    event.setEventDetails(jsonEvent.getJSONObject("details").getString("row1"));
 
                     event.setThumbnailUrl(globalVariable.getS3RootURL() + jsonEvent.getJSONObject("vendor").getString("name") + ".png");
 

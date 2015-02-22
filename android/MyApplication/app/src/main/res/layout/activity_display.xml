@@ -1,51 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.pickarace.app.DisplayActivity">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+
+    <RelativeLayout android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="bottom">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="הרשמה"
+            android:id="@+id/button"
+            android:onClick="openWebView"
+            android:background="@drawable/registration"/>
+    </RelativeLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:weightSum="1"
-        android:background="@drawable/image_bg">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
-            android:layout_width="234dp"
-            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="54dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text"
-            android:id="@+id/EventName"
-            android:layout_marginLeft="79dp" />
+            android:id="@+id/EventName"/>
 
-        <TextView
-            android:layout_width="234dp"
+        <ScrollView
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/EventDetails"
-            android:layout_marginLeft="79dp"
-            android:layout_marginStart="79dp"
-            android:layout_weight="0.63"
-            android:editable="false"
-            android:textIsSelectable="true" />
+            android:id="@+id/scrollView2">
 
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/EventDetails"
+                android:editable="false"
+                android:height="300dp"/>
+        </ScrollView>
 
         <Spinner
             android:id="@+id/RacesSpinner"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:scrollbars="none" />
+            android:scrollbars="none"/>
 
-        <Button
-            android:layout_width="250dp"
-            android:layout_height="54dp"
-            android:text="הרשמה"
-            android:id="@+id/button"
-            android:layout_gravity="center_horizontal"
-            android:onClick="openWebView"
-            android:nestedScrollingEnabled="false"
-            android:background="@drawable/registration"/>
     </LinearLayout>
 
-</RelativeLayout>
+
+</FrameLayout>
+

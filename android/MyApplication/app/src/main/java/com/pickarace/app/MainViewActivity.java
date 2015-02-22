@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.flurry.android.FlurryAgent;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
@@ -61,6 +62,7 @@ public class MainViewActivity extends Activity {
 
 
     public void runningButtonOnClick(View view) {
+        FlurryAgent.logEvent("Pressed On Running Option");
         final AppController globalVariable = (AppController) getApplicationContext();
         globalVariable.setTopic("running");
         Log.v("action", "running button clicked");
@@ -72,6 +74,7 @@ public class MainViewActivity extends Activity {
     }
 
     public void swimmingButtonOnClick(View view) {
+        FlurryAgent.logEvent("Pressed On swimming Option");
         final AppController globalVariable = (AppController) getApplicationContext();
         globalVariable.setTopic("swimming");
         Log.v("action", "swimming button clicked");
@@ -82,6 +85,7 @@ public class MainViewActivity extends Activity {
     }
 
     public void bikingButtonOnClick(View view) {
+        FlurryAgent.logEvent("Pressed On biking Option");
         final AppController globalVariable = (AppController) getApplicationContext();
         globalVariable.setTopic("biking");
         Log.v("action", "biking button clicked");
@@ -92,6 +96,7 @@ public class MainViewActivity extends Activity {
     }
 
     public void thriathlonButtonOnClick(View view) {
+        FlurryAgent.logEvent("Pressed On thriathlon Option");
         final AppController globalVariable = (AppController) getApplicationContext();
         globalVariable.setTopic("thriathlon");
         Log.v("action", "thriathlon button clicked");

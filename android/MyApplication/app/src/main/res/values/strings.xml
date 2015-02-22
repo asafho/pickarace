@@ -11,4 +11,5 @@
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="ad_unit_id">ca-app-pub-6535762882222672/4858441345</string>
     <string name="banner_ad_unit_id">ca-app-pub-6535762882222672/3381708143</string>
+    <string name="flurryKey">NK8C2TNWW7Z8KGKSDDB9</string>
 </resources>

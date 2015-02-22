@@ -11,6 +11,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.flurry.android.FlurryAgent;
+import com.pickarace.app.pickarace.R;
 
 public class AppController extends Application {
 
@@ -53,6 +55,11 @@ public class AppController extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+        // configure Flurry
+        FlurryAgent.setLogEnabled(false);
+        // init Flurry
+        FlurryAgent.init(this, getResources().getString(R.string.flurryKey));
+
     }
 
     public static synchronized AppController getInstance() {

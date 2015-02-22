@@ -23,7 +23,7 @@
 
         <TextView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="54dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text"
             android:id="@+id/EventName"/>
@@ -38,7 +38,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/EventDetails"
                 android:editable="false"
-                android:textIsSelectable="true"
                 android:height="300dp"/>
         </ScrollView>
 

@@ -18,6 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import javax.swing.JTextPane;
+import java.awt.Component;
 
 
 public class editor {
@@ -438,7 +439,8 @@ public class editor {
 		frame.getContentPane().add(distance8);
 		
 		details = new JTextPane();
-		details.setBounds(128, 245, 408, 93);
+		details.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		details.setBounds(128, 245, 408, 111);
 		frame.getContentPane().add(details);
 		
 		label_6 = new JLabel("פרטים");

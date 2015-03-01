@@ -5,7 +5,8 @@
 
     <RelativeLayout android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:gravity="bottom">
+                    android:gravity="bottom"
+                    android:background="@drawable/bg">
 
         <Button
             android:layout_width="fill_parent"
@@ -26,7 +27,9 @@
             android:layout_height="54dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text"
-            android:id="@+id/EventName"/>
+            android:id="@+id/EventName"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
 
         <ScrollView
             android:layout_width="fill_parent"
@@ -38,14 +41,19 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/EventDetails"
                 android:editable="false"
-                android:height="300dp"/>
+                android:height="300dp"
+                android:textStyle="normal"
+                android:textAlignment="center"/>
         </ScrollView>
 
         <Spinner
             android:id="@+id/RacesSpinner"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none"/>
+            android:textSize="20pt"
+            android:scrollbars="none"
+            android:textAlignment="center"
+            android:theme="@style/Base.TextAppearance.AppCompat.Body1"/>
 
     </LinearLayout>
 

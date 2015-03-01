@@ -13,7 +13,6 @@
         android:id="@+id/cover"
         android:src="@drawable/cover"
         android:contentDescription="cover"
-        android:layout_alignWithParentIfMissing="false"
         />
 
 </RelativeLayout>

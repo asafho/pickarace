@@ -66,5 +66,6 @@ class adMob: UIViewController, GADBannerViewDelegate, ADBannerViewDelegate {
         
         viewcontroller.view.addSubview(bannerView)
         var request:GADRequest = GADRequest()
-        bannerView.loadRequest(request)}
+        bannerView.loadRequest(request)
+    }
 }

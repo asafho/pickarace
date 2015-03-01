@@ -54,7 +54,7 @@ public class aws {
 
 			try {
 				S3Object object=s3Service.getObject("com.pickarace.app", "contests_backup.json");
-				BufferedReader bReader = new BufferedReader(new InputStreamReader(object.getDataInputStream()));
+				BufferedReader bReader = new BufferedReader(new InputStreamReader(object.getDataInputStream(),"UTF8"));
 				String result= "";
 				String line= "";
 				while ((line = bReader.readLine()) != null) {
@@ -86,13 +86,9 @@ public class aws {
 			JSONObject newFile=new JSONObject();
 			newFile.put("events", contestsJsonArray);
 			String fileContent = newFile.toString(1).replaceAll("\": \"", "\":\"");
+
 			
-			File homedirPath = new File ("/Users/tabtale");
-			
-			
-			
-			FileUtils.writeStringToFile(new File("/Users/tabtale/Desktop/contests.json"), fileContent);
-			System.out.println("file saved to disk: "+"/Users/tabtale/Desktop/contests.json");
+			FileUtils.writeStringToFile(new File("contests.json"), fileContent,"UTF-8");
 			
 	/*		S3Object stringObject = new S3Object("contests_backup.json", fileContent);
 			stringObject.setAcl(AccessControlList.REST_CANNED_PUBLIC_READ);

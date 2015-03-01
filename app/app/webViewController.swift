@@ -11,8 +11,10 @@ class webViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var webView: UIWebView!
     override func viewDidLoad() {
+        adMob.displayInterstitial(self)
         super.viewDidLoad()
         adMob.loadBanners(self)
+        general.sendFlurryEvent("open registration link")
         println("open link: "+general.contest.link)
         let url = NSURL(string: general.contest.link as String)
         let request = NSURLRequest(URL: url!)

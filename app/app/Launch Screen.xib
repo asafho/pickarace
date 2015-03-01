@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
@@ -10,23 +11,24 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="592"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="iIs-ah-kc7">
-                    <rect key="frame" x="-8" y="-28" width="500" height="648"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default.png" translatesAutoresizingMaskIntoConstraints="NO" id="yQk-pI-ung">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="592"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="iIs-ah-kc7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-28" id="GDi-bK-jMm"/>
-                <constraint firstAttribute="trailing" secondItem="iIs-ah-kc7" secondAttribute="trailing" constant="-12" id="IRD-l4-JBs"/>
-                <constraint firstItem="iIs-ah-kc7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="gj6-sn-UaV"/>
-                <constraint firstItem="iIs-ah-kc7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-8" id="kZe-Di-9oa"/>
+                <constraint firstAttribute="bottom" secondItem="yQk-pI-ung" secondAttribute="bottom" id="4Hn-dA-KYl"/>
+                <constraint firstItem="yQk-pI-ung" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Gu3-uT-MIe"/>
+                <constraint firstAttribute="trailing" secondItem="yQk-pI-ung" secondAttribute="trailing" id="qDk-hZ-PXu"/>
+                <constraint firstItem="yQk-pI-ung" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zUt-tk-hVl"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="404" y="389"/>
+            <point key="canvasLocation" x="172" y="388"/>
         </view>
     </objects>
     <resources>
-        <image name="splash.png" width="640" height="960"/>
+        <image name="Default.png" width="750" height="1334"/>
     </resources>
 </document>

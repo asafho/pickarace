@@ -19,7 +19,7 @@ class detailsViewController: UIViewController, UITableViewDelegate,UIPickerViewD
  
     var pickerDataArray: [String] = []
     override func viewDidLoad() {
-
+        adMob.ads.interstitial = adMob.createAndLoadInterstitial()
         scroller.scrollEnabled = true
         scroller.contentSize = CGSize(width:0
 , height:900)
@@ -67,10 +67,8 @@ class detailsViewController: UIViewController, UITableViewDelegate,UIPickerViewD
         let late_price = (general.contest.subtypesArray[row]["price_late"] as String)
     //    let type = (general.contest.subtypesArray[row]["type"] as String)
     //    let level = (general.contest.subtypesArray[row]["dificulty_level"] as String)
-        
-        var subTypeText =  distance + "aaaaa"
-        subTypeText+="\n"
-        subTypeText =  "מחיר הרשמה: " + price + " ש׳׳ח "
+
+        var subTypeText =  "מחיר הרשמה: " + price + " ש׳׳ח "
         subTypeText+="\n"
         subTypeText+="מחיר הרשמה מאוחרת: " + late_price + " ש׳׳ח "
         subTypeLabel.text = subTypeText

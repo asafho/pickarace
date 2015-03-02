@@ -85,7 +85,10 @@ public static void parseRealtimeEvent(String eventURL){
 			}
 		} 
 		
-		Elements masthead = doc.select("div.event_text");
+		Elements paragraphs = doc.select("p");
+		for(Element p : paragraphs)
+	        System.out.println(p.text());
+		
 		System.out.println("");
 		
 	} catch (IOException e) {

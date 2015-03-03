@@ -1,9 +1,9 @@
+package pickarace;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -11,16 +11,41 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 
+class Event{
+	String id;
+	String name;
+	String description;
+	String location;
+	String date;
+	String countryCode="IL";
+	String country="ישראל";
+	String city;
+	String status="active";
+	String vendor="shvoong";
+	String type;
+	String registration_date_late;
+	String registration_date_normal;
+	ArrayList<subType> subtypes = new ArrayList<subType>();
+}
+
+class subType{
+	String distance;
+	String link;
+	String price_late;
+	String price_normal;
+}
+
+
 public class HTMLParser {
 
 	private static PrintWriter writer;
 	private static String realTiming = "http://www.realtiming.co.il";
 	private static String realTimingLink = null;
-	
+	public static ArrayList<Event> eventsList = new ArrayList<Event>();
 	
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-		getRealTiming();
-		//getShvoong();
+		//getRealTiming();
+		getShvoong();
 	}
 
 
@@ -80,7 +105,7 @@ public static void parseRealtimeEvent(String eventURL){
 			if(row.hasAttr("name") && row.attr("name").toString().equals("description"))
 			{
 				String dd = row.attr("content").toString();
-				writer.println("	Name:");
+				System.out.println("	Name:");
 				System.out.println("Event Name: " + dd);
 			}
 		} 
@@ -102,30 +127,40 @@ public static void parseRealtimeEvent(String eventURL){
 	
 	public static void parseShvoongEvent(String eventURL) throws FileNotFoundException, UnsupportedEncodingException
 	{
+			
+		Event event=new Event();
+		event.id=System.currentTimeMillis()+"";
+		event.vendor="shvoong";
 		Document doc = null;
 		try {
 			doc = Jsoup.connect(eventURL).get();
 			
 			 Elements els = doc.select("span._summary");
 			 for(Element e:els){
-			        writer.println("	name:" + e.text());
+			        System.out.println("	name:" + e.text());
+			        event.name=e.text();
+			        
 			 }
 			 els = doc.select("span._description");
 			 for(Element e:els){
-			        writer.println("	Description:" + e.text());
+			        System.out.println("	Description:" + e.text());
+			        event.description=e.text();
 			 }
 			 els = doc.select("span._location");
 			 for(Element e:els){
-			        writer.println("	Location:" + e.text());
+			        System.out.println("	Location:" + e.text());
+			        event.location=e.text();
 			 }
 			 els = doc.select("span._start");
 			 for(Element e:els){
-			        writer.println("	Date:" + e.text());
+			        System.out.println("	Date:" + e.text());
+			        event.date=e.text();
 			 }
 			 Element assigns = doc.select("table").get(0);
 			 Elements rows = assigns.getElementsByTag("tr");
 			 for(Element row : rows) {
 				 try{
+					 subType subType = new subType();
 						 String eventtype = row.getElementsByTag("td").get(0).text();
 						 String distance = row.getElementsByTag("td").get(1).text();
 						 String starttime = row.getElementsByTag("td").get(2).text();
@@ -154,24 +189,31 @@ public static void parseRealtimeEvent(String eventURL){
 							 }
 						 }
 						 
-				         writer.println(" EventType: " + eventtype);
-				         writer.println(" distance: " + distance);
-				         writer.println(" starttime: " + starttime);
-				         writer.println(" type: " + type);
-				         writer.println(" costEarly: " + costEarly);
-				         writer.println(" costLate: " + costLate);
+				         System.out.println(" EventType: " + eventtype);
+				         System.out.println(" distance: " + distance);
+				         System.out.println(" starttime: " + starttime);
+				         System.out.println(" type: " + type);
+				         System.out.println(" costEarly: " + costEarly);
+				         System.out.println(" costLate: " + costLate);
+				         
+				         
+				         subType.distance=distance;
+				         subType.link=distance;
+				         subType.price_normal=costEarly;
+				         subType.price_late=costLate;
+				         event.subtypes.add(subType);
 				 }
 				 catch(IndexOutOfBoundsException e){
+					 e.printStackTrace();
 				 }
 			 }
-			
+			 eventsList.add(event);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	private static void getShvoong() throws FileNotFoundException, UnsupportedEncodingException {
+	public static void getShvoong() throws FileNotFoundException, UnsupportedEncodingException {
 		Document doc = null;
 		writer = new PrintWriter("/tmp/events.txt", "UTF-8");
 		
@@ -186,7 +228,7 @@ public static void parseRealtimeEvent(String eventURL){
 			        for (Element link : links) {
 			          String EventHref = link.attr("href");
 			          String EventText = link.text();
-			          writer.println("Event: " + EventText);
+			          System.out.println("Event: " + EventText);
 			          parseShvoongEvent(EventHref);
 			        }
 			    }

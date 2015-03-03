@@ -27,39 +27,6 @@ class Event{
 	String registration_date_late;
 	String registration_date_normal;
 	ArrayList<subType> subtypes = new ArrayList<subType>();
-	
-	public String toString() {
-		StringBuilder result = new StringBuilder();
-		String newLine = System.getProperty("line.separator");
-		result.append( this.getClass().getName() );
-		  result.append( " Object {" );
-		  result.append(newLine);
-		//determine fields declared in this class only (no fields of superclass)
-		  Field[] fields = this.getClass().getDeclaredFields();
-
-		  //print field names paired with their values
-		  for ( Field field : fields  ) {
-		    result.append("  ");
-		    try {
-		      result.append( field.getName() );
-		      result.append(": ");
-		      //requires access to private field:
-		      
-		      if(field.getName().equals("subtypes")){
-		    	  field.get(this).toString();
-		      }
-		      else{
-		    	  result.append( field.get(this) );
-		      }
-		    } catch ( IllegalAccessException ex ) {
-		      System.out.println(ex);
-		    }
-		    result.append(newLine);
-		  }
-		  result.append("}");
-		  System.out.println(result.toString());
-		  return result.toString();
-	}
 }
 
 class subType{
@@ -67,33 +34,6 @@ class subType{
 	String link;
 	String price_late;
 	String price_normal;
-	
-	public String toString() {
-		StringBuilder result = new StringBuilder();
-		String newLine = System.getProperty("line.separator");
-		result.append( this.getClass().getName() );
-		  result.append( " Object {" );
-		  result.append(newLine);
-		//determine fields declared in this class only (no fields of superclass)
-		  Field[] fields = this.getClass().getDeclaredFields();
-
-		  //print field names paired with their values
-		  for ( Field field : fields  ) {
-		    result.append("  ");
-		    try {
-		      result.append( field.getName() );
-		      result.append(": ");
-		      //requires access to private field:
-		    	  result.append( field.get(this) );
-		    } catch ( IllegalAccessException ex ) {
-		      System.out.println(ex);
-		    }
-		    result.append(newLine);
-		  }
-		  result.append("}");
-		  System.out.println(result.toString());
-		  return result.toString();
-	}
 }
 
 
@@ -106,13 +46,13 @@ public class HTMLParser {
 	public static ArrayList<Event> eventsList = new ArrayList<Event>();
 	
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-		getRealTiming();
-		//getShvoong();
+		//getRealTiming();
+		getShvoong();
 	}
 
 
 		
-	private static void getRealTiming() throws FileNotFoundException, UnsupportedEncodingException {
+	public static void getRealTiming() {
 		
 		Document doc = null;
 		

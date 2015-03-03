@@ -26,6 +26,15 @@ class Event{
 	String registration_date_late;
 	String registration_date_normal;
 	ArrayList<subType> subtypes = new ArrayList<subType>();
+	
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		String newLine = System.getProperty("line.separator");
+		result.append( this.getClass().getName() );
+		  result.append( " Object {" );
+		  result.append(newLine);
+		return "";
+	}
 }
 
 class subType{
@@ -41,11 +50,12 @@ public class HTMLParser {
 	private static PrintWriter writer;
 	private static String realTiming = "http://www.realtiming.co.il";
 	private static String realTimingLink = null;
+	private static String realTimingRegisterLink = null;
 	public static ArrayList<Event> eventsList = new ArrayList<Event>();
 	
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-		//getRealTiming();
-		getShvoong();
+		getRealTiming();
+		//getShvoong();
 	}
 
 
@@ -68,21 +78,15 @@ public class HTMLParser {
 					 for(Element row : rows) {
 						 String sw  = row.toString();
 						 try{
-							 String eventLink = row.attr("onclick").toString().split("'")[1];
-							 realTimingLink = realTiming + eventLink;
-							 parseRealtimeEvent(realTimingLink);
 							 
 							 Element Event = row.getElementsByTag("td").get(0);
 							 String eventDate = Event.getElementsByTag("td").get(0).text();
-							 String eventType = row.getElementsByTag("td").get(2).text();
-							 System.out.println(" Date: " + eventDate);
-							 System.out.println(" Type: " + eventType);
-							
-						 }
-						 catch(ArrayIndexOutOfBoundsException ddd)
-						 {
 							 
+							 String eventLink = row.attr("onclick").toString().split("'")[1];
+							 realTimingLink = realTiming + eventLink;
+							 parseRealtimeEvent(realTimingLink,eventDate);
 						 }
+						 catch(ArrayIndexOutOfBoundsException ddd){}
 						 catch(IndexOutOfBoundsException dd){}
 					 }
 			    }
@@ -96,27 +100,60 @@ public class HTMLParser {
 	}
 
 
-public static void parseRealtimeEvent(String eventURL){
+public static void parseRealtimeEvent(String eventURL, String eventDate){
+	
+	Event event=new Event();
 	Document doc = null;
+	
 	try {
 		doc = Jsoup.connect(eventURL).get();
 		Elements els = doc.select("meta");
 		for( Element row : els) {
 			if(row.hasAttr("name") && row.attr("name").toString().equals("description"))
-			{
-				String dd = row.attr("content").toString();
-				System.out.println("	Name:");
-				System.out.println("Event Name: " + dd);
-			}
+				event.name = row.attr("content").toString();
 		} 
 		
 		Elements paragraphs = doc.select("p");
 		String eventDesc = "";
-		for(Element p : paragraphs)
-			eventDesc += p.text() + "\n";
-	        
+		for(Element p : paragraphs){
+			String test = p.text().trim().replaceAll(" ", "");
+			if( test.length() > 0)
+				eventDesc += p.text() + "\n";
+		}
+		event.description = eventDesc;
 		
-		System.out.println(eventDesc);
+		String[] eventPlace = doc.select("div.event_place").text().split("מקום: ");
+		String[] eventType = doc.select("div.event_cat_name").text().split("ענף: ");
+		String eventCity = eventPlace[1].trim();
+		
+		event.city = eventCity;
+		event.location = eventPlace[1].trim();
+		event.type = eventType[1].trim();
+		event.vendor="realtiming";
+		
+		Element contests = doc.select("table.heat").get(0);
+		
+		 Elements rows = contests.getElementsByTag("tr");
+		 for(Element row : rows) {
+			 
+			 try{
+				 subType subType = new subType();
+				 String eventLink = row.attr("onclick").toString().split("'")[1];
+				 realTimingRegisterLink = realTiming + eventLink;
+				 String contentName = row.getElementsByTag("td").get(0).text();
+				 //String contentDistance = row.getElementsByTag("td").get(1).text();
+				 String priceEarly = row.getElementsByTag("td").get(2).text();
+				 String priceLate = row.getElementsByTag("td").get(3).text();
+				 
+				 subType.distance=contentName;
+		         subType.link=realTimingRegisterLink;
+		         subType.price_normal=priceEarly;
+		         subType.price_late=priceLate;
+		         event.subtypes.add(subType);
+			 }
+			 catch(IndexOutOfBoundsException e){}
+		 }
+		 eventsList.add(event);
 		
 	} catch (IOException e) {
 		// TODO Auto-generated catch block

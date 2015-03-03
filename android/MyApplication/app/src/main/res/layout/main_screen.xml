@@ -106,8 +106,8 @@
                 android:layout_weight="1"
                 android:padding="20dp"
                 android:scaleType="fitCenter"
-                android:id="@+id/thriathlonBtn"
-                android:onClick="thriathlonButtonOnClick" />
+                android:id="@+id/triathlonBtn"
+                android:onClick="triathlonButtonOnClick" />
         </TableRow>
         <TableRow>
             <TextView />

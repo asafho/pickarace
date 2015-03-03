@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+import javax.swing.plaf.SliderUI;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -45,7 +47,7 @@ public class HTMLParser {
 	
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
 		//getRealTiming();
-		getShvoong();
+		getShvoong(3);
 	}
 
 
@@ -200,25 +202,24 @@ public static void parseRealtimeEvent(String eventURL){
 				         
 				         
 				         subType.distance=distance;
-				         subType.link=distance;
+				         subType.link="";
 				         subType.price_normal=costEarly;
 				         subType.price_late=costLate;
 				         event.subtypes.add(subType);
+				         eventsList.add(event);
 				 }
 				 catch(IndexOutOfBoundsException e){
 					 e.printStackTrace();
 				 }
 			 }
-			 eventsList.add(event);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public static void getShvoong() throws FileNotFoundException, UnsupportedEncodingException {
+	public static void getShvoong(int attemp) {
 		Document doc = null;
-		writer = new PrintWriter("/tmp/events.txt", "UTF-8");
-		
+	
 		try {
 			
 			doc = Jsoup.connect("http://www.shvoong.co.il/events/").get();
@@ -234,12 +235,18 @@ public static void parseRealtimeEvent(String eventURL){
 			          parseShvoongEvent(EventHref);
 			        }
 			    }
-			    
-			    writer.close();
+
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
+			if(attemp!=0){
+				try {
+					Thread.sleep(3);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				getShvoong(attemp--);
+			}
 			e.printStackTrace();
-			writer.close();
 		}
 		
 	}

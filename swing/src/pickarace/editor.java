@@ -76,6 +76,7 @@ public class editor {
 	private JCheckBox subtype7;
 	private JCheckBox subtype8;
 	private JButton btnUpload;
+	private JButton btnNewButton;
 	
 	/**
 	 * Launch the application.
@@ -107,74 +108,74 @@ public class editor {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 700, 700);
+		frame.setBounds(100, 100, 800, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 			
 		eventName = new JTextField();
-		eventName.setBounds(157, 22, 379, 28);
+		eventName.setBounds(278, 22, 379, 28);
 		frame.getContentPane().add(eventName);
 		eventName.setColumns(10);
 		
 		JLabel label = new JLabel("שם האירוע");
-		label.setBounds(575, 28, 83, 16);
+		label.setBounds(696, 28, 83, 16);
 		frame.getContentPane().add(label);
 		
 		type = new JComboBox();
 		type.setModel(new DefaultComboBoxModel(new String[] {"running", "swimming", "biking", "triathlon"}));
-		type.setBounds(375, 56, 163, 27);
+		type.setBounds(496, 56, 163, 27);
 		frame.getContentPane().add(type);
 		
 		JLabel label_1 = new JLabel("סוג");
-		label_1.setBounds(577, 60, 81, 16);
+		label_1.setBounds(698, 60, 81, 16);
 		frame.getContentPane().add(label_1);
 		
 		country = new JTextField();
 		country.setText("ישראל");
 		country.setToolTipText("מדינה");
-		country.setBounds(402, 95, 134, 28);
+		country.setBounds(523, 95, 134, 28);
 		frame.getContentPane().add(country);
 		country.setColumns(10);
 		
 		JLabel label_2 = new JLabel("מיקום");
-		label_2.setBounds(575, 101, 83, 16);
+		label_2.setBounds(696, 101, 83, 16);
 		frame.getContentPane().add(label_2);
 		
 		countryCode = new JTextField();
 		countryCode.setText("IL");
 		countryCode.setToolTipText("קוד מדינה");
-		countryCode.setBounds(273, 95, 105, 28);
+		countryCode.setBounds(394, 95, 105, 28);
 		frame.getContentPane().add(countryCode);
 		countryCode.setColumns(10);
 		
 		city = new JTextField();
 		city.setToolTipText("עיר");
-		city.setBounds(116, 94, 134, 28);
+		city.setBounds(237, 94, 134, 28);
 		frame.getContentPane().add(city);
 		city.setColumns(10);
 		
 		JLabel label_3 = new JLabel("תאריך האירוע");
-		label_3.setBounds(575, 139, 83, 16);
+		label_3.setBounds(696, 139, 83, 16);
 		frame.getContentPane().add(label_3);
 		
 		date = new JTextField();
-		date.setBounds(402, 133, 134, 28);
+		date.setBounds(523, 133, 134, 28);
 		frame.getContentPane().add(date);
 		date.setColumns(10);
 		
 		JLabel label_4 = new JLabel("תאריך רישום");
-		label_4.setBounds(560, 178, 98, 16);
+		label_4.setBounds(681, 178, 98, 16);
 		frame.getContentPane().add(label_4);
 		
 		regDate = new JTextField();
 		regDate.setToolTipText("רישום מוקדם");
-		regDate.setBounds(402, 173, 134, 28);
+		regDate.setBounds(523, 173, 134, 28);
 		frame.getContentPane().add(regDate);
 		regDate.setColumns(10);
 		
 		regDateLate = new JTextField();
 		regDateLate.setToolTipText("רישום מאוחר");
-		regDateLate.setBounds(244, 172, 134, 28);
+		regDateLate.setBounds(365, 172, 134, 28);
 		frame.getContentPane().add(regDateLate);
 		regDateLate.setColumns(10);
 		
@@ -191,7 +192,7 @@ public class editor {
 				
 			}
 		});
-		btnSave.setBounds(392, 649, 117, 29);
+		btnSave.setBounds(513, 649, 117, 29);
 		frame.getContentPane().add(btnSave);
 		
 		JButton btnCancel = new JButton("Cancel");
@@ -202,249 +203,249 @@ public class editor {
 				resetFrame();
 			}
 		});
-		btnCancel.setBounds(244, 649, 117, 29);
+		btnCancel.setBounds(365, 649, 117, 29);
 		frame.getContentPane().add(btnCancel);
 		
 		distance1 = new JTextField();
 		distance1.setText("מרחק");
-		distance1.setBounds(539, 392, 134, 28);
+		distance1.setBounds(660, 392, 134, 28);
 		frame.getContentPane().add(distance1);
 		distance1.setColumns(10);
 		
 		link1 = new JTextField();
 		link1.setText("לינק");
-		link1.setBounds(539, 418, 134, 28);
+		link1.setBounds(660, 418, 134, 28);
 		frame.getContentPane().add(link1);
 		link1.setColumns(10);
 		
 		price_reg1 = new JTextField();
 		price_reg1.setText("מחיר");
-		price_reg1.setBounds(539, 445, 134, 28);
+		price_reg1.setBounds(660, 445, 134, 28);
 		frame.getContentPane().add(price_reg1);
 		price_reg1.setColumns(10);
 		
 		price_late1 = new JTextField();
 		price_late1.setText("מחיר מאוחר");
-		price_late1.setBounds(539, 470, 134, 28);
+		price_late1.setBounds(660, 470, 134, 28);
 		frame.getContentPane().add(price_late1);
 		price_late1.setColumns(10);
 		
 		vendor = new JComboBox();
 		vendor.setModel(new DefaultComboBoxModel(new String[] {"shvoong", "realtiming"}));
-		vendor.setBounds(375, 212, 163, 27);
+		vendor.setBounds(496, 212, 163, 27);
 		frame.getContentPane().add(vendor);
 		
 		JLabel label_5 = new JLabel("ספק");
-		label_5.setBounds(575, 216, 83, 16);
+		label_5.setBounds(696, 216, 83, 16);
 		frame.getContentPane().add(label_5);
 		
 		subtype1 = new JCheckBox("");
-		subtype1.setBounds(589, 368, 40, 23);
+		subtype1.setBounds(710, 368, 40, 23);
 		frame.getContentPane().add(subtype1);
 		
 		subtype2 = new JCheckBox("");
-		subtype2.setBounds(443, 368, 40, 23);
+		subtype2.setBounds(564, 368, 40, 23);
 		frame.getContentPane().add(subtype2);
 		
 		price_late2 = new JTextField();
 		price_late2.setText("מחיר מאוחר");
 		price_late2.setColumns(10);
-		price_late2.setBounds(393, 470, 134, 28);
+		price_late2.setBounds(514, 470, 134, 28);
 		frame.getContentPane().add(price_late2);
 		
 		price_reg2 = new JTextField();
 		price_reg2.setText("מחיר");
 		price_reg2.setColumns(10);
-		price_reg2.setBounds(393, 445, 134, 28);
+		price_reg2.setBounds(514, 445, 134, 28);
 		frame.getContentPane().add(price_reg2);
 		
 		link2 = new JTextField();
 		link2.setText("לינק");
 		link2.setColumns(10);
-		link2.setBounds(393, 418, 134, 28);
+		link2.setBounds(514, 418, 134, 28);
 		frame.getContentPane().add(link2);
 		
 		distance2 = new JTextField();
 		distance2.setText("מרחק");
 		distance2.setColumns(10);
-		distance2.setBounds(393, 392, 134, 28);
+		distance2.setBounds(514, 392, 134, 28);
 		frame.getContentPane().add(distance2);
 		
 		subtype3 = new JCheckBox("");
-		subtype3.setBounds(297, 368, 40, 23);
+		subtype3.setBounds(418, 368, 40, 23);
 		frame.getContentPane().add(subtype3);
 		
 		price_late3 = new JTextField();
 		price_late3.setText("מחיר מאוחר");
 		price_late3.setColumns(10);
-		price_late3.setBounds(247, 470, 134, 28);
+		price_late3.setBounds(368, 470, 134, 28);
 		frame.getContentPane().add(price_late3);
 		
 		price_reg3 = new JTextField();
 		price_reg3.setText("מחיר");
 		price_reg3.setColumns(10);
-		price_reg3.setBounds(247, 445, 134, 28);
+		price_reg3.setBounds(368, 445, 134, 28);
 		frame.getContentPane().add(price_reg3);
 		
 		link3 = new JTextField();
 		link3.setText("לינק");
 		link3.setColumns(10);
-		link3.setBounds(247, 418, 134, 28);
+		link3.setBounds(368, 418, 134, 28);
 		frame.getContentPane().add(link3);
 		
 		distance3 = new JTextField();
 		distance3.setText("מרחק");
 		distance3.setColumns(10);
-		distance3.setBounds(247, 392, 134, 28);
+		distance3.setBounds(368, 392, 134, 28);
 		frame.getContentPane().add(distance3);
 		
 		subtype4 = new JCheckBox("");
-		subtype4.setBounds(151, 368, 40, 23);
+		subtype4.setBounds(272, 368, 40, 23);
 		frame.getContentPane().add(subtype4);
 		
 		price_late4 = new JTextField();
 		price_late4.setText("מחיר מאוחר");
 		price_late4.setColumns(10);
-		price_late4.setBounds(101, 470, 134, 28);
+		price_late4.setBounds(222, 470, 134, 28);
 		frame.getContentPane().add(price_late4);
 		
 		price_reg4 = new JTextField();
 		price_reg4.setText("מחיר");
 		price_reg4.setColumns(10);
-		price_reg4.setBounds(101, 445, 134, 28);
+		price_reg4.setBounds(222, 445, 134, 28);
 		frame.getContentPane().add(price_reg4);
 		
 		link4 = new JTextField();
 		link4.setText("לינק");
 		link4.setColumns(10);
-		link4.setBounds(101, 418, 134, 28);
+		link4.setBounds(222, 418, 134, 28);
 		frame.getContentPane().add(link4);
 		
 		distance4 = new JTextField();
 		distance4.setText("מרחק");
 		distance4.setColumns(10);
-		distance4.setBounds(101, 392, 134, 28);
+		distance4.setBounds(222, 392, 134, 28);
 		frame.getContentPane().add(distance4);
 		
 		subtype5 = new JCheckBox("");
-		subtype5.setBounds(589, 510, 40, 23);
+		subtype5.setBounds(710, 510, 40, 23);
 		frame.getContentPane().add(subtype5);
 		
 		price_late5 = new JTextField();
 		price_late5.setText("מחיר מאוחר");
 		price_late5.setColumns(10);
-		price_late5.setBounds(539, 612, 134, 28);
+		price_late5.setBounds(660, 612, 134, 28);
 		frame.getContentPane().add(price_late5);
 		
 		price_reg5 = new JTextField();
 		price_reg5.setText("מחיר");
 		price_reg5.setColumns(10);
-		price_reg5.setBounds(539, 587, 134, 28);
+		price_reg5.setBounds(660, 587, 134, 28);
 		frame.getContentPane().add(price_reg5);
 		
 		link5 = new JTextField();
 		link5.setText("לינק");
 		link5.setColumns(10);
-		link5.setBounds(539, 560, 134, 28);
+		link5.setBounds(660, 560, 134, 28);
 		frame.getContentPane().add(link5);
 		
 		distance5 = new JTextField();
 		distance5.setText("מרחק");
 		distance5.setColumns(10);
-		distance5.setBounds(539, 534, 134, 28);
+		distance5.setBounds(660, 534, 134, 28);
 		frame.getContentPane().add(distance5);
 		
 		subtype6 = new JCheckBox("");
-		subtype6.setBounds(440, 510, 40, 23);
+		subtype6.setBounds(561, 510, 40, 23);
 		frame.getContentPane().add(subtype6);
 		
 		price_late6 = new JTextField();
 		price_late6.setText("מחיר מאוחר");
 		price_late6.setColumns(10);
-		price_late6.setBounds(390, 612, 134, 28);
+		price_late6.setBounds(511, 612, 134, 28);
 		frame.getContentPane().add(price_late6);
 		
 		price_reg6 = new JTextField();
 		price_reg6.setText("מחיר");
 		price_reg6.setColumns(10);
-		price_reg6.setBounds(390, 587, 134, 28);
+		price_reg6.setBounds(511, 587, 134, 28);
 		frame.getContentPane().add(price_reg6);
 		
 		link6 = new JTextField();
 		link6.setText("לינק");
 		link6.setColumns(10);
-		link6.setBounds(390, 560, 134, 28);
+		link6.setBounds(511, 560, 134, 28);
 		frame.getContentPane().add(link6);
 		
 		distance6 = new JTextField();
 		distance6.setText("מרחק");
 		distance6.setColumns(10);
-		distance6.setBounds(390, 534, 134, 28);
+		distance6.setBounds(511, 534, 134, 28);
 		frame.getContentPane().add(distance6);
 		
 		subtype7 = new JCheckBox("");
-		subtype7.setBounds(292, 510, 40, 23);
+		subtype7.setBounds(413, 510, 40, 23);
 		frame.getContentPane().add(subtype7);
 		
 		price_late7 = new JTextField();
 		price_late7.setText("מחיר מאוחר");
 		price_late7.setColumns(10);
-		price_late7.setBounds(242, 612, 134, 28);
+		price_late7.setBounds(363, 612, 134, 28);
 		frame.getContentPane().add(price_late7);
 		
 		price_reg7 = new JTextField();
 		price_reg7.setText("מחיר");
 		price_reg7.setColumns(10);
-		price_reg7.setBounds(242, 587, 134, 28);
+		price_reg7.setBounds(363, 587, 134, 28);
 		frame.getContentPane().add(price_reg7);
 		
 		link7 = new JTextField();
 		link7.setText("לינק");
 		link7.setColumns(10);
-		link7.setBounds(242, 560, 134, 28);
+		link7.setBounds(363, 560, 134, 28);
 		frame.getContentPane().add(link7);
 		
 		distance7 = new JTextField();
 		distance7.setText("מרחק");
 		distance7.setColumns(10);
-		distance7.setBounds(242, 534, 134, 28);
+		distance7.setBounds(363, 534, 134, 28);
 		frame.getContentPane().add(distance7);
 		
 		subtype8 = new JCheckBox("");
-		subtype8.setBounds(151, 510, 40, 23);
+		subtype8.setBounds(272, 510, 40, 23);
 		frame.getContentPane().add(subtype8);
 		
 		price_late8 = new JTextField();
 		price_late8.setText("מחיר מאוחר");
 		price_late8.setColumns(10);
-		price_late8.setBounds(101, 612, 134, 28);
+		price_late8.setBounds(222, 612, 134, 28);
 		frame.getContentPane().add(price_late8);
 		
 		price_reg8 = new JTextField();
 		price_reg8.setText("מחיר");
 		price_reg8.setColumns(10);
-		price_reg8.setBounds(101, 587, 134, 28);
+		price_reg8.setBounds(222, 587, 134, 28);
 		frame.getContentPane().add(price_reg8);
 		
 		link8 = new JTextField();
 		link8.setText("לינק");
 		link8.setColumns(10);
-		link8.setBounds(101, 560, 134, 28);
+		link8.setBounds(222, 560, 134, 28);
 		frame.getContentPane().add(link8);
 		
 		distance8 = new JTextField();
 		distance8.setText("מרחק");
 		distance8.setColumns(10);
-		distance8.setBounds(101, 534, 134, 28);
+		distance8.setBounds(222, 534, 134, 28);
 		frame.getContentPane().add(distance8);
 		
 		details = new JTextPane();
 		details.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		details.setBounds(128, 245, 408, 111);
+		details.setBounds(249, 245, 408, 111);
 		frame.getContentPane().add(details);
 		
 		label_6 = new JLabel("פרטים");
-		label_6.setBounds(575, 245, 61, 16);
+		label_6.setBounds(696, 245, 61, 16);
 		frame.getContentPane().add(label_6);
 		
 		btnUpload = new JButton("upload new File");
@@ -456,6 +457,15 @@ public class editor {
 		});
 		btnUpload.setBounds(6, 649, 163, 29);
 		frame.getContentPane().add(btnUpload);
+		
+		btnNewButton = new JButton("get from shvoong");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				HTMLParser.getShvoong(3);
+			}
+		});
+		btnNewButton.setBounds(6, 608, 163, 29);
+		frame.getContentPane().add(btnNewButton);
 	}
 
 	protected JSONObject createNewObject() {

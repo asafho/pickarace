@@ -4,15 +4,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.security.NoSuchAlgorithmException;
 
 import javax.swing.JOptionPane;
 
 import org.apache.commons.io.FileUtils;
 import org.jets3t.service.S3Service;
-import org.jets3t.service.S3ServiceException;
 import org.jets3t.service.ServiceException;
-import org.jets3t.service.acl.AccessControlList;
 import org.jets3t.service.impl.rest.httpclient.RestS3Service;
 import org.jets3t.service.model.S3Object;
 import org.jets3t.service.security.AWSCredentials;
@@ -82,6 +79,9 @@ public class aws {
 			awsConnect();
 		}
 
+		pushEventsToJsonArray();
+		
+		
 		try{
 			JSONObject newFile=new JSONObject();
 			newFile.put("events", contestsJsonArray);
@@ -100,5 +100,53 @@ public class aws {
 		e.printStackTrace();
 	}
 		
-	}	
+	}
+
+
+	private static void pushEventsToJsonArray() {
+		
+		try {
+		for(int i=0;i<HTMLParser.eventsList.size();i++){
+			JSONObject json=new JSONObject();
+			Event ev = HTMLParser.eventsList.get(i);
+			json.put("id","\""+System.currentTimeMillis()+"\"");
+			json.put("name",ev.name);
+			json.put("status","active");
+			json.put("type",ev.type);
+			json.put("date",ev.date);
+			json.put("registration_date_normal",ev.registration_date_normal);
+			json.put("registration_date_late",ev.registration_date_late);
+			
+			JSONObject location=new JSONObject();
+			location.put("country", ev.country);
+			location.put("countryCode",ev.countryCode);
+			location.put("city",ev.city);
+			json.put("location",location);
+			
+			JSONObject detailsObj=new JSONObject();
+			detailsObj.put("row1", ev.description);
+			json.put("details", detailsObj);
+			
+			JSONObject vendorObj=new JSONObject();
+			vendorObj.put("name", ev.vendor);
+			json.put("vendor", vendorObj);
+			
+			JSONArray subtypes=new JSONArray();
+			for(int s=0;s<ev.subtypes.size();s++){
+				JSONObject st=new JSONObject();
+				
+					st.put("distance", ev.subtypes.get(s).distance);
+				st.put("price_normal", ev.subtypes.get(s).price_normal);
+				st.put("price_late", ev.subtypes.get(s).price_late);
+				st.put("link", ev.subtypes.get(s).link);
+				subtypes.put(st);
+			}
+			json.put("subtype", subtypes);
+			contestsJsonArray.put(json);
+		}	
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

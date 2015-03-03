@@ -188,6 +188,7 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 		
 		event.type = getEventType(eventType); 
 		event.vendor="shvoong";
+		String registrationLink = null;
 		Document doc = null;
 		try {
 			Thread.sleep(100);
@@ -198,13 +199,18 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 			 event.description = doc.getElementsByClass("entry-content").text(); 
 			 event.location=doc.getElementsByClass("_location").text();
 			 event.date=doc.getElementsByClass("_start").text();
-			 //<a target="_blank" href="http://events.shvoong.co.il/kfarsaba/" class="register btn blue gradient">פרטים והרשמה</a>
-			 
-			 
-			 String links = doc.getElementsByTag("a").text();
 
+			 Elements ddd = doc.select("article");
+			 for(Element eee:ddd){
+			        Elements links1 = eee.getElementsByTag("a");
+			        for(Element e1:links1){
+			        	String registerLink = e1.attr("href");
+			        	String target = e1.attr("target");
+			        	if(target.equals("_blank"))
+			        		registrationLink = registerLink;
+			        }
+			 }
 			 
-			 doc.getElementsByClass("register btn blue gradient").text();
 			 try{
 					 Element assigns = doc.select("table").get(0);
 					 Elements rows = assigns.getElementsByTag("tr");
@@ -215,6 +221,10 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 							 continue;
 						 }
 							 subType subType = new subType();
+							 
+							 if(registrationLink != null){
+								 subType.link = registrationLink;
+							 }
 								 String eventtype = row.getElementsByTag("td").get(0).text();
 								 String distance = row.getElementsByTag("td").get(1).text();
 								 String starttime = row.getElementsByTag("td").get(2).text();
@@ -280,9 +290,16 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 				if(i == 1)
 					shvoongLink = shvoong + "/events";
 				else
-					shvoongLink = shvoong + "/page/" + i + "/";
+					shvoongLink = shvoong + "/events/page/" + i + "/";
 				
-				doc = Jsoup.connect(shvoongLink).get();
+				
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				doc = Jsoup.connect(shvoongLink).timeout(3000).get();
 				
 				 Elements imageElements = doc.select("article");
 				 String EventHref = "";

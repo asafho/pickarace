@@ -111,10 +111,12 @@ public static void parseRealtimeEvent(String eventURL){
 		} 
 		
 		Elements paragraphs = doc.select("p");
+		String eventDesc = "";
 		for(Element p : paragraphs)
-	        System.out.println(p.text());
+			eventDesc += p.text() + "\n";
+	        
 		
-		System.out.println("");
+		System.out.println(eventDesc);
 		
 	} catch (IOException e) {
 		// TODO Auto-generated catch block

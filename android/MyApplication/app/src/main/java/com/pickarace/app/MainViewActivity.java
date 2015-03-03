@@ -95,11 +95,11 @@ public class MainViewActivity extends Activity {
         displayInterstitial();
     }
 
-    public void thriathlonButtonOnClick(View view) {
-        FlurryAgent.logEvent("Pressed On thriathlon Option");
+    public void triathlonButtonOnClick(View view) {
+        FlurryAgent.logEvent("Pressed On triathlon Option");
         final AppController globalVariable = (AppController) getApplicationContext();
-        globalVariable.setTopic("thriathlon");
-        Log.v("action", "thriathlon button clicked");
+        globalVariable.setTopic("triathlon");
+        Log.v("action", "triathlon button clicked");
         Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
         Log.v("internet test: ", String.valueOf(AppController.isConnected(this.getApplicationContext())));
         startActivity(openStep);

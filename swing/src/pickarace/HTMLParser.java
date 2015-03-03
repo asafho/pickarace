@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import org.jsoup.Jsoup;
@@ -33,7 +34,31 @@ class Event{
 		result.append( this.getClass().getName() );
 		  result.append( " Object {" );
 		  result.append(newLine);
-		return "";
+		//determine fields declared in this class only (no fields of superclass)
+		  Field[] fields = this.getClass().getDeclaredFields();
+
+		  //print field names paired with their values
+		  for ( Field field : fields  ) {
+		    result.append("  ");
+		    try {
+		      result.append( field.getName() );
+		      result.append(": ");
+		      //requires access to private field:
+		      
+		      if(field.getName().equals("subtypes")){
+		    	  field.get(this).toString();
+		      }
+		      else{
+		    	  result.append( field.get(this) );
+		      }
+		    } catch ( IllegalAccessException ex ) {
+		      System.out.println(ex);
+		    }
+		    result.append(newLine);
+		  }
+		  result.append("}");
+		  System.out.println(result.toString());
+		  return result.toString();
 	}
 }
 
@@ -42,6 +67,33 @@ class subType{
 	String link;
 	String price_late;
 	String price_normal;
+	
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		String newLine = System.getProperty("line.separator");
+		result.append( this.getClass().getName() );
+		  result.append( " Object {" );
+		  result.append(newLine);
+		//determine fields declared in this class only (no fields of superclass)
+		  Field[] fields = this.getClass().getDeclaredFields();
+
+		  //print field names paired with their values
+		  for ( Field field : fields  ) {
+		    result.append("  ");
+		    try {
+		      result.append( field.getName() );
+		      result.append(": ");
+		      //requires access to private field:
+		    	  result.append( field.get(this) );
+		    } catch ( IllegalAccessException ex ) {
+		      System.out.println(ex);
+		    }
+		    result.append(newLine);
+		  }
+		  result.append("}");
+		  System.out.println(result.toString());
+		  return result.toString();
+	}
 }
 
 
@@ -63,7 +115,6 @@ public class HTMLParser {
 	private static void getRealTiming() throws FileNotFoundException, UnsupportedEncodingException {
 		
 		Document doc = null;
-		writer = new PrintWriter("/tmp/events_realtiming.txt", "UTF-8");
 		
 		try {
 			
@@ -91,11 +142,10 @@ public class HTMLParser {
 					 }
 			    }
 			    
-			    writer.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			writer.close();
+
 		}
 	}
 
@@ -154,7 +204,7 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 			 catch(IndexOutOfBoundsException e){}
 		 }
 		 eventsList.add(event);
-		
+		 //event.toString();
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

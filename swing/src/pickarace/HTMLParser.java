@@ -1,15 +1,38 @@
 package pickarace;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.Reader;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
+import java.net.URL;
 import java.util.ArrayList;
+
+import javax.xml.crypto.Data;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 
 
 class Event{
@@ -22,11 +45,27 @@ class Event{
 	String country="ישראל";
 	String city;
 	String status="active";
-	String vendor="shvoong";
+	String vendor;
 	String type;
 	String registration_date_late;
 	String registration_date_normal;
 	ArrayList<subType> subtypes = new ArrayList<subType>();
+	
+	public void printEvent()
+	{
+		System.out.println("id: " + id);
+		System.out.println("name: " + name);
+		System.out.println("description: " + description);
+		System.out.println("location: " + location);
+		System.out.println("date: " + date);
+		System.out.println("countryCode: " + countryCode);
+		System.out.println("country: " + country);
+		System.out.println("city: " + city);
+		System.out.println("vendor: " + vendor);
+		System.out.println("type: " + type);
+		System.out.println("registration_date_late: " + registration_date_late);
+		System.out.println("registration_date_normal: " + registration_date_normal);
+	}
 }
 
 class subType{
@@ -208,6 +247,39 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 			 event.location=doc.getElementsByClass("_location").text();
 			 event.date=doc.getElementsByClass("_start").text();
 			 
+			 //get the city name from google maps coordinates
+			 Elements iframes = doc.getElementsByTag("iframe");
+			 for(Element iframe:iframes){
+				 String iframe_src = iframe.attr("src");
+				 if(iframe_src.contains("https://maps.google.com") || iframe_src.contains("www.google.co.il/maps")){
+
+					 System.out.println("parsing: " + iframe_src);
+					 int ssl_index = iframe_src.indexOf("sll=");
+					 int sspn_index = iframe_src.indexOf("&sspn=");
+					 
+					 
+					int	 ll_index = iframe_src.indexOf("&ll=");
+					int	 spn_index = iframe_src.indexOf("&spn=");
+					 String location_cordinates;
+					if(ll_index != -1 && spn_index != -1)
+					{
+						 location_cordinates = iframe_src.substring(ll_index+4, spn_index);
+					}
+					else{
+						 location_cordinates = iframe_src.substring(ssl_index+4, sspn_index);
+					}
+					
+					
+					 try {
+						event.city = getCity(location_cordinates);
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				 }
+			 
+			 }
+			 
 			 
 			 if(event.name.length()<=0){
 				 Elements metaTags = doc.getElementsByTag("meta");
@@ -330,12 +402,68 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 					System.out.println("Event didn't have any data: " + e.getMessage());
 				 }
 			 eventsList.add(event);
+			 event.printEvent();
+			 
+			 
+			 
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
+		} 
+	}
+	
+	public static String getCity(String cordinates) throws IOException, ParseException{
+		
+		String googleURL = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + cordinates + "&sensor=false";
+		InputStream inputStream = null;
+        String json = "";
+
+        try {           
+            HttpClient client = new DefaultHttpClient();  
+            HttpPost post = new HttpPost(googleURL);
+            HttpResponse response = client.execute(post);
+            HttpEntity entity = response.getEntity();
+            inputStream = entity.getContent();
+        } catch(Exception e) {
+        }
+
+        try {           
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream,"utf-8"),8);
+            StringBuilder sbuild = new StringBuilder();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                sbuild.append(line);
+            }
+            inputStream.close();
+            json = sbuild.toString();               
+        } catch(Exception e) {
+        }
+
+
+        //now parse
+        JSONParser parser = new JSONParser();
+        Object obj = parser.parse(json);
+        JSONObject jb = (JSONObject) obj;
+        
+        
+
+        //now read
+        JSONArray jsonObject1 = (JSONArray) jb.get("results");
+        if(jsonObject1.size() == 0)
+        {
+        	System.out.println("***  Could not find City as the JSON response was empty!!");
+        	return "";
+        }
+        	
+        
+        JSONObject jsonObject2 = (JSONObject)jsonObject1.get(0);
+        JSONArray jsonObject3 = (JSONArray) jsonObject2.get("address_components");
+        JSONObject jsonObject4 = (JSONObject)jsonObject3.get(1);
+       
+        String locationName = (String) jsonObject4.get("long_name");
+		return locationName;
 	}
 	
 	public static void getShvoong(int attemp) {
@@ -384,11 +512,13 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 				        	count++;
 				        }
 				        
-				        System.out.println("Trying to open: "  + EventHref);
+				        System.out.println("Parsing: "  + EventHref);
 				        parseShvoongEvent(EventHref,eventType);
+				       // parseShvoongEvent("http://www.shvoong.co.il/events/%d7%9e%d7%a8%d7%95%d7%a5-%d7%9b%d7%a4%d7%a8-%d7%a1%d7%91%d7%90-3/",eventType);
+				       
+
 				        
-				        	//parseShvoongEvent("http://www.shvoong.co.il/events/%d7%98%d7%a8%d7%99%d7%90%d7%aa%d7%9c%d7%95%d7%9f-%d7%a2%d7%9e%d7%a7-%d7%94%d7%9e%d7%a2%d7%99%d7%99%d7%a0%d7%95%d7%aa-2/",eventType);
-				    }
+				      }
 			}
 
 		} catch (IOException e) {

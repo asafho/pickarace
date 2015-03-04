@@ -32,7 +32,7 @@ public class network extends AsyncTask<URL, Integer, Long>{
             public void run(){
                 try {
 
-                    URL url = new URL("https://s3-eu-west-1.amazonaws.com/com.pickarace.app/contests.json");
+                    URL url = new URL("https://s3-eu-west-1.amazonaws.com/com.pickarace.app/contestsTest.json");
                     final URL urlBucket = new URL("https://s3-eu-west-1.amazonaws.com/com.pickarace.app/");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");

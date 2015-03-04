@@ -3,10 +3,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Field;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
-
-import javax.swing.plaf.SliderUI;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -47,10 +45,11 @@ public class HTMLParser {
 	private static String realTimingLink = null;
 	private static String realTimingRegisterLink = null;
 	public static ArrayList<Event> eventsList = new ArrayList<Event>();
+	private static int sleeptime = 1000;
 	
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
 		getShvoong(3);
-		//getRealTiming();
+		getRealTiming();
 	}
 
 
@@ -191,14 +190,39 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 		String registrationLink = null;
 		Document doc = null;
 		try {
-			Thread.sleep(100);
-			doc = Jsoup.connect(eventURL).timeout(3000).get();
+			
+			
+			for(int i=1;i<3;i++){
+				Thread.sleep(sleeptime);
+				try{
+					doc = Jsoup.connect(eventURL).timeout(3000).get();
+					continue;
+				}catch(SocketTimeoutException r){
+					System.out.println("Got Http Socket timeout Exception... trying again");
+				}
+			}
 					
 			
 			 event.name = doc.getElementsByClass("sub-category-title").text();
 			 event.description = doc.getElementsByClass("entry-content").text(); 
 			 event.location=doc.getElementsByClass("_location").text();
 			 event.date=doc.getElementsByClass("_start").text();
+			 
+			 
+			 if(event.name.length()<=0){
+				 Elements metaTags = doc.getElementsByTag("meta");
+				  for(Element metatag:metaTags){
+			        	String metatagValue = metatag.attr("property");
+			        	if(metatagValue.equals("og:title")){
+			        		event.name = metatag.attr("content");
+			        	}
+			        	if(metatagValue.equals("og:description")){
+			        		event.description = metatag.attr("content");
+			        	}
+				  }
+			 }
+			 
+			 
 
 			 Elements ddd = doc.select("article");
 			 for(Element eee:ddd){
@@ -211,8 +235,20 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 			        }
 			 }
 			 
+			 if(registrationLink != null && registrationLink.equals(""))
+				 registrationLink = eventURL;
+			 
 			 try{
-					 Element assigns = doc.select("table").get(0);
+				 Elements doesTableExist = doc.select("table");
+				 
+				 if(doesTableExist.size() == 0)
+				 {
+					 System.out.println("INFO: No additional data exist for this event.");
+					 return;
+				 }
+					 
+				 
+					 Element assigns = doc.select("table").get(0); 
 					 Elements rows = assigns.getElementsByTag("tr");
 					 int count = 1;
 					 for(Element row : rows) {
@@ -225,32 +261,56 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 							 if(registrationLink != null){
 								 subType.link = registrationLink;
 							 }
+							 else{
+								 subType.link = eventURL;
+							 }
 								 String eventtype = row.getElementsByTag("td").get(0).text();
 								 String distance = row.getElementsByTag("td").get(1).text();
 								 String starttime = row.getElementsByTag("td").get(2).text();
 								 String type = row.getElementsByTag("td").get(3).text();
 								 String cost = row.getElementsByTag("td").get(4).text();
-								 String[] a = cost.split("/");
+								 
+								 String delimiter = "/";;
+								 
+								 if(cost.contains("-"))
+									 delimiter = "-";
+								 
+								 String[] costStrArray = cost.split(delimiter);
 								 String costEarly = "";
 								 String costLate = "";
-								 for( String costs:a){
-									 String[] cost_late = null;
-									 if(costs.contains(" ש\"ח"))
-									 {
-										 cost_late = costs.split(" ש\"ח");
-										 costLate = cost_late[0];
-										 costLate = cost_late[1];
+								 
+								 
+								 // The way they write the price is not consistent, sometimes with - sometimes with /
+								 // so the array spliting does not come up correctly. the array must be at length 2 order to parse the correct ammounts.
+								 if(costStrArray.length >= 2)
+								 {
+								 
+									 
+									 for( String costs:costStrArray){
+										 String[] cost_late = null;
 										 
+										 if(costs.contains(" ש\"ח"))
+										 {
+											 cost_late = costs.split(" ש\"ח");
+											 costLate = cost_late[0];
+											 
+										 }
+										 else if(costs.contains("-")){
+											 cost_late = costs.split("-");
+											 costLate = cost_late[0];
+											 costEarly = cost_late[1];
+										 }
+										 else{
+											 costEarly = costs;
+											 costLate  = costs;
+										 }
 									 }
-									 else if(costs.contains("-")){
-										 cost_late = costs.split("-");
-										 costLate = cost_late[0];
-										 costEarly = cost_late[1];
-									 }
-									 else{
-										 costEarly = costs;
-										 costLate  = costs;
-									 }
+					 			}
+								 else{
+									 if(cost.length() != 0)
+										 System.out.println("Could not parse correctly the prices!! check it. the cost looks like this:" + cost);
+									 costEarly = costStrArray[0];
+									 costLate  =  costStrArray[0];
 								 }
 								 
 						         System.out.println(" EventType: " + eventtype);
@@ -262,7 +322,6 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 						         
 						         
 						         subType.distance=distance;
-						         subType.link="";
 						         subType.price_normal=costEarly;
 						         subType.price_late=costLate;
 						         event.subtypes.add(subType);
@@ -294,12 +353,16 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 				
 				
 				try {
-					Thread.sleep(100);
+					Thread.sleep(sleeptime);
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				
+				System.out.println("**********");
 				doc = Jsoup.connect(shvoongLink).timeout(3000).get();
+				System.out.println("**********");
+				
 				
 				 Elements imageElements = doc.select("article");
 				 String EventHref = "";
@@ -323,6 +386,8 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 				        
 				        System.out.println("Trying to open: "  + EventHref);
 				        parseShvoongEvent(EventHref,eventType);
+				        
+				        	//parseShvoongEvent("http://www.shvoong.co.il/events/%d7%98%d7%a8%d7%99%d7%90%d7%aa%d7%9c%d7%95%d7%9f-%d7%a2%d7%9e%d7%a7-%d7%94%d7%9e%d7%a2%d7%99%d7%99%d7%a0%d7%95%d7%aa-2/",eventType);
 				    }
 			}
 

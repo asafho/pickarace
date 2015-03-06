@@ -109,7 +109,7 @@ public class aws {
 		for(int i=0;i<HTMLParser.eventsList.size();i++){
 			JSONObject json=new JSONObject();
 			Event ev = HTMLParser.eventsList.get(i);
-			json.put("id","\""+System.currentTimeMillis()+"\"");
+			json.put("id",System.currentTimeMillis()+"");
 			json.put("name",ev.name);
 			json.put("status","active");
 			json.put("type",ev.type);
@@ -120,7 +120,7 @@ public class aws {
 			JSONObject location=new JSONObject();
 			location.put("country", ev.country);
 			location.put("countryCode",ev.countryCode);
-			location.put("city",ev.city);
+			location.put("city",ev.city+"");
 			json.put("location",location);
 			
 			JSONObject detailsObj=new JSONObject();

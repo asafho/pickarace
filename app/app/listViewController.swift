@@ -58,7 +58,7 @@ class listViewController: UIViewController, UITableViewDelegate {
         let eventType: String = rowData["type"] as String
         if(eventType==general.MyVariables.contest){
             cell.title?.text = rowData["name"] as? String
-            let id: String = rowData["id"] as String
+           // let id: String = rowData["id"] as String
             let date: String = rowData["date"] as String
             let locationObj: NSDictionary = rowData["location"] as NSDictionary
             let city: String = locationObj["city"] as String

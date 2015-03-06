@@ -391,7 +391,7 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 				    }
 			}
 
-		} catch (IOException e) {
+		} catch (IOException e) {/*
 
 			if(attemp!=0){
 				try {
@@ -400,7 +400,7 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 					e1.printStackTrace();
 				}
 				getShvoong(attemp--);
-			}
+			}*/
 			e.printStackTrace();
 		}
 		

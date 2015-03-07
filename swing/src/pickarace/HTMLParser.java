@@ -118,7 +118,7 @@ public class HTMLParser {
 			    }
 			    
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Exception 11");
 			e.printStackTrace();
 
 		}

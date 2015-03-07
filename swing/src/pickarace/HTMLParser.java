@@ -4,25 +4,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
-import java.net.URL;
 import java.util.ArrayList;
-
-import javax.xml.crypto.Data;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -78,7 +67,6 @@ class subType{
 
 public class HTMLParser {
 
-	private static PrintWriter writer;
 	private static String realTiming = "http://www.realtiming.co.il";
 	private static String shvoong = "http://www.shvoong.co.il";
 	private static String realTimingLink = null;
@@ -87,7 +75,7 @@ public class HTMLParser {
 	private static int sleeptime = 1000;
 	
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-		getShvoong(3);
+		//getShvoong(3);
 		getRealTiming();
 	}
 
@@ -118,8 +106,14 @@ public class HTMLParser {
 							 realTimingLink = realTiming + eventLink;
 							 parseRealtimeEvent(realTimingLink,eventDate);
 						 }
-						 catch(ArrayIndexOutOfBoundsException ddd){}
-						 catch(IndexOutOfBoundsException dd){}
+						 catch(ArrayIndexOutOfBoundsException ddd){
+							 System.out.println("Exception 9");
+								ddd.printStackTrace();
+						 }
+						 catch(IndexOutOfBoundsException dd){
+							 System.out.println("Exception 10");
+								dd.printStackTrace();
+						 }
 					 }
 			    }
 			    
@@ -130,29 +124,7 @@ public class HTMLParser {
 		}
 	}
 
-public static String getEventType(String eventType){
-	
-	if(eventType.equals("ריצה"))
-	{
-		return "running";
-	}
-	else if(eventType.contains("ריצה ו")){
-		return "triathlon";
-	}
-	else if(eventType.equals("אופניים")){
-		return "biking";
-	}
-	else if(eventType.equals("שחיה")){
-		return "swiming";
-	}
-	else if(eventType.equals("טריאתלון")){
-		return "triathlon";
-	}
-	else{
-		return  "running";
-	}
-	
-}
+
 public static void parseRealtimeEvent(String eventURL, String eventDate){
 	
 	Event event=new Event();
@@ -185,6 +157,7 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 		event.location = eventPlace[1].trim();
 		event.type = getEventType(eventType[1].trim());
 		event.vendor="realtiming";
+		event.date = eventDate;
 		
 		Element contests = doc.select("table.heat").get(0);
 		
@@ -193,25 +166,32 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 			 
 			 try{
 				 subType subType = new subType();
-				 String eventLink = row.attr("onclick").toString().split("'")[1];
-				 realTimingRegisterLink = realTiming + eventLink;
-				 String contentName = row.getElementsByTag("td").get(0).text();
-				 //String contentDistance = row.getElementsByTag("td").get(1).text();
-				 String priceEarly = row.getElementsByTag("td").get(2).text();
-				 String priceLate = row.getElementsByTag("td").get(3).text();
-				 
-				 subType.distance=contentName;
-		         subType.link=realTimingRegisterLink;
-		         subType.price_normal=priceEarly;
-		         subType.price_late=priceLate;
-		         event.subtypes.add(subType);
+				 if(row.hasAttr("onclick")){
+					 String eventLink = row.attr("onclick").toString().split("'")[1];
+					 realTimingRegisterLink = realTiming + eventLink;
+					 String contentName = row.getElementsByTag("td").get(0).text();
+					 //String contentDistance = row.getElementsByTag("td").get(1).text();
+					 String priceEarly = row.getElementsByTag("td").get(2).text();
+					 String priceLate = row.getElementsByTag("td").get(3).text();
+					 
+					 subType.distance=contentName;
+			         subType.link=realTimingRegisterLink;
+			         subType.price_normal=priceEarly;
+			         subType.price_late=priceLate;
+			         event.subtypes.add(subType);
+				 }
 			 }
-			 catch(IndexOutOfBoundsException e){}
+			 catch(IndexOutOfBoundsException e){
+				 System.out.println("Exception 1");
+				 e.printStackTrace();
+			 }
 		 }
 		 eventsList.add(event);
+		 event.printEvent();
 		 //event.toString();
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
+		System.out.println("Exception 2");
 		e.printStackTrace();
 	}
 	
@@ -273,7 +253,7 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 					 try {
 						event.city = getCity(location_cordinates);
 					} catch (ParseException e) {
-						// TODO Auto-generated catch block
+						System.out.println("Exception 3");
 						e.printStackTrace();
 					}
 				 }
@@ -407,9 +387,10 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 			 
 			 
 		} catch (IOException e) {
+			System.out.println("Exception 4");
 			e.printStackTrace();
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
+			System.out.println("Exception 5");
 			e1.printStackTrace();
 		} 
 	}
@@ -427,6 +408,8 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
             HttpEntity entity = response.getEntity();
             inputStream = entity.getContent();
         } catch(Exception e) {
+        	System.out.println("Exception 6");
+    		e.printStackTrace();
         }
 
         try {           
@@ -439,6 +422,8 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
             inputStream.close();
             json = sbuild.toString();               
         } catch(Exception e) {
+        	System.out.println("Exception 7");
+    		e.printStackTrace();
         }
 
 
@@ -483,7 +468,7 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 				try {
 					Thread.sleep(sleeptime);
 				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
+					System.out.println("Exception 8");
 					e1.printStackTrace();
 				}
 				
@@ -532,6 +517,29 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 				getShvoong(attemp--);
 			}
 			e.printStackTrace();
+		}
+		
+	}
+	public static String getEventType(String eventType){
+		
+		if(eventType.equals("ריצה"))
+		{
+			return "running";
+		}
+		else if(eventType.contains("ריצה ו")){
+			return "triathlon";
+		}
+		else if(eventType.equals("אופניים")){
+			return "biking";
+		}
+		else if(eventType.equals("שחיה")){
+			return "swiming";
+		}
+		else if(eventType.equals("טריאתלון")){
+			return "triathlon";
+		}
+		else{
+			return  "running";
 		}
 		
 	}

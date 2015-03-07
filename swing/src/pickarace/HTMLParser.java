@@ -75,7 +75,7 @@ public class HTMLParser {
 	private static int sleeptime = 1000;
 	
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-		//getShvoong(3);
+		getShvoong(3);
 		getRealTiming();
 	}
 
@@ -451,12 +451,58 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 		return locationName;
 	}
 	
+	public static int getMaxPagination()
+	{
+		int[] pages = new int[20];
+		int i = 0;
+		Document doc = null;
+	    int largest = Integer.MIN_VALUE;
+	    
+	    String shvoongLink = shvoong + "/events";
+		
+		try {
+			Thread.sleep(sleeptime);
+			doc = Jsoup.connect(shvoongLink).timeout(3000).get();
+		} catch (InterruptedException e1) {
+			System.out.println("Exception ...");
+			e1.printStackTrace();
+		}
+		catch (IOException e) {}
+		
+		Elements paginations = doc.select("div.pagination");
+		 for(Element paginate:paginations){
+			 //page-numbers
+			 Elements links = paginate.getElementsByTag("a");
+			 for(Element link:links){
+				if ( ! link.getElementsByAttributeValue("class", "page-numbers").text().equals("")){
+					pages[i] = Integer.parseInt(link.getElementsByAttributeValue("class", "page-numbers").text());
+					i++;
+				}
+			 }
+		 }
+		
+		 for(int j = 0;j<=pages.length;j++) {	
+			 if(pages[j] != 0){
+		 		if(pages[j] > largest)
+		 			largest = pages[j];
+			 }
+			 else
+			 {
+				 break;
+			 }
+		 }
+		 
+		return largest;
+	}
+	
 	public static void getShvoong(int attemp) {
 		Document doc = null;
-	
+		int maxPaginate = 0;
+		maxPaginate = getMaxPagination();
+		
 		try {
 			
-			for(int i=1;i<=20;i++){
+			for(int i=1;i<= maxPaginate;i++){
 				
 				String shvoongLink = null;
 				if(i == 1)
@@ -475,7 +521,6 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 				System.out.println("**********");
 				doc = Jsoup.connect(shvoongLink).timeout(3000).get();
 				System.out.println("**********");
-				
 				
 				 Elements imageElements = doc.select("article");
 				 String EventHref = "";

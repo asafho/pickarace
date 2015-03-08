@@ -7,11 +7,14 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
 import java.io.BufferedReader;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -62,6 +65,13 @@ class subType{
 	String link;
 	String price_late;
 	String price_normal;
+	public void printSubType()
+	{
+		System.out.println("distance: " + distance);
+		System.out.println("link: " + link);
+		System.out.println("price_late: " + price_late);
+		System.out.println("price_normal: " + price_normal);
+	}
 }
 
 
@@ -75,7 +85,7 @@ public class HTMLParser {
 	private static int sleeptime = 1000;
 	
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-		getShvoong(3);
+		getShvoong();
 		getRealTiming();
 	}
 
@@ -96,23 +106,24 @@ public class HTMLParser {
 			    	
 			    	 Elements rows = assigns.getElementsByTag("tr");
 					 for(Element row : rows) {
-						 String sw  = row.toString();
 						 try{
 							 
-							 Element Event = row.getElementsByTag("td").get(0);
-							 String eventDate = Event.getElementsByTag("td").get(0).text();
-							 
-							 String eventLink = row.attr("onclick").toString().split("'")[1];
-							 realTimingLink = realTiming + eventLink;
-							 parseRealtimeEvent(realTimingLink,eventDate);
+							 if(row.hasAttr("onclick")){
+								 Element Event = row.getElementsByTag("td").get(0);
+								 String eventDate = Event.getElementsByTag("td").get(0).text();
+								 
+								 String eventLink = row.attr("onclick").toString().split("'")[1];
+								 realTimingLink = realTiming + eventLink;
+								 
+								 parseRealtimeEvent(realTimingLink,eventDate);
+							 }
 						 }
 						 catch(ArrayIndexOutOfBoundsException ddd){
 							 System.out.println("Exception 9");
 								ddd.printStackTrace();
 						 }
 						 catch(IndexOutOfBoundsException dd){
-							 System.out.println("Exception 10");
-								dd.printStackTrace();
+							 System.out.println("Missing event data for: " + realTimingLink);
 						 }
 					 }
 			    }
@@ -129,9 +140,13 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 	
 	Event event=new Event();
 	Document doc = null;
+	boolean foundSubTypes = false;
 	
 	try {
 		doc = Jsoup.connect(eventURL).get();
+		
+		//System.out.println("Parsing event: " + eventURL);
+		
 		Elements els = doc.select("meta");
 		for( Element row : els) {
 			if(row.hasAttr("name") && row.attr("name").toString().equals("description"))
@@ -149,18 +164,17 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 		
 		String[] eventPlace = doc.select("div.event_place").text().split("מקום: ");
 		String[] eventType = doc.select("div.event_cat_name").text().split("ענף: ");
-		String eventCity = eventPlace[1].trim();
+		String eventCity = "";
+		
+		if(eventPlace.length >= 2){
+			eventCity = eventPlace[1].trim();
+		}
+		else{
+			eventCity = "אין מידע";
+		}
 	
-		
-		
-		event.city = eventCity;
-		event.location = eventPlace[1].trim();
-		event.type = getEventType(eventType[1].trim());
-		event.vendor="realtiming";
-		event.date = eventDate;
-		
-		Element contests = doc.select("table.heat").get(0);
-		
+		 Element contests = doc.select("table.heat").get(0);
+
 		 Elements rows = contests.getElementsByTag("tr");
 		 for(Element row : rows) {
 			 
@@ -178,7 +192,9 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 			         subType.link=realTimingRegisterLink;
 			         subType.price_normal=priceEarly;
 			         subType.price_late=priceLate;
+			         subType.printSubType();
 			         event.subtypes.add(subType);
+			         foundSubTypes = true;
 				 }
 			 }
 			 catch(IndexOutOfBoundsException e){
@@ -186,8 +202,17 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 				 e.printStackTrace();
 			 }
 		 }
-		 eventsList.add(event);
-		 event.printEvent();
+		 
+		 if(foundSubTypes){
+			 event.city = eventCity;
+			 event.location = eventPlace[1].trim();
+			 event.type = getEventType(eventType[1].trim());
+			 event.vendor="realtiming";
+			 event.date = eventDate;
+			 eventsList.add(event);
+		 }
+		 
+		 //event.printEvent();
 		 //event.toString();
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
@@ -217,7 +242,7 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 					doc = Jsoup.connect(eventURL).timeout(3000).get();
 					continue;
 				}catch(SocketTimeoutException r){
-					System.out.println("Got Http Socket timeout Exception... trying again");
+					//System.out.println("Got Http Socket timeout Exception... trying again");
 				}
 			}
 					
@@ -233,7 +258,7 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 				 String iframe_src = iframe.attr("src");
 				 if(iframe_src.contains("https://maps.google.com") || iframe_src.contains("www.google.co.il/maps")){
 
-					 System.out.println("parsing: " + iframe_src);
+					// System.out.println("parsing: " + iframe_src);
 					 int ssl_index = iframe_src.indexOf("sll=");
 					 int sspn_index = iframe_src.indexOf("&sspn=");
 					 
@@ -251,7 +276,8 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 					
 					
 					 try {
-						event.city = getCity(location_cordinates);
+						 if(!getCity(location_cordinates).equals(""))
+							 event.city = getCity(location_cordinates);
 					} catch (ParseException e) {
 						System.out.println("Exception 3");
 						e.printStackTrace();
@@ -274,8 +300,6 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 				  }
 			 }
 			 
-			 
-
 			 Elements ddd = doc.select("article");
 			 for(Element eee:ddd){
 			        Elements links1 = eee.getElementsByTag("a");
@@ -295,7 +319,7 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 				 
 				 if(doesTableExist.size() == 0)
 				 {
-					 System.out.println("INFO: No additional data exist for this event.");
+					 //System.out.println("INFO: No additional data exist for this event.");
 					 return;
 				 }
 					 
@@ -326,6 +350,9 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 								 
 								 if(cost.contains("-"))
 									 delimiter = "-";
+								 if(cost.contains(" ERO"))
+									 delimiter = " ERO";
+								 
 								 
 								 String[] costStrArray = cost.split(delimiter);
 								 String costEarly = "";
@@ -359,30 +386,21 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 									 }
 					 			}
 								 else{
-									 if(cost.length() != 0)
-										 System.out.println("Could not parse correctly the prices!! check it. the cost looks like this:" + cost);
 									 costEarly = costStrArray[0];
 									 costLate  =  costStrArray[0];
 								 }
-								 
-						         System.out.println(" EventType: " + eventtype);
-						         System.out.println(" distance: " + distance);
-						         System.out.println(" starttime: " + starttime);
-						         System.out.println(" type: " + type);
-						         System.out.println(" costEarly: " + costEarly);
-						         System.out.println(" costLate: " + costLate);
-						         
-						         
+
 						         subType.distance=distance;
 						         subType.price_normal=costEarly;
 						         subType.price_late=costLate;
-						         event.subtypes.add(subType);
+						         //subType.printSubType();
+						         event.subtypes.add(subType); 
 					 } 
 				 }catch(IndexOutOfBoundsException e){
 					System.out.println("Event didn't have any data: " + e.getMessage());
 				 }
 			 eventsList.add(event);
-			 event.printEvent();
+			 //event.printEvent();
 			 
 			 
 			 
@@ -394,6 +412,83 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 			e1.printStackTrace();
 		} 
 	}
+	
+	
+	public static void getShvoong() {
+		Document doc = null;
+		int maxPaginate = 0;
+		maxPaginate = getMaxPagination();
+		
+		try {
+			
+			for(int i=1;i<= maxPaginate;i++){
+				System.out.println("Page: " + i);
+				String shvoongLink = null;
+				if(i == 1)
+					shvoongLink = shvoong + "/events";
+				else
+					shvoongLink = shvoong + "/events/page/" + i + "/";
+				
+				for(int i1=1;i1<3;i1++){
+					
+					try{
+						Thread.sleep(sleeptime);
+						doc = Jsoup.connect(shvoongLink).timeout(3000).get();
+						continue;
+					}catch(SocketTimeoutException r){
+						System.out.println("Got SocketTimeoutException Exception... trying again");
+					} catch (InterruptedException e1) {
+						System.out.println("Got InterruptedException Exception... trying again");
+						e1.printStackTrace();
+					}
+				}
+				
+				
+				 Elements imageElements = doc.select("article");
+				 String EventHref = "";
+				 String EventText = "";
+				 String eventType = "";
+				 for(Element e:imageElements){
+				        Element links = e.getElementsByTag("a").first();
+				        EventHref = links.attr("href");
+				        EventText = links.attr("title");
+				        System.out.println("Event: " + EventText);
+				        eventType = "";
+				        
+				        Elements icons = e.getElementsByTag("li");
+				       
+				        for (Element icon : icons) {
+				        		if(icon.hasAttr("title")){
+				        			String ff = icon.attr("title");
+				        			System.out.println("asdf");
+				        		}
+				        		Elements imageData = icon.select("img");
+				        		
+				        		if(imageData.attr("title").trim().equals("שחיה") || imageData.attr("title").trim().equals("ריצה") || imageData.attr("title").trim().equals("אופניים") || imageData.attr("title").trim().equals("טריאתלון"))
+				        		{
+				        			eventType = imageData.attr("title").trim();
+				        			break;
+				        		}	       
+				        }
+				        
+				        //System.out.println("Parsing: "  + EventHref);
+				        if(!eventType.equals("")){
+				        	parseShvoongEvent(EventHref,eventType);
+				        }
+				        else{
+				        	//System.out.println("No event Type for " + EventHref);
+				        }
+				       // parseShvoongEvent("http://www.shvoong.co.il/events/%d7%9e%d7%a8%d7%95%d7%a5-%d7%9b%d7%a4%d7%a8-%d7%a1%d7%91%d7%90-3/",eventType);
+				      }
+			}
+
+		} catch (IOException e) {
+			System.out.println("Got Exception!");
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 	public static String getCity(String cordinates) throws IOException, ParseException{
 		
@@ -438,7 +533,7 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
         JSONArray jsonObject1 = (JSONArray) jb.get("results");
         if(jsonObject1.size() == 0)
         {
-        	System.out.println("***  Could not find City as the JSON response was empty!!");
+        	//System.out.println("***  Could not find City as the JSON response was empty!!");
         	return "";
         }
         	
@@ -495,76 +590,7 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 		return largest;
 	}
 	
-	public static void getShvoong(int attemp) {
-		Document doc = null;
-		int maxPaginate = 0;
-		maxPaginate = getMaxPagination();
-		
-		try {
-			
-			for(int i=1;i<= maxPaginate;i++){
-				
-				String shvoongLink = null;
-				if(i == 1)
-					shvoongLink = shvoong + "/events";
-				else
-					shvoongLink = shvoong + "/events/page/" + i + "/";
-				
-				
-				try {
-					Thread.sleep(sleeptime);
-				} catch (InterruptedException e1) {
-					System.out.println("Exception 8");
-					e1.printStackTrace();
-				}
-				
-				System.out.println("**********");
-				doc = Jsoup.connect(shvoongLink).timeout(3000).get();
-				System.out.println("**********");
-				
-				 Elements imageElements = doc.select("article");
-				 String EventHref = "";
-				 String EventText = "";
-				 String eventType = "";
-				 for(Element e:imageElements){
-				        Element links = e.getElementsByTag("a").first();
-				        EventHref = links.attr("href");
-				        EventText = links.attr("title");
-				        System.out.println("Event: " + EventText);
-				        
-				        Elements icons = e.getElementsByTag("li");
-				        int count = 1;
-				        for (Element icon : icons) {
-				        	if(count == 3){
-				        		Elements imageData = icon.select("img");
-				        		eventType = imageData.attr("title").trim();
-				        	}
-				        	count++;
-				        }
-				        
-				        System.out.println("Parsing: "  + EventHref);
-				        parseShvoongEvent(EventHref,eventType);
-				       // parseShvoongEvent("http://www.shvoong.co.il/events/%d7%9e%d7%a8%d7%95%d7%a5-%d7%9b%d7%a4%d7%a8-%d7%a1%d7%91%d7%90-3/",eventType);
-				       
-
-				        
-				      }
-			}
-
-		} catch (IOException e) {
-
-			if(attemp!=0){
-				try {
-					Thread.sleep(3);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
-				getShvoong(attemp--);
-			}
-			e.printStackTrace();
-		}
-		
-	}
+	
 	public static String getEventType(String eventType){
 		
 		if(eventType.equals("ריצה"))

@@ -215,7 +215,8 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 			 event.location = eventPlace[1].trim();
 			 event.type = getEventType(eventType[1].trim());
 			 event.vendor="realtiming";
-			 event.date = eventDate;
+			 String[] tmp=eventDate.split("-");
+			 event.date = tmp[2]+"-"+tmp[1]+"-"+tmp[0];
 			 eventsList.add(event);
 		 }
 		 
@@ -258,7 +259,12 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 			 event.description = doc.getElementsByClass("entry-content").text(); 
 			 event.location=doc.getElementsByClass("_location").text();
 			 event.date=doc.getElementsByClass("_start").text();
-			 
+			 if(event.date!=null){
+				 try{
+					 event.date=event.date.substring(0,event.date.indexOf(" "));
+				 }
+				 catch(Exception e){}
+		     }
 			 //get the city name from google maps coordinates
 			 Elements iframes = doc.getElementsByTag("iframe");
 			 for(Element iframe:iframes){

@@ -78,7 +78,7 @@ class general{
     
     class func setContestsFromURL() {
         println("fetching contests from URL")
-        let urlPath = "https://s3-eu-west-1.amazonaws.com/com.pickarace.app/contests.json"
+        let urlPath = "https://s3-eu-west-1.amazonaws.com/com.pickarace.app/contestsTest.json"
         let url = NSURL(string: urlPath)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in

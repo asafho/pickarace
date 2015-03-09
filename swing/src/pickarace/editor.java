@@ -84,11 +84,8 @@ public class editor {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-<<<<<<< HEAD
 				//aws.readContestsFile();
-=======
-			//	aws.readContestsFile();
->>>>>>> 9792096a200f199e89cf94b5fd63e2499a95f7a4
+
 				resetFrame();
 			}
 		});
@@ -465,13 +462,10 @@ public class editor {
 		btnNewButton = new JButton("get from shvoong");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-<<<<<<< HEAD
+
 				HTMLParser.getShvoong();
 				//HTMLParser.getRealTiming();
-=======
-				HTMLParser.getRealTiming();
-				HTMLParser.getShvoong();
->>>>>>> 9792096a200f199e89cf94b5fd63e2499a95f7a4
+
 			}
 		});
 		btnNewButton.setBounds(6, 608, 163, 29);

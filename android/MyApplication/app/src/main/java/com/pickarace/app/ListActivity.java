@@ -47,11 +47,17 @@ public class ListActivity extends Activity {
 
         try {
             JSONArray events = appData.getJSONArray("events");
+            int countEvents = 0;
             for(int i=0;i<events.length();i++)
             {
                 JSONObject jsonEvent = events.getJSONObject(i);
-                if( globalVariable.getTopic().equals(jsonEvent.getString("type")))
+                String eventType = jsonEvent.getString("type");
+                String typePassed = globalVariable.getTopic();
+
+                System.out.println("eventType:" + eventType + " " + "typePassed:" + typePassed);
+               if( typePassed.equals(eventType))
                {
+                   countEvents++;
                     Events event = new Events();
                     event.setEventName(jsonEvent.getString("name"));
                     event.setEventLocation(jsonEvent.getJSONObject("location").getString("city"));
@@ -75,8 +81,11 @@ public class ListActivity extends Activity {
 
                     contestList.add(event);
                 }
-
+                else{
+                   System.out.println("Found Event: " + eventType);
+               }
             }
+            System.out.println("****  Total Events: " + countEvents);
 
         } catch (JSONException e) {
             e.printStackTrace();

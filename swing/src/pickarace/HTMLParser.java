@@ -6,7 +6,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.SocketTimeoutException;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -83,6 +87,7 @@ public class HTMLParser {
 	private static String realTimingRegisterLink = null;
 	public static ArrayList<Event> eventsList = new ArrayList<Event>();
 	private static int sleeptime = 1000;
+	static SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 	
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
 		getShvoong();
@@ -92,6 +97,8 @@ public class HTMLParser {
 
 		
 	public static void getRealTiming() {
+		
+		String starttime = format.format(Calendar.getInstance().getTime());
 		
 		Document doc = null;
 		
@@ -276,9 +283,11 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 					
 					
 					 try {
-						 if(!getCity(location_cordinates).equals(""))
 							 event.city = getCity(location_cordinates);
+							 if(event.city == "")
+								 event.city = "אין מידע";
 					} catch (ParseException e) {
+						event.city = "אין מידע";
 						System.out.println("Exception 3");
 						e.printStackTrace();
 					}
@@ -286,7 +295,7 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 			 
 			 }
 			 
-			 
+				
 			 if(event.name.length()<=0){
 				 Elements metaTags = doc.getElementsByTag("meta");
 				  for(Element metatag:metaTags){
@@ -415,9 +424,14 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 	
 	
 	public static void getShvoong() {
+		
+		String starttime = format.format(Calendar.getInstance().getTime());
+		
+		
 		Document doc = null;
 		int maxPaginate = 0;
 		maxPaginate = getMaxPagination();
+		maxPaginate = 3;
 		
 		try {
 			
@@ -487,6 +501,9 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 			e.printStackTrace();
 		}
 		
+		
+		
+		
 	}
 	
 	
@@ -532,10 +549,8 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
         //now read
         JSONArray jsonObject1 = (JSONArray) jb.get("results");
         if(jsonObject1.size() == 0)
-        {
-        	//System.out.println("***  Could not find City as the JSON response was empty!!");
         	return "";
-        }
+
         	
         
         JSONObject jsonObject2 = (JSONObject)jsonObject1.get(0);

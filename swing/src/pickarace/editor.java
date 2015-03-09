@@ -84,7 +84,7 @@ public class editor {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				aws.readContestsFile();
+				//aws.readContestsFile();
 				resetFrame();
 			}
 		});
@@ -462,7 +462,7 @@ public class editor {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				HTMLParser.getShvoong();
-				HTMLParser.getRealTiming();
+				//HTMLParser.getRealTiming();
 			}
 		});
 		btnNewButton.setBounds(6, 608, 163, 29);

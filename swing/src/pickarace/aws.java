@@ -22,13 +22,13 @@ public class aws {
 	private static String awsAccessKey="AKIAIEDJH4MYJN364IBQ";
 	private static String awsSecretKey;
 	private static S3Service s3Service;
-	public static JSONArray contestsJsonArray;
+	public static JSONArray contestsJsonArray = new JSONArray();
 	
 	
 	public static void awsConnect()
 	{
 		if(awsSecretKey==null)
-		{
+		{ 
 			awsSecretKey=JOptionPane.showInputDialog(awsAccessKey);
 		}
 		AWSCredentials awsCredentials=new AWSCredentials(awsAccessKey, awsSecretKey);
@@ -74,11 +74,13 @@ public class aws {
 
 
 	public static void uploadNewFile() {
+		
+	/*
 		if(s3Service==null)
 		{
 			awsConnect();
 		}
-
+*/
 		pushEventsToJsonArray();
 		
 		

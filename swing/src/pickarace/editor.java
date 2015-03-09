@@ -117,7 +117,7 @@ public class editor {
 		frame.getContentPane().add(eventName);
 		eventName.setColumns(10);
 		
-		JLabel label = new JLabel("שם האירוע");
+		JLabel label = new JLabel("���� ������������");
 		label.setBounds(696, 28, 83, 16);
 		frame.getContentPane().add(label);
 		
@@ -126,35 +126,35 @@ public class editor {
 		type.setBounds(496, 56, 163, 27);
 		frame.getContentPane().add(type);
 		
-		JLabel label_1 = new JLabel("סוג");
+		JLabel label_1 = new JLabel("������");
 		label_1.setBounds(698, 60, 81, 16);
 		frame.getContentPane().add(label_1);
 		
 		country = new JTextField();
-		country.setText("ישראל");
-		country.setToolTipText("מדינה");
+		country.setText("����������");
+		country.setToolTipText("����������");
 		country.setBounds(523, 95, 134, 28);
 		frame.getContentPane().add(country);
 		country.setColumns(10);
 		
-		JLabel label_2 = new JLabel("מיקום");
+		JLabel label_2 = new JLabel("����������");
 		label_2.setBounds(696, 101, 83, 16);
 		frame.getContentPane().add(label_2);
 		
 		countryCode = new JTextField();
 		countryCode.setText("IL");
-		countryCode.setToolTipText("קוד מדינה");
+		countryCode.setToolTipText("������ ����������");
 		countryCode.setBounds(394, 95, 105, 28);
 		frame.getContentPane().add(countryCode);
 		countryCode.setColumns(10);
 		
 		city = new JTextField();
-		city.setToolTipText("עיר");
+		city.setToolTipText("������");
 		city.setBounds(237, 94, 134, 28);
 		frame.getContentPane().add(city);
 		city.setColumns(10);
 		
-		JLabel label_3 = new JLabel("תאריך האירוע");
+		JLabel label_3 = new JLabel("���������� ������������");
 		label_3.setBounds(696, 139, 83, 16);
 		frame.getContentPane().add(label_3);
 		
@@ -163,18 +163,18 @@ public class editor {
 		frame.getContentPane().add(date);
 		date.setColumns(10);
 		
-		JLabel label_4 = new JLabel("תאריך רישום");
+		JLabel label_4 = new JLabel("���������� ����������");
 		label_4.setBounds(681, 178, 98, 16);
 		frame.getContentPane().add(label_4);
 		
 		regDate = new JTextField();
-		regDate.setToolTipText("רישום מוקדם");
+		regDate.setToolTipText("���������� ����������");
 		regDate.setBounds(523, 173, 134, 28);
 		frame.getContentPane().add(regDate);
 		regDate.setColumns(10);
 		
 		regDateLate = new JTextField();
-		regDateLate.setToolTipText("רישום מאוחר");
+		regDateLate.setToolTipText("���������� ����������");
 		regDateLate.setBounds(365, 172, 134, 28);
 		frame.getContentPane().add(regDateLate);
 		regDateLate.setColumns(10);
@@ -207,25 +207,25 @@ public class editor {
 		frame.getContentPane().add(btnCancel);
 		
 		distance1 = new JTextField();
-		distance1.setText("מרחק");
+		distance1.setText("��������");
 		distance1.setBounds(660, 392, 134, 28);
 		frame.getContentPane().add(distance1);
 		distance1.setColumns(10);
 		
 		link1 = new JTextField();
-		link1.setText("לינק");
+		link1.setText("��������");
 		link1.setBounds(660, 418, 134, 28);
 		frame.getContentPane().add(link1);
 		link1.setColumns(10);
 		
 		price_reg1 = new JTextField();
-		price_reg1.setText("מחיר");
+		price_reg1.setText("��������");
 		price_reg1.setBounds(660, 445, 134, 28);
 		frame.getContentPane().add(price_reg1);
 		price_reg1.setColumns(10);
 		
 		price_late1 = new JTextField();
-		price_late1.setText("מחיר מאוחר");
+		price_late1.setText("�������� ����������");
 		price_late1.setBounds(660, 470, 134, 28);
 		frame.getContentPane().add(price_late1);
 		price_late1.setColumns(10);
@@ -235,7 +235,7 @@ public class editor {
 		vendor.setBounds(496, 212, 163, 27);
 		frame.getContentPane().add(vendor);
 		
-		JLabel label_5 = new JLabel("ספק");
+		JLabel label_5 = new JLabel("������");
 		label_5.setBounds(696, 216, 83, 16);
 		frame.getContentPane().add(label_5);
 		
@@ -248,25 +248,25 @@ public class editor {
 		frame.getContentPane().add(subtype2);
 		
 		price_late2 = new JTextField();
-		price_late2.setText("מחיר מאוחר");
+		price_late2.setText("�������� ����������");
 		price_late2.setColumns(10);
 		price_late2.setBounds(514, 470, 134, 28);
 		frame.getContentPane().add(price_late2);
 		
 		price_reg2 = new JTextField();
-		price_reg2.setText("מחיר");
+		price_reg2.setText("��������");
 		price_reg2.setColumns(10);
 		price_reg2.setBounds(514, 445, 134, 28);
 		frame.getContentPane().add(price_reg2);
 		
 		link2 = new JTextField();
-		link2.setText("לינק");
+		link2.setText("��������");
 		link2.setColumns(10);
 		link2.setBounds(514, 418, 134, 28);
 		frame.getContentPane().add(link2);
 		
 		distance2 = new JTextField();
-		distance2.setText("מרחק");
+		distance2.setText("��������");
 		distance2.setColumns(10);
 		distance2.setBounds(514, 392, 134, 28);
 		frame.getContentPane().add(distance2);
@@ -276,25 +276,25 @@ public class editor {
 		frame.getContentPane().add(subtype3);
 		
 		price_late3 = new JTextField();
-		price_late3.setText("מחיר מאוחר");
+		price_late3.setText("�������� ����������");
 		price_late3.setColumns(10);
 		price_late3.setBounds(368, 470, 134, 28);
 		frame.getContentPane().add(price_late3);
 		
 		price_reg3 = new JTextField();
-		price_reg3.setText("מחיר");
+		price_reg3.setText("��������");
 		price_reg3.setColumns(10);
 		price_reg3.setBounds(368, 445, 134, 28);
 		frame.getContentPane().add(price_reg3);
 		
 		link3 = new JTextField();
-		link3.setText("לינק");
+		link3.setText("��������");
 		link3.setColumns(10);
 		link3.setBounds(368, 418, 134, 28);
 		frame.getContentPane().add(link3);
 		
 		distance3 = new JTextField();
-		distance3.setText("מרחק");
+		distance3.setText("��������");
 		distance3.setColumns(10);
 		distance3.setBounds(368, 392, 134, 28);
 		frame.getContentPane().add(distance3);
@@ -304,25 +304,25 @@ public class editor {
 		frame.getContentPane().add(subtype4);
 		
 		price_late4 = new JTextField();
-		price_late4.setText("מחיר מאוחר");
+		price_late4.setText("�������� ����������");
 		price_late4.setColumns(10);
 		price_late4.setBounds(222, 470, 134, 28);
 		frame.getContentPane().add(price_late4);
 		
 		price_reg4 = new JTextField();
-		price_reg4.setText("מחיר");
+		price_reg4.setText("��������");
 		price_reg4.setColumns(10);
 		price_reg4.setBounds(222, 445, 134, 28);
 		frame.getContentPane().add(price_reg4);
 		
 		link4 = new JTextField();
-		link4.setText("לינק");
+		link4.setText("��������");
 		link4.setColumns(10);
 		link4.setBounds(222, 418, 134, 28);
 		frame.getContentPane().add(link4);
 		
 		distance4 = new JTextField();
-		distance4.setText("מרחק");
+		distance4.setText("��������");
 		distance4.setColumns(10);
 		distance4.setBounds(222, 392, 134, 28);
 		frame.getContentPane().add(distance4);
@@ -332,25 +332,25 @@ public class editor {
 		frame.getContentPane().add(subtype5);
 		
 		price_late5 = new JTextField();
-		price_late5.setText("מחיר מאוחר");
+		price_late5.setText("�������� ����������");
 		price_late5.setColumns(10);
 		price_late5.setBounds(660, 612, 134, 28);
 		frame.getContentPane().add(price_late5);
 		
 		price_reg5 = new JTextField();
-		price_reg5.setText("מחיר");
+		price_reg5.setText("��������");
 		price_reg5.setColumns(10);
 		price_reg5.setBounds(660, 587, 134, 28);
 		frame.getContentPane().add(price_reg5);
 		
 		link5 = new JTextField();
-		link5.setText("לינק");
+		link5.setText("��������");
 		link5.setColumns(10);
 		link5.setBounds(660, 560, 134, 28);
 		frame.getContentPane().add(link5);
 		
 		distance5 = new JTextField();
-		distance5.setText("מרחק");
+		distance5.setText("��������");
 		distance5.setColumns(10);
 		distance5.setBounds(660, 534, 134, 28);
 		frame.getContentPane().add(distance5);
@@ -360,25 +360,25 @@ public class editor {
 		frame.getContentPane().add(subtype6);
 		
 		price_late6 = new JTextField();
-		price_late6.setText("מחיר מאוחר");
+		price_late6.setText("�������� ����������");
 		price_late6.setColumns(10);
 		price_late6.setBounds(511, 612, 134, 28);
 		frame.getContentPane().add(price_late6);
 		
 		price_reg6 = new JTextField();
-		price_reg6.setText("מחיר");
+		price_reg6.setText("��������");
 		price_reg6.setColumns(10);
 		price_reg6.setBounds(511, 587, 134, 28);
 		frame.getContentPane().add(price_reg6);
 		
 		link6 = new JTextField();
-		link6.setText("לינק");
+		link6.setText("��������");
 		link6.setColumns(10);
 		link6.setBounds(511, 560, 134, 28);
 		frame.getContentPane().add(link6);
 		
 		distance6 = new JTextField();
-		distance6.setText("מרחק");
+		distance6.setText("��������");
 		distance6.setColumns(10);
 		distance6.setBounds(511, 534, 134, 28);
 		frame.getContentPane().add(distance6);
@@ -388,25 +388,25 @@ public class editor {
 		frame.getContentPane().add(subtype7);
 		
 		price_late7 = new JTextField();
-		price_late7.setText("מחיר מאוחר");
+		price_late7.setText("�������� ����������");
 		price_late7.setColumns(10);
 		price_late7.setBounds(363, 612, 134, 28);
 		frame.getContentPane().add(price_late7);
 		
 		price_reg7 = new JTextField();
-		price_reg7.setText("מחיר");
+		price_reg7.setText("��������");
 		price_reg7.setColumns(10);
 		price_reg7.setBounds(363, 587, 134, 28);
 		frame.getContentPane().add(price_reg7);
 		
 		link7 = new JTextField();
-		link7.setText("לינק");
+		link7.setText("��������");
 		link7.setColumns(10);
 		link7.setBounds(363, 560, 134, 28);
 		frame.getContentPane().add(link7);
 		
 		distance7 = new JTextField();
-		distance7.setText("מרחק");
+		distance7.setText("��������");
 		distance7.setColumns(10);
 		distance7.setBounds(363, 534, 134, 28);
 		frame.getContentPane().add(distance7);
@@ -416,25 +416,25 @@ public class editor {
 		frame.getContentPane().add(subtype8);
 		
 		price_late8 = new JTextField();
-		price_late8.setText("מחיר מאוחר");
+		price_late8.setText("�������� ����������");
 		price_late8.setColumns(10);
 		price_late8.setBounds(222, 612, 134, 28);
 		frame.getContentPane().add(price_late8);
 		
 		price_reg8 = new JTextField();
-		price_reg8.setText("מחיר");
+		price_reg8.setText("��������");
 		price_reg8.setColumns(10);
 		price_reg8.setBounds(222, 587, 134, 28);
 		frame.getContentPane().add(price_reg8);
 		
 		link8 = new JTextField();
-		link8.setText("לינק");
+		link8.setText("��������");
 		link8.setColumns(10);
 		link8.setBounds(222, 560, 134, 28);
 		frame.getContentPane().add(link8);
 		
 		distance8 = new JTextField();
-		distance8.setText("מרחק");
+		distance8.setText("��������");
 		distance8.setColumns(10);
 		distance8.setBounds(222, 534, 134, 28);
 		frame.getContentPane().add(distance8);
@@ -444,7 +444,7 @@ public class editor {
 		details.setBounds(249, 245, 408, 111);
 		frame.getContentPane().add(details);
 		
-		label_6 = new JLabel("פרטים");
+		label_6 = new JLabel("����������");
 		label_6.setBounds(696, 245, 61, 16);
 		frame.getContentPane().add(label_6);
 		
@@ -458,11 +458,16 @@ public class editor {
 		btnUpload.setBounds(6, 649, 163, 29);
 		frame.getContentPane().add(btnUpload);
 		
-		btnNewButton = new JButton("get from shvoong");
+		btnNewButton = new JButton("Get Data");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+<<<<<<< HEAD
 			//	HTMLParser.getRealTiming();
 				HTMLParser.getShvoong(3);
+=======
+				HTMLParser.getShvoong();
+				HTMLParser.getRealTiming();
+>>>>>>> 7f6a7df4c95a87767d3dead05154c4db930b08c2
 			}
 		});
 		btnNewButton.setBounds(6, 608, 163, 29);

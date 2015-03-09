@@ -549,17 +549,11 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 	public static int getMaxPagination()
 	{
 		int[] pages = new int[20];
-		int i = 0;
 		Document doc = null;
+		int i=0;
 	    int largest = Integer.MIN_VALUE;
-	    
-	    String shvoongLink = shvoong + "/events";
-		
 		try {
-<<<<<<< HEAD
-			
-			for(int i=1;i<=20;i++){
-				
+			for(i=1;i<=20;i++){			
 				String shvoongLink = null;
 				if(i == 1)
 					shvoongLink = shvoong + "/events";
@@ -608,25 +602,8 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 				      }
 			}
 
-		} catch (IOException e) {/*
-
-			if(attemp!=0){
-				try {
-					Thread.sleep(3);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
-				getShvoong(attemp--);
-			}*/
-			e.printStackTrace();
-=======
-			Thread.sleep(sleeptime);
-			doc = Jsoup.connect(shvoongLink).timeout(3000).get();
-		} catch (InterruptedException e1) {
-			System.out.println("Exception ...");
-			e1.printStackTrace();
+		} catch (IOException e) {
 		}
-		catch (IOException e) {}
 		
 		Elements paginations = doc.select("div.pagination");
 		 for(Element paginate:paginations){
@@ -675,7 +652,6 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 		}
 		else{
 			return  "running";
->>>>>>> 7f6a7df4c95a87767d3dead05154c4db930b08c2
 		}
 		
 	}

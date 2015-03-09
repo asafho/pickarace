@@ -19,6 +19,7 @@
 	<classpathentry kind="lib" path="lib/httpmime-4.2.1.jar"/>
 	<classpathentry kind="lib" path="lib/java-xmlbuilder-0.4.jar"/>
 	<classpathentry kind="lib" path="lib/jsoup-1.8.1.jar"/>
-	<classpathentry kind="lib" path="/systemr/standart/swing/lib/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/gson-2.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/json-simple-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

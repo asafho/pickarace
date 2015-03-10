@@ -44,7 +44,6 @@ public class ListActivity extends Activity {
 
         listView = (ListView) findViewById(R.id.list);
 
-
         try {
             JSONArray events = appData.getJSONArray("events");
             int countEvents = 0;

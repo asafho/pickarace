@@ -574,69 +574,26 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 		int i=0;
 	    int largest = Integer.MIN_VALUE;
 		try {
-			for(i=1;i<=20;i++){			
-				String shvoongLink = null;
-				if(i == 1)
-					shvoongLink = shvoong + "/events";
-				else
-					shvoongLink = shvoong + "/events/page/" + i + "/";
-				
-				
-				try {
-					Thread.sleep(sleeptime);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
-				System.out.println("**********");
+			
+				String shvoongLink = shvoong + "/events";
 				doc = Jsoup.connect(shvoongLink).timeout(3000).get();
-				System.out.println("**********");
 				
-				
-				 Elements imageElements = doc.select("article");
-				 String EventHref = "";
-				 String EventText = "";
-				 String eventType = "";
-				 for(Element e:imageElements){
-				        Element links = e.getElementsByTag("a").first();
-				        EventHref = links.attr("href");
-				        EventText = links.attr("title");
-				        System.out.println("Event: " + EventText);
-				        
-				        Elements icons = e.getElementsByTag("li");
-				        int count = 1;
-				        for (Element icon : icons) {
-				        	if(count == 3){
-				        		Elements imageData = icon.select("img");
-				        		eventType = imageData.attr("title").trim();
-				        	}
-				        	count++;
-				        }
-				        
-				        System.out.println("Parsing: "  + EventHref);
-				        parseShvoongEvent(EventHref,eventType);
-				       // parseShvoongEvent("http://www.shvoong.co.il/events/%d7%9e%d7%a8%d7%95%d7%a5-%d7%9b%d7%a4%d7%a8-%d7%a1%d7%91%d7%90-3/",eventType);
-				       
-
-				        
-				      }
-			}
+				Elements paginations = doc.select("div.pagination");
+				 for(Element paginate:paginations){
+					 //page-numbers
+					 Elements links = paginate.getElementsByTag("a");
+					 for(Element link:links){
+						if ( ! link.getElementsByAttributeValue("class", "page-numbers").text().equals("")){
+							pages[i] = Integer.parseInt(link.getElementsByAttributeValue("class", "page-numbers").text());
+							i++;
+						}
+					 }
+				 }
 
 		} catch (IOException e) {
 		}
 		
-		Elements paginations = doc.select("div.pagination");
-		 for(Element paginate:paginations){
-			 //page-numbers
-			 Elements links = paginate.getElementsByTag("a");
-			 for(Element link:links){
-				if ( ! link.getElementsByAttributeValue("class", "page-numbers").text().equals("")){
-					pages[i] = Integer.parseInt(link.getElementsByAttributeValue("class", "page-numbers").text());
-					i++;
-				}
-			 }
-		 }
+
 		
 		 for(int j = 0;j<=pages.length;j++) {	
 			 if(pages[j] != 0){

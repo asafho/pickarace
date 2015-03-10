@@ -12,6 +12,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.flurry.android.FlurryAgent;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.pickarace.app.pickarace.R;
 
 public class AppController extends Application {
@@ -23,21 +25,30 @@ public class AppController extends Application {
     private static AppController mInstance;
     private String topic;
     private String s3RootURL="https://s3-eu-west-1.amazonaws.com/com.pickarace.app/";
+    private InterstitialAd interstitial;
+    private static AdRequest adRequest;
 
     public String getTopic() {
-
         return topic;
+    }
+
+    public void setTopic(String aTopic) {
+        topic = aTopic;
+    }
+
+    public InterstitialAd getinterstitial() {
+        return interstitial;
+    }
+
+    public void setinterstitial(InterstitialAd aTopic) {
+        interstitial = aTopic;
     }
 
     public String getS3RootURL(){
         return s3RootURL;
     }
 
-    public void setTopic(String aTopic) {
 
-        topic = aTopic;
-
-    }
 
     public static boolean isConnected(Context context)
     {
@@ -60,10 +71,22 @@ public class AppController extends Application {
         // init Flurry
         FlurryAgent.init(this, getResources().getString(R.string.flurryKey));
 
+        interstitial = new InterstitialAd(this);
+        String adUnitID = getResources().getString(R.string.ad_unit_id);
+        interstitial.setAdUnitId(adUnitID);
+        adRequest = new AdRequest.Builder().build();
+        interstitial.loadAd(adRequest);
+
     }
 
     public static synchronized AppController getInstance() {
         return mInstance;
+    }
+
+    public void displayInterstitial() {
+        if (interstitial.isLoaded()) {
+            interstitial.show();
+        }
     }
 
     public RequestQueue getRequestQueue() {

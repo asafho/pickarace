@@ -14,27 +14,14 @@ import android.view.ViewGroup;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
 import com.pickarace.app.pickarace.R;
 
 public class MainViewActivity extends Activity {
-    private InterstitialAd interstitial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen);
-
-        // Create the interstitial.
-        interstitial = new InterstitialAd(this);
-        String adUnitID = getResources().getString(R.string.ad_unit_id);
-        interstitial.setAdUnitId(adUnitID);
-
-        // Create ad request.
-        AdRequest adRequest = new AdRequest.Builder().build();
-
-        // Begin loading your interstitial.
-        interstitial.loadAd(adRequest);
     }
 
 
@@ -70,7 +57,7 @@ public class MainViewActivity extends Activity {
         Intent openStep = new Intent(MainViewActivity.this,  ListActivity.class);
         Log.v("internet test: ", String.valueOf(AppController.isConnected(this.getApplicationContext())));
         startActivity(openStep);
-        displayInterstitial();
+        globalVariable.displayInterstitial();
     }
 
     public void swimmingButtonOnClick(View view) {
@@ -81,7 +68,7 @@ public class MainViewActivity extends Activity {
         Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
         Log.v("internet test: ", String.valueOf(AppController.isConnected(this.getApplicationContext())));
         startActivity(openStep);
-        displayInterstitial();
+        globalVariable.displayInterstitial();
     }
 
     public void bikingButtonOnClick(View view) {
@@ -92,7 +79,7 @@ public class MainViewActivity extends Activity {
         Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
         Log.v("internet test: ", String.valueOf(AppController.isConnected(this.getApplicationContext())));
         startActivity(openStep);
-        displayInterstitial();
+        globalVariable.displayInterstitial();
     }
 
     public void triathlonButtonOnClick(View view) {
@@ -103,16 +90,11 @@ public class MainViewActivity extends Activity {
         Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
         Log.v("internet test: ", String.valueOf(AppController.isConnected(this.getApplicationContext())));
         startActivity(openStep);
-        displayInterstitial();
+        globalVariable.displayInterstitial();
     }
 
 
 
-    public void displayInterstitial() {
-        if (interstitial.isLoaded()) {
-            interstitial.show();
-        }
-    }
 
     /**
      * A placeholder fragment containing a simple view. This fragment

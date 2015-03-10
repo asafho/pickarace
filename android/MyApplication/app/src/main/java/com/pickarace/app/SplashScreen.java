@@ -9,6 +9,8 @@ import android.view.MenuItem;
 
 import com.pickarace.app.pickarace.R;
 
+import java.net.URL;
+
 
 public class SplashScreen extends Activity {
     private final int SPLASH_DISPLAY_LENGTH = 1000;
@@ -17,7 +19,9 @@ public class SplashScreen extends Activity {
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.activity_splash_screen);
-        network.setContests();
+        //network.setContests();
+        URL dummy=null;
+        new network().execute(dummy);
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/
         new Handler().postDelayed(new Runnable(){
@@ -31,7 +35,6 @@ public class SplashScreen extends Activity {
         }, SPLASH_DISPLAY_LENGTH);
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

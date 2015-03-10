@@ -487,6 +487,7 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 				        		if(imageData.attr("title").trim().equals("שחיה") || imageData.attr("title").trim().equals("ריצה") || imageData.attr("title").trim().equals("אופניים") || imageData.attr("title").trim().equals("טריאתלון"))
 				        		{
 				        			eventType = imageData.attr("title").trim();
+				        			System.out.println("");
 				        			break;
 				        		}	       
 				        }

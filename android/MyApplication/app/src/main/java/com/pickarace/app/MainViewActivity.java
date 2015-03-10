@@ -52,10 +52,8 @@ public class MainViewActivity extends Activity {
         FlurryAgent.logEvent("Pressed On Running Option");
         final AppController globalVariable = (AppController) getApplicationContext();
         globalVariable.setTopic("running");
-        Log.v("action", "running button clicked");
-        //Intent openStep = new Intent(MainViewActivity.this, ListActivity.class);
+        Log.w("AAA", "running button clicked");
         Intent openStep = new Intent(MainViewActivity.this,  ListActivity.class);
-        Log.v("internet test: ", String.valueOf(AppController.isConnected(this.getApplicationContext())));
         startActivity(openStep);
         globalVariable.displayInterstitial();
     }

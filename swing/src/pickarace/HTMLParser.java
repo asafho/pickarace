@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
+import java.net.URL;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -90,8 +92,9 @@ public class HTMLParser {
 	static SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 	
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-		getShvoong();
 		getRealTiming();
+		getShvoong();
+		aws.uploadNewFile();
 	}
 
 
@@ -152,7 +155,7 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 	try {
 		doc = Jsoup.connect(eventURL).get();
 		
-		//System.out.println("Parsing event: " + eventURL);
+		System.out.println("Parsing event: " + eventURL);
 		
 		Elements els = doc.select("meta");
 		for( Element row : els) {
@@ -232,25 +235,72 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 	
 	
 	
+public static String getHTTPObj(String url, int retry)
+{
+	
+	try{
+	Document doc;
+	URL obj = new URL(url);
+	HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+	
+	
+	for(int i = 0;i< retry;i++){
+		// optional default is GET
+		con.setRequestMethod("GET");
+	
+		//add request header
+		String USER_AGENT = "Mozilla/5.0";
+		con.setRequestProperty("User-Agent", USER_AGENT);
+	
+		int responseCode = con.getResponseCode();
+		System.out.println("\nSending 'GET' request to URL : " + url);
+		System.out.println("Response Code : " + responseCode);
+		
+		if(responseCode != 200)
+			getHTTPObj(url,retry--);
+		else
+			break;
+	}
+
+	BufferedReader in = new BufferedReader(
+	        new InputStreamReader(con.getInputStream()));
+	String inputLine;
+	StringBuffer response = new StringBuffer();
+
+	while ((inputLine = in.readLine()) != null) {
+		response.append(inputLine);
+	}
+	in.close();
+	return response.toString();
+	}
+	catch(IOException e){}
+	
+	return null;	
+}
+
+
 	public static void parseShvoongEvent(String eventURL, String eventType) throws FileNotFoundException, UnsupportedEncodingException
 	{
 			
 		Event event=new Event();
-		
+		event.city = "אין מידע";
 		event.type = getEventType(eventType); 
 		event.vendor="shvoong";
 		String registrationLink = null;
 		Document doc = null;
 		try {
-			
-			
 			for(int i=1;i<3;i++){
 				Thread.sleep(sleeptime);
-				try{
-					doc = Jsoup.connect(eventURL).timeout(3000).get();
-					continue;
-				}catch(SocketTimeoutException r){
-					//System.out.println("Got Http Socket timeout Exception... trying again");
+				//doc = Jsoup.connect(eventURL).timeout(3000).get();
+				if(eventURL != null && !eventURL.equals("")){
+					try{
+						doc = Jsoup.parse(getHTTPObj(eventURL,i));
+					}catch(IllegalArgumentException r){
+						
+						System.out.println("eventURL: " + eventURL);
+						doc = Jsoup.connect(eventURL).timeout(3000).get();
+					}
+					break;
 				}
 			}
 					
@@ -290,7 +340,7 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 					
 					 try {
 							 event.city = getCity(location_cordinates);
-							 if(event.city == "")
+							 if(event.city.equals("null") || event.city.equals(""))
 								 event.city = "אין מידע";
 					} catch (ParseException e) {
 						event.city = "אין מידע";
@@ -437,7 +487,6 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 		Document doc = null;
 		int maxPaginate = 0;
 		maxPaginate = getMaxPagination();
-		maxPaginate = 3;
 		
 		try {
 			
@@ -480,26 +529,23 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 				        for (Element icon : icons) {
 				        		if(icon.hasAttr("title")){
 				        			String ff = icon.attr("title");
-				        			System.out.println("asdf");
 				        		}
 				        		Elements imageData = icon.select("img");
 				        		
-				        		if(imageData.attr("title").trim().equals("שחיה") || imageData.attr("title").trim().equals("ריצה") || imageData.attr("title").trim().equals("אופניים") || imageData.attr("title").trim().equals("טריאתלון"))
+				        		if(imageData.attr("title").trim().contains("משחה") || imageData.attr("title").trim().contains("שחיה") || imageData.attr("title").trim().contains("שחייה") || imageData.attr("title").trim().equals("ריצה") || imageData.attr("title").trim().contains("אופניים") || imageData.attr("title").trim().contains("טריאתלון"))
 				        		{
 				        			eventType = imageData.attr("title").trim();
-				        			System.out.println("");
 				        			break;
 				        		}	       
 				        }
 				        
-				        //System.out.println("Parsing: "  + EventHref);
 				        if(!eventType.equals("")){
+				        	//parseShvoongEvent("http://www.shvoong.co.il/events/%D7%98%D7%A8%D7%99%D7%90%D7%AA%D7%9C%D7%95%D7%9F-%D7%A8%D7%90%D7%A9%D7%95%D7%9F-%D7%9C%D7%A6%D7%99%D7%95%D7%9F-2/?cbg_tz=-120","טריאתלון");
 				        	parseShvoongEvent(EventHref,eventType);
 				        }
 				        else{
 				        	//System.out.println("No event Type for " + EventHref);
 				        }
-				       // parseShvoongEvent("http://www.shvoong.co.il/events/%d7%9e%d7%a8%d7%95%d7%a5-%d7%9b%d7%a4%d7%a8-%d7%a1%d7%91%d7%90-3/",eventType);
 				      }
 			}
 
@@ -624,6 +670,9 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 			return "biking";
 		}
 		else if(eventType.equals("שחיה")){
+			return "swiming";
+		}
+		else if(eventType.contains("שחייה ו")){
 			return "swiming";
 		}
 		else if(eventType.equals("טריאתלון")){

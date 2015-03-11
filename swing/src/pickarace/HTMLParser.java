@@ -673,7 +673,7 @@ public static String getHTTPObj(String url, int retry)
 			return "swiming";
 		}
 		else if(eventType.contains("שחייה ו")){
-			return "swiming";
+			return "swimming";
 		}
 		else if(eventType.equals("טריאתלון")){
 			return "triathlon";

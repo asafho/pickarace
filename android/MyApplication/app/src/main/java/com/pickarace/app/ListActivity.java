@@ -53,7 +53,7 @@ public class ListActivity extends Activity {
                 String eventType = jsonEvent.getString("type");
                 String typePassed = globalVariable.getTopic();
 
-                System.out.println("eventType:" + eventType + " " + "typePassed:" + typePassed);
+                //System.out.println("eventType:" + eventType + " " + "typePassed:" + typePassed);
                if( typePassed.equals(eventType))
                {
                    countEvents++;

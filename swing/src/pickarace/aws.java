@@ -4,6 +4,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -23,7 +31,6 @@ public class aws {
 	private static String awsSecretKey;
 	private static S3Service s3Service;
 	public static JSONArray contestsJsonArray = new JSONArray();
-	
 	
 	public static void awsConnect()
 	{
@@ -50,7 +57,7 @@ public class aws {
 			}
 
 			try {
-				S3Object object=s3Service.getObject("com.pickarace.app", "contests_backup.json");
+				S3Object object=s3Service.getObject("com.pickarace.app", "contests.json");
 				BufferedReader bReader = new BufferedReader(new InputStreamReader(object.getDataInputStream(),"UTF8"));
 				String result= "";
 				String line= "";
@@ -86,11 +93,12 @@ public class aws {
 		
 		try{
 			JSONObject newFile=new JSONObject();
+			contestsJsonArray=getSortedList(contestsJsonArray);
 			newFile.put("events", contestsJsonArray);
-			String fileContent = newFile.toString(1).replaceAll("\": \"", "\":\"");
+			String jsonFileContent = newFile.toString(1).replaceAll("\": \"", "\":\"");
 
 			
-			FileUtils.writeStringToFile(new File("contests.json"), fileContent,"UTF-8");
+			FileUtils.writeStringToFile(new File("contests.json"), jsonFileContent,"UTF-8");
 			
 	/*		S3Object stringObject = new S3Object("contests_backup.json", fileContent);
 			stringObject.setAcl(AccessControlList.REST_CANNED_PUBLIC_READ);
@@ -151,4 +159,36 @@ public class aws {
 			e.printStackTrace();
 		}
 	}
+	public static JSONArray getSortedList(JSONArray array) throws JSONException {
+	    List<JSONObject> list = new ArrayList<JSONObject>();
+	    for (int i = 0; i < array.length(); i++) {
+	            list.add(array.getJSONObject(i));
+	    }
+	    Collections.sort(list, new sortByDates());
+	
+	    JSONArray resultArray = new JSONArray(list);
+	
+	    return resultArray;
+
+	}
+}
+class sortByDates implements Comparator<JSONObject> {
+	
+	public int compare(JSONObject obj1, JSONObject obj2) {
+	    try {
+	   	 DateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
+	     Date date1 = dateformat.parse(obj1.getString("date"));
+	     Date date2 = dateformat.parse(obj2.getString("date"));
+	     int res=date1.compareTo(date2);
+	     return res > 0 ? 1 : res<0 ? -1 :0;
+	        			
+	    } catch (JSONException e) {
+	        e.printStackTrace();
+	    } catch (ParseException e) {
+			e.printStackTrace();
+		}
+	    return 0;
+	
+	}
+
 }

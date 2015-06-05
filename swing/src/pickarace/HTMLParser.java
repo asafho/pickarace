@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -84,6 +86,8 @@ class subType{
 public class HTMLParser {
 
 	private static String realTiming = "http://www.realtiming.co.il";
+	private static String znook = "https://www.znook.co.il";
+	private static String sportweb = "http://www.sportweb.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D";
 	private static String shvoong = "http://www.shvoong.co.il";
 	private static String realTimingLink = null;
 	private static String realTimingRegisterLink = null;
@@ -91,15 +95,114 @@ public class HTMLParser {
 	private static int sleeptime = 1000;
 	static SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 	
-	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
+public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
+		getSportWeb();
 		getRealTiming();
 		getShvoong();
 		aws.uploadNewFile();
 	}
-
-
 		
-	public static void getRealTiming() {
+public static void getSportWeb() {
+		String starttime = format.format(Calendar.getInstance().getTime());
+		
+		Document doc = null;
+		
+		try {
+			doc = Jsoup.connect(sportweb).get();
+			
+			//events-items
+			 Elements els = doc.getElementsByClass("tevents_nav");
+			    for(Element e:els){
+			    	 Elements events = e.getElementsByTag("li");
+			    	 for(Element e1:events){
+			    		 	Event event = new Event();
+			    		 	subType subType = new subType();
+			    		 	Elements eventlink = e1.getElementsByTag("a");
+			    		 	subType.link = eventlink.attr("href");
+			    		 	subType.distance      = eventlink.attr("title");
+					        subType.price_normal = "";
+					        subType.price_late   = "";
+			    		 	
+			    		 	
+					        event.name = eventlink.attr("title");
+					        String year = "2015";
+					        if(eventlink.attr("title").contains("2016")){
+					        	year = "2016";
+					        }
+					        String numberOnly= eventlink.select("span").text().replaceAll("[^0-9]", "");
+					        
+					        
+					        Element mye  = eventlink.select("span").first();
+					        
+					        String datestring = mye.select("small").text();
+					        SimpleDateFormat fromUser = new SimpleDateFormat("dd-MM-yyyy");
+					        String reformattedStr = "";
+					        try {
+								reformattedStr = fromUser.format(fromUser.parse(numberOnly + "-" + getMonth(datestring) + "-" + year));
+							} catch (java.text.ParseException e2) {
+								// TODO Auto-generated catch block
+								e2.printStackTrace();
+							}
+					        event.date = reformattedStr;
+					        
+					        event.vendor = "sportweb";
+					        event.type = "running";
+					        event.description = eventlink.attr("title");
+					        event.subtypes.add(subType);
+					        eventsList.add(event);
+			    	 }
+			    }	    
+		} catch (IOException e) {
+			System.out.println("Exception in sportweb parsing");
+			e.printStackTrace();
+		}
+	
+}
+	
+
+public static String getMonth(String mon){
+	
+	if(mon.equals("ינואר")){
+		return "1";
+	}
+	if(mon.equals("פברואר")){
+		return "2";
+	}
+	if(mon.equals("מרץ")){
+		return "3";
+	}
+	if(mon.equals("אפריל")){
+		return "4";
+	}
+	if(mon.equals("מאי")){
+		return "5";
+	}
+	if(mon.equals("יוני")){
+		return "6";
+	}
+	if(mon.equals("יולי")){
+		return "7";
+	}
+	if(mon.equals("אוגוסט")){
+		return "8";
+	}
+	if(mon.equals("ספטמבר")){
+		return "9";
+	}
+	if(mon.equals("אוקטובר")){
+		return "10";
+	}
+	if(mon.equals("נובמבר")){
+		return "11";
+	}
+	if(mon.equals("דצמבר")){
+		return "12";
+	}
+	
+	return "";
+}
+
+public static void getRealTiming() {
 		
 		String starttime = format.format(Calendar.getInstance().getTime());
 		
@@ -117,7 +220,6 @@ public class HTMLParser {
 			    	 Elements rows = assigns.getElementsByTag("tr");
 					 for(Element row : rows) {
 						 try{
-							 
 							 if(row.hasAttr("onclick")){
 								 Element Event = row.getElementsByTag("td").get(0);
 								 String eventDate = Event.getElementsByTag("td").get(0).text();
@@ -143,8 +245,106 @@ public class HTMLParser {
 			e.printStackTrace();
 
 		}
-	}
+}
 
+public static void getShvoong() {
+
+	
+	String starttime = format.format(Calendar.getInstance().getTime());
+	
+	int eventID = 0;
+	Document doc = null;
+	int maxPaginate = 0;
+	maxPaginate = getMaxPagination();
+	
+	try {
+		
+		for(int i=1;i<= maxPaginate;i++){
+			System.out.println("Page: " + i);
+			String shvoongLink = null;
+			if(i == 1)
+				shvoongLink = shvoong + "/events";
+			else
+				shvoongLink = shvoong + "/events/page/" + i + "/" + "?cbg_tz=0";
+			
+			for(int i1=1;i1<5;i1++){
+				
+				try{
+					Thread.sleep(sleeptime);
+					//doc = Jsoup.connect(shvoongLink).timeout(3000).get();
+					Connection conn  = Jsoup.connect(shvoongLink).userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36").timeout(10000);
+				       
+					 Connection.Response resp = conn.execute();
+					
+					 if (resp.statusCode() == 200) {
+				            doc = conn.get();
+				            PrintWriter writer = new PrintWriter("the-file-name.txt", "UTF-8");
+				            writer.println(doc);
+				            writer.close();
+				            Elements imageElements = doc.select("article");
+				            if(imageElements.size() != 0){
+				            	break;   
+				            }
+				            else{
+				            	continue;
+				            }
+				        }
+					continue;
+				}catch(SocketTimeoutException r){
+					System.out.println("Got SocketTimeoutException Exception... trying again");
+				} catch (InterruptedException e1) {
+					System.out.println("Got InterruptedException Exception... trying again");
+					e1.printStackTrace();
+				}
+				catch (IOException e) {
+					continue;
+				}
+			}
+			
+			
+			 Elements imageElements = doc.select("article");
+			 String EventHref = "";
+			 String EventText = "";
+			 String eventType = "";
+			 
+			 for(Element e:imageElements){
+			        Element links = e.getElementsByTag("a").first();
+			        EventHref = links.attr("href");
+			        EventText = links.attr("title");
+			        //System.out.println("Event: " + EventText);
+			        //System.out.println("Event ID: " + eventID++);
+			        eventType = "";
+			        
+			        Elements icons = e.getElementsByTag("li");
+			       
+			        for (Element icon : icons) {
+			        		if(icon.hasAttr("title")){
+			        			String ff = icon.attr("title");
+			        		}
+			        		Elements imageData = icon.select("img");
+			        		
+			        		if(imageData.attr("title").trim().contains("משחה") || imageData.attr("title").trim().contains("שחיה") || imageData.attr("title").trim().contains("שחייה") || imageData.attr("title").trim().equals("ריצה") || imageData.attr("title").trim().contains("אופניים") || imageData.attr("title").trim().contains("טריאתלון"))
+			        		{
+			        			eventType = imageData.attr("title").trim();
+			        			break;
+			        		}	       
+			        }
+			        
+			        if(!eventType.equals("")){
+			        	//parseShvoongEvent("http://www.shvoong.co.il/events/%D7%98%D7%A8%D7%99%D7%90%D7%AA%D7%9C%D7%95%D7%9F-%D7%A8%D7%90%D7%A9%D7%95%D7%9F-%D7%9C%D7%A6%D7%99%D7%95%D7%9F-2/?cbg_tz=-120","טריאתלון");
+			        	parseShvoongEvent(EventHref,eventType);
+			        }
+			        else{
+			        	//System.out.println("No event Type for " + EventHref);
+			        }
+			      }
+		}
+
+	} catch (IOException e) {
+		System.out.println("Got Exception!");
+		e.printStackTrace();
+	}	
+}
 
 public static void parseRealtimeEvent(String eventURL, String eventDate){
 	
@@ -155,7 +355,7 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 	try {
 		doc = Jsoup.connect(eventURL).get();
 		
-		System.out.println("Parsing event: " + eventURL);
+		//System.out.println("Parsing event: " + eventURL);
 		
 		Elements els = doc.select("meta");
 		for( Element row : els) {
@@ -232,9 +432,7 @@ public static void parseRealtimeEvent(String eventURL, String eventDate){
 	}
 	
 }
-	
-	
-	
+		
 public static String getHTTPObj(String url, int retry)
 {
 	
@@ -253,8 +451,8 @@ public static String getHTTPObj(String url, int retry)
 		con.setRequestProperty("User-Agent", USER_AGENT);
 	
 		int responseCode = con.getResponseCode();
-		System.out.println("\nSending 'GET' request to URL : " + url);
-		System.out.println("Response Code : " + responseCode);
+		//System.out.println("\nSending 'GET' request to URL : " + url);
+		//System.out.println("Response Code : " + responseCode);
 		
 		if(responseCode != 200)
 			getHTTPObj(url,retry--);
@@ -278,10 +476,8 @@ public static String getHTTPObj(String url, int retry)
 	return null;	
 }
 
-
-	public static void parseShvoongEvent(String eventURL, String eventType) throws FileNotFoundException, UnsupportedEncodingException
-	{
-			
+public static void parseShvoongEvent(String eventURL, String eventType) throws FileNotFoundException, UnsupportedEncodingException
+{		
 		Event event=new Event();
 		event.city = "אין מידע";
 		event.type = getEventType(eventType); 
@@ -465,7 +661,7 @@ public static String getHTTPObj(String url, int retry)
 					System.out.println("Event didn't have any data: " + e.getMessage());
 				 }
 			 eventsList.add(event);
-			 //event.printEvent();
+			 event.printEvent();
 			 
 			 
 			 
@@ -478,89 +674,7 @@ public static String getHTTPObj(String url, int retry)
 		} 
 	}
 	
-	
-	public static void getShvoong() {
-		
-		String starttime = format.format(Calendar.getInstance().getTime());
-		
-		
-		Document doc = null;
-		int maxPaginate = 0;
-		maxPaginate = getMaxPagination();
-		
-		try {
-			
-			for(int i=1;i<= maxPaginate;i++){
-				System.out.println("Page: " + i);
-				String shvoongLink = null;
-				if(i == 1)
-					shvoongLink = shvoong + "/events";
-				else
-					shvoongLink = shvoong + "/events/page/" + i + "/";
-				
-				for(int i1=1;i1<3;i1++){
-					
-					try{
-						Thread.sleep(sleeptime);
-						doc = Jsoup.connect(shvoongLink).timeout(3000).get();
-						continue;
-					}catch(SocketTimeoutException r){
-						System.out.println("Got SocketTimeoutException Exception... trying again");
-					} catch (InterruptedException e1) {
-						System.out.println("Got InterruptedException Exception... trying again");
-						e1.printStackTrace();
-					}
-				}
-				
-				
-				 Elements imageElements = doc.select("article");
-				 String EventHref = "";
-				 String EventText = "";
-				 String eventType = "";
-				 for(Element e:imageElements){
-				        Element links = e.getElementsByTag("a").first();
-				        EventHref = links.attr("href");
-				        EventText = links.attr("title");
-				        System.out.println("Event: " + EventText);
-				        eventType = "";
-				        
-				        Elements icons = e.getElementsByTag("li");
-				       
-				        for (Element icon : icons) {
-				        		if(icon.hasAttr("title")){
-				        			String ff = icon.attr("title");
-				        		}
-				        		Elements imageData = icon.select("img");
-				        		
-				        		if(imageData.attr("title").trim().contains("משחה") || imageData.attr("title").trim().contains("שחיה") || imageData.attr("title").trim().contains("שחייה") || imageData.attr("title").trim().equals("ריצה") || imageData.attr("title").trim().contains("אופניים") || imageData.attr("title").trim().contains("טריאתלון"))
-				        		{
-				        			eventType = imageData.attr("title").trim();
-				        			break;
-				        		}	       
-				        }
-				        
-				        if(!eventType.equals("")){
-				        	//parseShvoongEvent("http://www.shvoong.co.il/events/%D7%98%D7%A8%D7%99%D7%90%D7%AA%D7%9C%D7%95%D7%9F-%D7%A8%D7%90%D7%A9%D7%95%D7%9F-%D7%9C%D7%A6%D7%99%D7%95%D7%9F-2/?cbg_tz=-120","טריאתלון");
-				        	parseShvoongEvent(EventHref,eventType);
-				        }
-				        else{
-				        	//System.out.println("No event Type for " + EventHref);
-				        }
-				      }
-			}
-
-		} catch (IOException e) {
-			System.out.println("Got Exception!");
-			e.printStackTrace();
-		}
-		
-		
-		
-		
-	}
-	
-	
-	public static String getCity(String cordinates) throws IOException, ParseException{
+public static String getCity(String cordinates) throws IOException, ParseException{
 		
 		String googleURL = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + cordinates + "&sensor=false";
 		InputStream inputStream = null;
@@ -614,7 +728,7 @@ public static String getHTTPObj(String url, int retry)
 		return locationName;
 	}
 	
-	public static int getMaxPagination()
+public static int getMaxPagination()
 	{
 		int[] pages = new int[20];
 		Document doc = null;
@@ -623,8 +737,16 @@ public static String getHTTPObj(String url, int retry)
 		try {
 			
 				String shvoongLink = shvoong + "/events";
-				doc = Jsoup.connect(shvoongLink).timeout(3000).get();
+				//doc = Jsoup.connect(shvoongLink).timeout(10000).get();
+				Connection conn  = Jsoup.connect(shvoongLink).userAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.21 (KHTML, like Gecko) Chrome/19.0.1042.0 Safari/535.21").timeout(10000);
+			       
+				 Connection.Response resp = conn.execute();
 				
+				 if (resp.statusCode() == 200) {
+			            doc = conn.get();
+			                  
+			        }
+				 
 				Elements paginations = doc.select("div.pagination");
 				 for(Element paginate:paginations){
 					 //page-numbers
@@ -638,6 +760,8 @@ public static String getHTTPObj(String url, int retry)
 				 }
 
 		} catch (IOException e) {
+			System.out.println("got exception ");
+			e.printStackTrace();
 		}
 		
 
@@ -655,9 +779,8 @@ public static String getHTTPObj(String url, int retry)
 		 
 		return largest;
 	}
-	
-	
-	public static String getEventType(String eventType){
+		
+public static String getEventType(String eventType){
 		
 		if(eventType.equals("ריצה"))
 		{

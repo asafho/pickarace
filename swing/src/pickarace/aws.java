@@ -115,6 +115,11 @@ public class aws {
 
 	private static void pushEventsToJsonArray() {
 		
+		int runing = 0;
+		int swim = 0;
+		int bike = 0;
+		int thriatlet = 0;
+		
 		try {
 		for(int i=0;i<HTMLParser.eventsList.size();i++){
 			JSONObject json=new JSONObject();
@@ -126,6 +131,20 @@ public class aws {
 			json.put("date",ev.date);
 			json.put("registration_date_normal",ev.registration_date_normal);
 			json.put("registration_date_late",ev.registration_date_late);
+			
+			if(ev.type == "running"){
+				runing++;
+			}
+			if(ev.type == "swimming"){
+				swim++;
+			}
+			if(ev.type == "triathlon"){
+					thriatlet++;
+			}
+			if(ev.type == "biking"){
+				bike++;
+			}
+			
 			
 			JSONObject location=new JSONObject();
 			location.put("country", ev.country);
@@ -153,6 +172,10 @@ public class aws {
 			}
 			json.put("subtype", subtypes);
 			contestsJsonArray.put(json);
+			
+			//Print totals
+			System.out.println("Found total:\nrun: " + runing +" swim:" + swim + " thriatlet:" + thriatlet + " bike:" + bike);
+			
 		}	
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

@@ -462,7 +462,8 @@ public class editor {
 		btnNewButton = new JButton("get Data");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				HTMLParser.getRealTiming();
+				//HTMLParser.getZnook();
+					HTMLParser.getRealTiming();
 				HTMLParser.getShvoong();
 			}
 		});

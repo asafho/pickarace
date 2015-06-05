@@ -6,9 +6,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.CookieHandler;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -119,6 +123,23 @@ public static void getSportWeb() {
 			    		 	subType subType = new subType();
 			    		 	Elements eventlink = e1.getElementsByTag("a");
 			    		 	subType.link = eventlink.attr("href");
+			    		 	
+			    		 	
+			    		 	/*get Redirected url*/
+			    		 	CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
+			    		 	URLConnection con = new URL( subType.link ).openConnection();
+			    		 	System.out.println( "orignal url: " + con.getURL() );
+			    		 	con.connect();
+			    		 	System.out.println( "connected url: " + con.getURL() );
+			    		 	InputStream is = con.getInputStream();
+			    		 	System.out.println( "redirected url: " + con.getURL().toString() );
+			    		 	subType.link = con.getURL().toString();
+			    		 	is.close();
+			    		 	
+			    		 	
+			    		 	
+			    		 	
+			    		 	
 			    		 	subType.distance      = eventlink.attr("title");
 					        subType.price_normal = "";
 					        subType.price_late   = "";
@@ -147,6 +168,7 @@ public static void getSportWeb() {
 					        
 					        event.vendor = "sportweb";
 					        event.type = "running";
+					        event.city = "אין מידע";
 					        event.description = eventlink.attr("title");
 					        event.subtypes.add(subType);
 					        eventsList.add(event);

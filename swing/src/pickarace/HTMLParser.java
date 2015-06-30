@@ -96,9 +96,9 @@ public class HTMLParser {
 	static SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 	
 public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-		getSportWeb();
 		getRealTiming();
 		getShvoong();
+		getSportWeb();
 		aws.uploadNewFile();
 	}
 		

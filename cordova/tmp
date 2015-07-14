@@ -1,0 +1,94 @@
+<ons-navigator title="Navigator" var="myNavigator">
+<ons-page>
+  <ons-toolbar>
+    <div class="center">Simple Navigation</div>
+  </ons-toolbar>
+  <div style="text-align: center">
+    <br>
+    <ons-button modifier="light" onclick="myNavigator.pushPage('page1.html', { animation : 'slide' } )">
+      Running
+    </ons-button>
+    <br>
+    <ons-button modifier="light" onclick="myNavigator.pushPage('page2.html', { animation : 'slide' } )">
+      Swimming
+    </ons-button>
+  </div>
+</ons-page>
+</ons-navigator>
+
+<ons-template id="page1.html">
+<ons-page>
+  <ons-toolbar>
+    <div class="left">
+      <ons-back-button>Back</ons-back-button>
+    </div>
+    <div class="center">Running</div>
+  </ons-toolbar>
+
+  <ons-page ng-controller="MyCtrl">
+<ons-toolbar>
+<div class="center">Lazy Repeat</div>
+</ons-toolbar>
+
+<ons-list>
+<ons-list-item modifier="chevron" class="item" ons-lazy-repeat="MyDelegate">
+  <ons-row>
+    <ons-col width="80px">
+      <img ng-src="http://lorempixel.com/60/60/?{{item.rand}}" class="item-thum"></img>
+    </ons-col>
+    <ons-col>
+      <header>
+        <span class="item-title">{{item.title}}</span>
+        <span class="item-label">{{item.label}}</span>
+      </header>
+      <div ng-show="item.desc==''">
+        <p><span style='opacity: 0.7;'><ons-icon icon='fa-spinner' spin='true'></ons-icon> Loading bacon...</p></span></div>
+      <p class="item-desc">{{ item.desc }}</p>
+    </ons-col>
+  </ons-row>
+</ons-list-item>
+</ons-list>
+</ons-page>
+
+</ons-page>
+</ons-page>
+</ons-template>
+
+
+
+<ons-template id="page2.html">
+<ons-page>
+  <ons-toolbar>
+    <div class="left">
+      <ons-back-button>Back</ons-back-button>
+    </div>
+    <div class="center">Swimming</div>
+  </ons-toolbar>
+
+  <ons-page ng-controller="MyCtrl">
+<ons-toolbar>
+<div class="center">Lazy Repeat</div>
+</ons-toolbar>
+
+<ons-list>
+<ons-list-item modifier="chevron" class="item" ons-lazy-repeat="MyDelegate">
+  <ons-row>
+    <ons-col width="80px">
+      <img ng-src="http://lorempixel.com/60/60/?{{item.rand}}" class="item-thum"></img>
+    </ons-col>
+    <ons-col>
+      <header>
+        <span class="item-title">{{item.title}}</span>
+        <span class="item-label">{{item.label}}</span>
+      </header>
+      <div ng-show="item.desc==''">
+        <p><span style='opacity: 0.7;'><ons-icon icon='fa-spinner' spin='true'></ons-icon> Loading bacon...</p></span></div>
+      <p class="item-desc">{{ item.desc }}</p>
+    </ons-col>
+  </ons-row>
+</ons-list-item>
+</ons-list>
+</ons-page>
+
+</ons-page>
+</ons-template>
